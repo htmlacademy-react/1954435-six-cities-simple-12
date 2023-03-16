@@ -7,7 +7,7 @@ const root = ReactDOM.createRoot(
 );
 
 const Setting = {
-  PlaceCardCount: 5,
+  PlaceCardCount: 312,
 } as const;
 
 
