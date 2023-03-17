@@ -1,3 +1,4 @@
+import {Helmet} from 'react-helmet-async';
 import Header from '../../components/header/header';
 import LocationNav from '../../components/location-nav/location-nav';
 import Sorting from '../../components/sorting/sorting';
@@ -34,6 +35,9 @@ export default function MainScreen({roomCardCount}: MainScreenProps) {
         </svg>
       </div>
 
+      <Helmet>
+        <title>Six cities</title>
+      </Helmet>
       <Header/>
 
       <main className="page__main page__main--index">

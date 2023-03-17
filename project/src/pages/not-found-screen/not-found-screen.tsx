@@ -1,8 +1,13 @@
 import {Link} from 'react-router-dom';
+import {Helmet} from 'react-helmet-async';
 
 export default function NotFoundScreen() {
   return (
     <div className="page page--gray page--not-found">
+      <Helmet>
+        <title>Six cities: page not found</title>
+      </Helmet>
+
       <main className="page__main page__main--not-found">
         <div className="container">
           <section className="not-found">
