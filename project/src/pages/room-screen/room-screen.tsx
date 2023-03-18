@@ -18,7 +18,7 @@ export default function RoomScreen() {
       <Helmet>
         <title>Six cities: offer</title>
       </Helmet>
-      <Header/>
+      <Header hasNavigation/>
       <main className="page__main page__main--property">
         <section className="property">
 
