@@ -1,5 +1,6 @@
 import {Link} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
+import './not-found-screen.css';
 
 export default function NotFoundScreen() {
   return (
@@ -13,7 +14,7 @@ export default function NotFoundScreen() {
           <section className="not-found">
             <h1 className="not-found__title">404</h1>
             <p>Page Not Found</p>
-            <Link to="/">Home Page</Link>
+            <Link className="not-found__link" to="/">Home Page</Link>
           </section>
         </div>
       </main>
