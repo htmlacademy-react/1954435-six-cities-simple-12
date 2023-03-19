@@ -1,10 +1,18 @@
-export default function Header() {
+import {Link} from 'react-router-dom';
+import {AppRoute} from '../../const';
+import HeaderNav from '../header-nav/header-nav';
+
+type HeaderProps = {
+  hasNavigation: boolean;
+};
+
+export default function Header(props: HeaderProps) {
   return (
     <header className="header">
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
-            <a className="header__logo-link header__logo-link--active">
+            <Link className="header__logo-link header__logo-link--active" to={AppRoute.Main}>
               <img
                 className="header__logo"
                 src="img/logo.svg"
@@ -12,25 +20,10 @@ export default function Header() {
                 width="81"
                 height="41"
               />
-            </a>
+            </Link>
           </div>
-          <nav className="header__nav">
-            <ul className="header__nav-list">
-              <li className="header__nav-item user">
-                <div className="header__nav-profile">
-                  <div className="header__avatar-wrapper user__avatar-wrapper"></div>
-                  <span className="header__user-name user__name">
-                    Oliver.conner@gmail.com
-                  </span>
-                </div>
-              </li>
-              <li className="header__nav-item">
-                <a className="header__nav-link" href="todo">
-                  <span className="header__signout">Sign out</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
+          {props.hasNavigation && <HeaderNav />}
+
         </div>
       </div>
     </header>
