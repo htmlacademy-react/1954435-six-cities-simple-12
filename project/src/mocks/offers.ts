@@ -1,4 +1,4 @@
-import {Offers} from '../types/offers';
+import {Offers} from '../types/offer';
 import {PHOTO_URL} from './const-mocks';
 
 
