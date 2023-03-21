@@ -11,7 +11,6 @@ import {Offers} from '../../types/offer';
 //import {Reviews} from '../../types/review';
 
 type AppProps = {
-  //roomCardCount: number;
   offers: Offers;
   //reviews: Reviews;
 };

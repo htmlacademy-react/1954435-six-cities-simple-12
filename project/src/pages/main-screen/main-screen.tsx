@@ -7,7 +7,6 @@ import OfferList from '../../components/offer-list/offer-list';
 import {Offers} from '../../types/offer';
 
 type MainScreenProps = {
-  //roomCardCount: number;
   offers: Offers;
 };
 
