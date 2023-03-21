@@ -3,7 +3,7 @@ import SvgUpper from '../../components/svg-upper/svg-upper';
 import Header from '../../components/header/header';
 import LocationNav from '../../components/location-nav/location-nav';
 import Sorting from '../../components/sorting/sorting';
-import RoomCard from '../../components/room-card/room-card';
+import OfferList from '../../components/offer-list/offer-list';
 import {Offers} from '../../types/offer';
 
 type MainScreenProps = {
@@ -35,10 +35,9 @@ export default function MainScreen({offers}: MainScreenProps) {
               <Sorting/>
 
               <div className="cities__places-list places__list tabs__content">
-
-                {offers && offers.map((offer) => <RoomCard key = {offer.id} offer = {offer}/>)}
-
+                <OfferList offers={offers} />
               </div>
+
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>
