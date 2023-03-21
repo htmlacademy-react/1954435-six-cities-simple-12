@@ -6,7 +6,7 @@ import RoomHeader from '../../components/room-header/room-header';
 import RoomInside from '../../components/room-inside/room-inside';
 import Host from '../../components/host/host';
 import Reviews from '../../components/reviews/reviews';
-import RoomCard from '../../components/room-card/room-card';
+//import RoomCard from '../../components/room-card/room-card';
 
 
 export default function RoomScreen() {
@@ -38,9 +38,9 @@ export default function RoomScreen() {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <RoomCard />
-              <RoomCard />
-              <RoomCard />
+              {/*<RoomCard />
+                <RoomCard />
+              <RoomCard /> */}
             </div>
           </section>
         </div>
