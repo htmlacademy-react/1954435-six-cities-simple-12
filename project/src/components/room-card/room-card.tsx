@@ -4,11 +4,12 @@ import {Offer} from '../../types/offer';
 
 type RoomCardProps = {
   offer: Offer;
+  onCardMouseOver:(value:number)=>void;
 };
 
-export default function RoomCard ({offer}: RoomCardProps){
+export default function RoomCard ({offer,onCardMouseOver}: RoomCardProps){
   return(
-    <article className="cities__card place-card">
+    <article className="cities__card place-card" onMouseOver={()=>{onCardMouseOver(offer.id);}}>
       {offer.isPremium &&
       <div className="place-card__mark">
         <span>Premium</span>
