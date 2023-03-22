@@ -9,7 +9,7 @@ type OfferListProps = {
 export default function OfferList({offers}: OfferListProps): JSX.Element {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [activeCardId,setActiveCardId] = useState<number|undefined>();
-
+  console.log(activeCardId);
   return (
     <>
       { offers.map((offer) => <RoomCard key={offer.id} offer={offer} onCardMouseOver={(id)=>{setActiveCardId(id);}}/> )}
