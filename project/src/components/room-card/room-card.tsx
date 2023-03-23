@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-import {AppRoute} from '../../const';
+//import {AppRoute} from '../../const';
 import {Offer} from '../../types/offer';
 import PremiumLabel from '../premium-label/premium-label';
 
@@ -14,7 +14,7 @@ export default function RoomCard ({offer,onCardMouseOver}: RoomCardProps){
       {offer.isPremium && <PremiumLabel/>}
 
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to={AppRoute.Offer}>
+        <Link to={`/offer/${offer.id}`}>
           <img
             className="place-card__image"
             src= {offer.previewImage}
@@ -40,9 +40,10 @@ export default function RoomCard ({offer,onCardMouseOver}: RoomCardProps){
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={AppRoute.Offer}>{offer.title} </Link>
+          <Link to={`/offer/${offer.id}`}>{offer.title} </Link>
+          {/*<Link to={`${AppRoute.Offer}/${offer.id}`}>{offer.title} </Link>*/}
         </h2>
-        <p className="place-card__type">Apartment</p>
+        <p className="place-card__type">{offer.type}</p>
       </div>
     </article>
   );
