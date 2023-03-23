@@ -32,7 +32,7 @@ export default function App(props: AppProps): JSX.Element {
           />
           <Route
             path={AppRoute.Offer}
-            element={<RoomScreen /*reviews={reviews}*/ />}
+            element={<RoomScreen offers={offers} /*reviews={reviews}*/ />}
           />
           <Route
             path={AppRoute.NotFound}

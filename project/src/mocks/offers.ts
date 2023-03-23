@@ -44,7 +44,7 @@ export const offers: Offers = [
     price: 80,
     rating: 4,
     previewImage: `${PHOTO_URL.Offer}${Math.random()}`,
-    images: Array.from({length: 4}, () => `${PHOTO_URL.Offer}${Math.random()}`),
+    images: Array.from({length: 6}, () => `${PHOTO_URL.Offer}${Math.random()}`),
     bedrooms: 2,
     maxAdults: 2,
     goods: ['Wi-Fi', 'Heating', 'Kitchen' , 'Fridge', 'Towels'],
@@ -136,3 +136,5 @@ export const offers: Offers = [
     }
   }
 ];
+
+export const nearOffers = offers.slice(0, 3);

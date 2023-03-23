@@ -7,9 +7,16 @@ import RoomInside from '../../components/room-inside/room-inside';
 import Host from '../../components/host/host';
 import Reviews from '../../components/reviews/reviews';
 //import RoomCard from '../../components/room-card/room-card';
+import OfferList from '../../components/offer-list/offer-list';
+import { nearOffers } from '../../mocks/offers';
+import {Offers} from '../../types/offer';
+
+type RoomcreenProps = {
+  offers: Offers;
+};
 
 
-export default function RoomScreen() {
+export default function RoomScreen({offers}: RoomcreenProps) {
   return (
     <div className="page">
       <SvgUpper/>
@@ -38,9 +45,10 @@ export default function RoomScreen() {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              {/*<RoomCard />
-                <RoomCard />
-              <RoomCard /> */}
+              <OfferList offers={ nearOffers} />
+              {/*Array.from({length: 3}).map(() => <RoomCard />)
+              <RoomCard key={offer.id} offer={offers} onCardMouseOver={(id)=>{setActiveCardId(id);}} />*/}
+
             </div>
           </section>
         </div>
