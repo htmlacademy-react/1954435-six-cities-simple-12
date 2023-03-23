@@ -1,6 +1,7 @@
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import {Offer} from '../../types/offer';
+import PremiumLabel from '../premium-label/premium-label';
 
 type RoomCardProps = {
   offer: Offer;
@@ -10,10 +11,7 @@ type RoomCardProps = {
 export default function RoomCard ({offer,onCardMouseOver}: RoomCardProps){
   return(
     <article className="cities__card place-card" onMouseOver={()=>{onCardMouseOver(offer.id);}}>
-      {offer.isPremium &&
-      <div className="place-card__mark">
-        <span>Premium</span>
-      </div>}
+      {offer.isPremium && <PremiumLabel/>}
 
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={AppRoute.Offer}>

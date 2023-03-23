@@ -104,7 +104,7 @@ export const offers: Offers = [
   },
   {
     id: 4,
-    isPremium: false,
+    isPremium: true,
     title: 'Nice, cozy, warm big bed apartment',
     type: 'apartment',
     price: 180,

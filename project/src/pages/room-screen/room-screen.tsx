@@ -5,18 +5,20 @@ import Gallery from '../../components/gallery/gallery';
 import RoomHeader from '../../components/room-header/room-header';
 import RoomInside from '../../components/room-inside/room-inside';
 import Host from '../../components/host/host';
-import Reviews from '../../components/reviews/reviews';
-//import RoomCard from '../../components/room-card/room-card';
+import RoomReviews from '../../components/reviews/reviews';
 import OfferList from '../../components/offer-list/offer-list';
 import { nearOffers } from '../../mocks/offers';
 import {Offers} from '../../types/offer';
+import { Reviews } from '../../types/review';
+
 
 type RoomcreenProps = {
   offers: Offers;
+  reviews: Reviews;
 };
 
 
-export default function RoomScreen({offers}: RoomcreenProps) {
+export default function RoomScreen({offers, reviews}: RoomcreenProps) {
   return (
     <div className="page">
       <SvgUpper/>
@@ -35,7 +37,7 @@ export default function RoomScreen({offers}: RoomcreenProps) {
               <RoomHeader/>
               <RoomInside/>
               <Host/>
-              <Reviews/>
+              <RoomReviews/>
             </div>
           </div>
           <section className="property__map map"></section>
@@ -46,9 +48,6 @@ export default function RoomScreen({offers}: RoomcreenProps) {
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
               <OfferList offers={ nearOffers} />
-              {/*Array.from({length: 3}).map(() => <RoomCard />)
-              <RoomCard key={offer.id} offer={offers} onCardMouseOver={(id)=>{setActiveCardId(id);}} />*/}
-
             </div>
           </section>
         </div>

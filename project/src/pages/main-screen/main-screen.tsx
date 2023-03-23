@@ -6,6 +6,7 @@ import Sorting from '../../components/sorting/sorting';
 import OfferList from '../../components/offer-list/offer-list';
 import {Offers} from '../../types/offer';
 
+
 type MainScreenProps = {
   offers: Offers;
 };
