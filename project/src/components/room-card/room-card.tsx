@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom';
 //import {AppRoute} from '../../const';
 import {Offer} from '../../types/offer';
-import PremiumLabel from '../premium-label/premium-label';
+import PremiumLabel from '../premium/premium-label';
 
 type RoomCardProps = {
   offer: Offer;
@@ -15,6 +15,7 @@ export default function RoomCard ({offer,onCardMouseOver}: RoomCardProps){
 
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={`/offer/${offer.id}`}>
+
           <img
             className="place-card__image"
             src= {offer.previewImage}

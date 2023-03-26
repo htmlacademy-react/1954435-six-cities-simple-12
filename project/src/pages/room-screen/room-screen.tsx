@@ -1,3 +1,4 @@
+import {useParams} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
 import SvgUpper from '../../components/svg-upper/svg-upper';
 import Header from '../../components/header/header';
@@ -8,7 +9,7 @@ import Host from '../../components/host/host';
 import RoomReviews from '../../components/reviews/reviews';
 import OfferList from '../../components/offer-list/offer-list';
 import { nearOffers } from '../../mocks/offers';
-import {Offers} from '../../types/offer';
+import {Offers, Offer} from '../../types/offer';
 import { Reviews } from '../../types/review';
 
 
@@ -19,6 +20,8 @@ type RoomcreenProps = {
 
 
 export default function RoomScreen({offers, reviews}: RoomcreenProps) {
+  const {id} = useParams();
+  const offer = offers.find((item) => item.id === Number(id)) as Offer;
   return (
     <div className="page">
       <SvgUpper/>
@@ -35,7 +38,7 @@ export default function RoomScreen({offers, reviews}: RoomcreenProps) {
           <div className="property__container container">
             <div className="property__wrapper">
               <RoomHeader/>
-              <RoomInside/>
+              <RoomInside offer={offer}/>
               <Host/>
               <RoomReviews/>
             </div>
@@ -47,7 +50,7 @@ export default function RoomScreen({offers, reviews}: RoomcreenProps) {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <OfferList offers={ nearOffers} />
+              <OfferList offers={nearOffers} />
             </div>
           </section>
         </div>

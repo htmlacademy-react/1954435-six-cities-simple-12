@@ -80,7 +80,7 @@ export const offers: Offers = [
     images: Array.from({length: 2}, () => `${PHOTO_URL.Offer}${Math.random()}`),
     bedrooms: 1,
     maxAdults: 2,
-    goods: ['Wi-Fi', 'Towels'],
+    goods: ['Wi-Fi', 'Towels', 'Coffee machine', 'Washing machine' ],
     description: 'An independent House, strategically located between Rembrand Square and National Opera.',
     host: {
       id: 3,
@@ -113,7 +113,7 @@ export const offers: Offers = [
     images: Array.from({length: 3}, () => `${PHOTO_URL.Offer}${Math.random()}`),
     bedrooms: 5,
     maxAdults: 3,
-    goods: ['Towels'],
+    goods: ['Towels', 'Kitchen'],
     description: 'The building is green and from 18th century.',
     host: {
       id: 2,
