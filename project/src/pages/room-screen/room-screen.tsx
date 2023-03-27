@@ -33,13 +33,13 @@ export default function RoomScreen({offers, reviews}: RoomcreenProps) {
       <main className="page__main page__main--property">
         <section className="property">
 
-          < Gallery/>
+          < Gallery offer={offer}/>
 
           <div className="property__container container">
             <div className="property__wrapper">
-              <RoomHeader/>
+              <RoomHeader offer={offer}/>
               <RoomInside offer={offer}/>
-              <Host/>
+              <Host user={offer.host}/>
               <RoomReviews/>
             </div>
           </div>

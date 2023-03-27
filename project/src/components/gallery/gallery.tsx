@@ -1,25 +1,20 @@
-export default function Gallery () {
+import {Offer} from '../../types/offer';
+
+type GalleryProps = {
+  offer: Offer;
+};
+
+export default function Gallery ({offer}:GalleryProps) {
+  const {title, images} = offer;
   return (
     <div className="property__gallery-container container">
       <div className="property__gallery">
-        <div className="property__image-wrapper">
-          <img className="property__image" src="img/room.jpg" alt="Photo studio"/>
-        </div>
-        <div className="property__image-wrapper">
-          <img className="property__image" src="img/apartment-01.jpg" alt="Photo studio"/>
-        </div>
-        <div className="property__image-wrapper">
-          <img className="property__image" src="img/apartment-02.jpg" alt="Photo studio"/>
-        </div>
-        <div className="property__image-wrapper">
-          <img className="property__image" src="img/apartment-03.jpg" alt="Photo studio"/>
-        </div>
-        <div className="property__image-wrapper">
-          <img className="property__image" src="img/studio-01.jpg" alt="Photo studio"/>
-        </div>
-        <div className="property__image-wrapper">
-          <img className="property__image" src="img/apartment-01.jpg" alt="Photo studio"/>
-        </div>
+
+        { images.length && images.map((src)=>(
+          <div key={src} className="property__image-wrapper">
+            <img className="property__image" src={src} alt={title}/>
+          </div>))}
+
       </div>
     </div>
 
