@@ -6,7 +6,7 @@ import Gallery from '../../components/gallery/gallery';
 import RoomHeader from '../../components/room-header/room-header';
 import RoomInside from '../../components/room-inside/room-inside';
 import Host from '../../components/host/host';
-import RoomReviews from '../../components/reviews/reviews';
+import RoomReviews from '../../components/reviews/room-reviews';
 import OfferList from '../../components/offer-list/offer-list';
 import { nearOffers } from '../../mocks/offers';
 import {Offers, Offer} from '../../types/offer';
@@ -40,7 +40,7 @@ export default function RoomScreen({offers, reviews}: RoomcreenProps) {
               <RoomHeader offer={offer}/>
               <RoomInside offer={offer}/>
               <Host user={offer.host}/>
-              <RoomReviews/>
+              <RoomReviews reviews={reviews}/>
             </div>
           </div>
           <section className="property__map map"></section>
