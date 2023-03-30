@@ -11,7 +11,7 @@ type RoomCardProps = {
 export default function RoomCard ({offer,onCardMouseOver}: RoomCardProps){
   return(
     <article className="cities__card place-card" onMouseOver={()=>{onCardMouseOver(offer.id);}}>
-      {offer.isPremium && <PremiumLabel/>}
+      {offer.isPremium && <PremiumLabel cssClass="place-card__mark"/>}
 
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={`/offer/${offer.id}`}>

@@ -1,6 +1,10 @@
-export default function PremiumLabel() {
+type PremiumLabelProps = {
+  cssClass: string;
+};
+
+export default function PremiumLabel({cssClass}: PremiumLabelProps) {
   return (
-    <div className="place-card__mark">
+    <div className={cssClass}>
       <span>Premium</span>
     </div>
   );

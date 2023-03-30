@@ -1,5 +1,5 @@
-//import PremiumLabel from '../premium-label/premium-label';
 import { Offer } from '../../types/offer';
+import PremiumLabel from '../premium/premium-label';
 
 type RoomHeaderProps = {
   offer: Offer;
@@ -9,10 +9,8 @@ type RoomHeaderProps = {
 export default function RoomHeader({offer}: RoomHeaderProps) {
   return (
     <>
-      <div className="property__mark">
-        <span>Premium</span>
-      </div>
-      {/*offer.isPremium && <PremiumLabel />*/}
+      {offer.isPremium && <PremiumLabel cssClass="property__mark"/>}
+
       <div className="property__name-wrapper">
         <h1 className="property__name">
           {offer.title}
