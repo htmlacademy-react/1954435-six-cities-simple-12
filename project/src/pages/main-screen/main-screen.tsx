@@ -5,6 +5,7 @@ import LocationNav from '../../components/location-nav/location-nav';
 import Sorting from '../../components/sorting/sorting';
 import OfferList from '../../components/offer-list/offer-list';
 import {Offers} from '../../types/offer';
+import Map from '../../components/map/map';
 
 
 type MainScreenProps = {
@@ -40,7 +41,9 @@ export default function MainScreen({offers}: MainScreenProps) {
 
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+
+              <Map city={offers[0].city} points={offers.map((offer) => offer.location)}/>
+
             </div>
           </div>
         </div>
