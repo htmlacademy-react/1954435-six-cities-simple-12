@@ -14,7 +14,7 @@ type MainScreenProps = {
 
 export default function MainScreen({offers}: MainScreenProps) {
   return (
-    <body className="page page--gray page--main">
+    <div className="page page--gray page--main">
       <SvgUpper/>
 
       <Helmet>
@@ -48,6 +48,6 @@ export default function MainScreen({offers}: MainScreenProps) {
           </div>
         </div>
       </main>
-    </body>
+    </div>
   );
 }
