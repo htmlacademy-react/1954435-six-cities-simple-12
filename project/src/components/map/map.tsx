@@ -1,7 +1,7 @@
 import {Icon, Marker} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useRef, useEffect } from 'react';
-import {City, Location} from '../../types/offer';
+import {City, Offers} from '../../types/offer';
 import useMap from '../../hooks/useMap/useMap';
 
 const defaultCustomIcon = new Icon({
@@ -10,21 +10,21 @@ const defaultCustomIcon = new Icon({
   iconAnchor: [14, 40]
 });
 
-/*
-Активная иконка маркера на будущее
+
 const currentCustomIcon = new Icon({
   iconUrl: './img/pin-active.svg',
   iconSize: [28, 40],
   iconAnchor: [14, 40]
-});*/
+});
 
 
 type MapProps = {
   city: City;
-  points : Location[];
+  points : Offers;
+  selectedOffer: number | null;
 };
 
-export default function Map({city,points}: MapProps) {
+export default function Map({city,points,selectedOffer}: MapProps) {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
@@ -32,16 +32,16 @@ export default function Map({city,points}: MapProps) {
     if (map) {
       points.forEach((point) => {
         const marker = new Marker({
-          lat: point.latitude,
-          lng: point.longitude,
+          lat: point.location.latitude,
+          lng: point.location.longitude,
         });
 
         marker
-          .setIcon( defaultCustomIcon)
+          .setIcon( selectedOffer !== null && point.id === selectedOffer ? currentCustomIcon : defaultCustomIcon)
           .addTo(map);
       });
     }
-  }, [map, points]);
+  }, [map, points,selectedOffer]);
 
 
   return (

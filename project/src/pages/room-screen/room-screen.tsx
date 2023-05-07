@@ -1,4 +1,5 @@
 import {useParams} from 'react-router-dom';
+import {useState} from 'react';
 import {Helmet} from 'react-helmet-async';
 import SvgUpper from '../../components/svg-upper/svg-upper';
 import Header from '../../components/header/header';
@@ -20,7 +21,10 @@ type RoomcreenProps = {
 
 
 export default function RoomScreen({offers, reviews}: RoomcreenProps) {
+  const [, setActiveCardId] = useState<number | null>(null);
+
   const {id} = useParams();
+
   const offer = offers.find((item) => item.id === Number(id)) as Offer;
   return (
     <div className="page">
@@ -50,7 +54,7 @@ export default function RoomScreen({offers, reviews}: RoomcreenProps) {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <OfferList offers={nearOffers} />
+              <OfferList offers={nearOffers} onListItemHover={setActiveCardId}/>
             </div>
           </section>
         </div>

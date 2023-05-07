@@ -1,3 +1,4 @@
+import {useState} from 'react';
 import {Helmet} from 'react-helmet-async';
 import SvgUpper from '../../components/svg-upper/svg-upper';
 import Header from '../../components/header/header';
@@ -13,6 +14,10 @@ type MainScreenProps = {
 };
 
 export default function MainScreen({offers}: MainScreenProps) {
+  const [activeCardId, setActiveCardId] = useState<number|null>(null);
+
+  const onListItemHover = (id: number | null) => {setActiveCardId(id);};
+
   return (
     <div className="page page--gray page--main">
       <SvgUpper/>
@@ -36,13 +41,16 @@ export default function MainScreen({offers}: MainScreenProps) {
               <Sorting/>
 
               <div className="cities__places-list places__list tabs__content">
-                <OfferList offers={offers} />
+                <OfferList offers={offers} onListItemHover={onListItemHover} />
               </div>
 
             </section>
             <div className="cities__right-section">
 
-              <Map city={offers[0].city} points={offers.map((offer) => offer.location)}/>
+              <Map city={offers[0].city}
+                points={offers}
+                selectedOffer={activeCardId}
+              />
 
             </div>
           </div>
