@@ -1,3 +1,4 @@
+import {useState} from 'react';
 import {Helmet} from 'react-helmet-async';
 import SvgUpper from '../../components/svg-upper/svg-upper';
 import Header from '../../components/header/header';
@@ -5,6 +6,7 @@ import LocationNav from '../../components/location-nav/location-nav';
 import Sorting from '../../components/sorting/sorting';
 import OfferList from '../../components/offer-list/offer-list';
 import {Offers} from '../../types/offer';
+import Map from '../../components/map/map';
 
 
 type MainScreenProps = {
@@ -12,8 +14,12 @@ type MainScreenProps = {
 };
 
 export default function MainScreen({offers}: MainScreenProps) {
+  const [activeCardId, setActiveCardId] = useState<number|null>(null);
+
+  const onListItemHover = (id: number | null) => {setActiveCardId(id);};
+
   return (
-    <body className="page page--gray page--main">
+    <div className="page page--gray page--main">
       <SvgUpper/>
 
       <Helmet>
@@ -35,16 +41,21 @@ export default function MainScreen({offers}: MainScreenProps) {
               <Sorting/>
 
               <div className="cities__places-list places__list tabs__content">
-                <OfferList offers={offers} />
+                <OfferList offers={offers} onListItemHover={onListItemHover} />
               </div>
 
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+
+              <Map city={offers[0].city}
+                points={offers}
+                selectedOffer={activeCardId}
+              />
+
             </div>
           </div>
         </div>
       </main>
-    </body>
+    </div>
   );
 }

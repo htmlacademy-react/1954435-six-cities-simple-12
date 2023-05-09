@@ -5,12 +5,12 @@ import PremiumLabel from '../premium/premium-label';
 
 type RoomCardProps = {
   offer: Offer;
-  onCardMouseOver:(value:number)=>void;
+  onListItemHover:(value:number)=>void;
 };
 
-export default function RoomCard ({offer,onCardMouseOver}: RoomCardProps){
+export default function RoomCard ({offer,onListItemHover}: RoomCardProps){
   return(
-    <article className="cities__card place-card" onMouseOver={()=>{onCardMouseOver(offer.id);}}>
+    <article className="cities__card place-card" onMouseEnter={()=>{onListItemHover(offer.id);}}>
       {offer.isPremium && <PremiumLabel cssClass="place-card__mark"/>}
 
       <div className="cities__image-wrapper place-card__image-wrapper">

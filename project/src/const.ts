@@ -10,3 +10,4 @@ export enum AuthorizationStatus {
   NoAuthorized = 'NO_AUTHORIZED',
   Unknown = 'UNKNOWN'
 }
+
