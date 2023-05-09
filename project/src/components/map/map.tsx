@@ -10,6 +10,7 @@ const defaultCustomIcon = new Icon({
   iconAnchor: [14, 40]
 });
 
+//test
 
 const currentCustomIcon = new Icon({
   iconUrl: './img/pin-active.svg',
