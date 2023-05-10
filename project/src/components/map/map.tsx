@@ -10,7 +10,6 @@ const defaultCustomIcon = new Icon({
   iconAnchor: [14, 40]
 });
 
-//test
 
 const currentCustomIcon = new Icon({
   iconUrl: './img/pin-active.svg',
@@ -20,12 +19,13 @@ const currentCustomIcon = new Icon({
 
 
 type MapProps = {
+  cssClass: string;
   city: City;
   points : Offers;
   selectedOffer: number | null;
 };
 
-export default function Map({city,points,selectedOffer}: MapProps) {
+export default function Map({ cssClass,city,points,selectedOffer}: MapProps) {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
@@ -46,7 +46,7 @@ export default function Map({city,points,selectedOffer}: MapProps) {
 
 
   return (
-    <section className="cities__map map" style={{height: '100%'}} ref={mapRef}>
+    <section className={`map ${cssClass}`} style={{minHeight: '100%'}} ref={mapRef}>
 
     </section>
   );

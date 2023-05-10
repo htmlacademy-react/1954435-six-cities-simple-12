@@ -12,6 +12,7 @@ import OfferList from '../../components/offer-list/offer-list';
 import { nearOffers } from '../../mocks/offers';
 import {Offers, Offer} from '../../types/offer';
 import { Reviews } from '../../types/review';
+import Map from '../../components/map/map';
 
 
 type RoomcreenProps = {
@@ -21,7 +22,9 @@ type RoomcreenProps = {
 
 
 export default function RoomScreen({offers, reviews}: RoomcreenProps) {
-  const [, setActiveCardId] = useState<number | null>(null);
+  const [ activeCardId, setActiveCardId] = useState<number | null>(null);
+
+  const onListItemHover = (id: number | null) => {setActiveCardId(id);};
 
   const {id} = useParams();
 
@@ -47,14 +50,16 @@ export default function RoomScreen({offers, reviews}: RoomcreenProps) {
               <RoomReviews reviews={reviews}/>
             </div>
           </div>
-          <section className="property__map map"></section>
+
+          <Map cssClass='property__map' city={offers[0].city} points={nearOffers} selectedOffer={activeCardId}/>
+
         </section>
 
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <OfferList offers={nearOffers} onListItemHover={setActiveCardId}/>
+              <OfferList offers={nearOffers} onListItemHover={onListItemHover}/>
             </div>
           </section>
         </div>
