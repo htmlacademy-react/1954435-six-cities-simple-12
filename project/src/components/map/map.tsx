@@ -1,8 +1,10 @@
 import {Icon, Marker} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import cn from 'classnames';
 import { useRef, useEffect } from 'react';
 import {City, Offers} from '../../types/offer';
 import useMap from '../../hooks/useMap/useMap';
+
 
 const defaultCustomIcon = new Icon({
   iconUrl: './img/pin.svg',
@@ -19,13 +21,13 @@ const currentCustomIcon = new Icon({
 
 
 type MapProps = {
-  cssClass: string;
   city: City;
   points : Offers;
   selectedOffer: number | null;
+  isMainMap?: boolean;
 };
 
-export default function Map({ cssClass,city,points,selectedOffer}: MapProps) {
+export default function Map({ city,points,selectedOffer,isMainMap}: MapProps) {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
@@ -46,7 +48,11 @@ export default function Map({ cssClass,city,points,selectedOffer}: MapProps) {
 
 
   return (
-    <section className={`map ${cssClass}`} style={{minHeight: '100%'}} ref={mapRef}>
+    <section className={cn('map', {
+      'cities__map': isMainMap,
+      'property__map': !isMainMap
+    })} style={{minHeight: '100%'}} ref={mapRef}
+    >
 
     </section>
   );

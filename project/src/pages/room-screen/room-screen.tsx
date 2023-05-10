@@ -51,7 +51,7 @@ export default function RoomScreen({offers, reviews}: RoomcreenProps) {
             </div>
           </div>
 
-          <Map cssClass='property__map' city={offers[0].city} points={nearOffers} selectedOffer={activeCardId}/>
+          <Map city={offers[0].city} points={nearOffers} selectedOffer={activeCardId} />
 
         </section>
 

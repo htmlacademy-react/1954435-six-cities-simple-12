@@ -47,10 +47,11 @@ export default function MainScreen({offers}: MainScreenProps) {
             </section>
             <div className="cities__right-section">
 
-              <Map cssClass="cities__map"
+              <Map
                 city={offers[0].city}
                 points={offers}
                 selectedOffer={activeCardId}
+                isMainMap
               />
 
             </div>
