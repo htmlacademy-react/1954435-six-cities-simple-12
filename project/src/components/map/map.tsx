@@ -4,6 +4,7 @@ import cn from 'classnames';
 import { useRef, useEffect } from 'react';
 import {City, Offers} from '../../types/offer';
 import useMap from '../../hooks/useMap/useMap';
+//test
 
 
 const defaultCustomIcon = new Icon({
