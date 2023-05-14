@@ -11,3 +11,11 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN'
 }
 
+export const cities = [
+  'Paris',
+  'Cologne',
+  'Brussels',
+  'Amsterdam',
+  'Hamburg',
+  'Dusseldorf',
+];

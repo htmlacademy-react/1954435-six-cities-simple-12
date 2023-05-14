@@ -7,6 +7,7 @@ import Sorting from '../../components/sorting/sorting';
 import OfferList from '../../components/offer-list/offer-list';
 import {Offers} from '../../types/offer';
 import Map from '../../components/map/map';
+import { cities } from '../../const';
 
 
 type MainScreenProps = {
@@ -30,7 +31,7 @@ export default function MainScreen({offers}: MainScreenProps) {
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
 
-        <LocationNav/>
+        <LocationNav locations={cities} currentLocation={cities[0]}/>
 
         <div className="cities">
           <div className="cities__places-container container">
