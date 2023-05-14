@@ -5,8 +5,6 @@ import { useRef, useEffect } from 'react';
 import {City, Offers} from '../../types/offer';
 import useMap from '../../hooks/useMap/useMap';
 
-
-
 const defaultCustomIcon = new Icon({
   iconUrl: './img/pin.svg',
   iconSize: [28, 40],
