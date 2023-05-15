@@ -31,7 +31,7 @@ export default function MainScreen({offers}: MainScreenProps) {
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
 
-        <LocationNav locations={cities} currentLocation={cities[0]}/>
+        <LocationNav locations={cities} />
 
         <div className="cities">
           <div className="cities__places-container container">
