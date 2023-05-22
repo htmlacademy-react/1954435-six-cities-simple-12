@@ -11,7 +11,7 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN'
 }
 
-export const cities = [
+export const CITIES = [
   'Paris',
   'Cologne',
   'Brussels',

@@ -1,12 +1,8 @@
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { changeCity } from '../../store/actions';
+import { CITIES } from '../../const';
 
-
-type LocationNavProps = {
-  locations: string[];
-};
-
-export default function LocationNav({locations}: LocationNavProps) {
+export default function LocationNav() {
 
   const currentCity = useAppSelector((state) => state.currentCity);
   const dispatch = useAppDispatch();
@@ -16,7 +12,7 @@ export default function LocationNav({locations}: LocationNavProps) {
     <div className="tabs">
       <section className="locations container">
         <ul className="locations__list tabs__list">
-          {locations.map((city) =>{
+          {CITIES.map((city) =>{
             const isActive = (city === currentCity);
 
             return(
