@@ -1,21 +1,25 @@
 import {useState} from 'react';
 import {Helmet} from 'react-helmet-async';
+import { useAppSelector } from '../../hooks';
 import SvgUpper from '../../components/svg-upper/svg-upper';
 import Header from '../../components/header/header';
 import LocationNav from '../../components/location-nav/location-nav';
 import Sorting from '../../components/sorting/sorting';
 import OfferList from '../../components/offer-list/offer-list';
-import {Offers} from '../../types/offer';
+//import {Offers} from '../../types/offer';
 import Map from '../../components/map/map';
 
-type MainScreenProps = {
-  offers: Offers;
-};
 
-export default function MainScreen({offers}: MainScreenProps) {
+export default function MainScreen() {
+
+  const currentCity = useAppSelector((state) => state.currentCity);
+  const offers = useAppSelector((state) => state.offers);
+
   const [activeCardId, setActiveCardId] = useState<number|null>(null);
 
   const onListItemHover = (id: number | null) => {setActiveCardId(id);};
+
+  const filteredOffersByCity = offers.filter((offer)=>(offer.city.name === currentCity));
 
   return (
     <div className="page page--gray page--main">
@@ -35,12 +39,12 @@ export default function MainScreen({offers}: MainScreenProps) {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offers.length} places to stay in Amsterdam</b>
+              <b className="places__found">{filteredOffersByCity.length} places to stay in {currentCity}</b>
 
               <Sorting/>
 
               <div className="cities__places-list places__list tabs__content">
-                <OfferList offers={offers} onListItemHover={onListItemHover} />
+                <OfferList offers={filteredOffersByCity} onListItemHover={onListItemHover} />
               </div>
 
             </section>
