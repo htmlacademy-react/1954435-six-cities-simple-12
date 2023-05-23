@@ -16,8 +16,8 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <App
-        offers = {offers}
-        reviews = {reviews}
+        offers={offers}
+        reviews={reviews}
       />
     </Provider>
   </React.StrictMode>,
