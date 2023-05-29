@@ -51,8 +51,8 @@ export default function MainScreen() {
             <div className="cities__right-section">
 
               <Map
-                city={offers[0].city}
-                points={offers}
+                city={filteredOffersByCity[0].city}
+                points={filteredOffersByCity}
                 selectedOffer={activeCardId}
                 isMainMap
               />

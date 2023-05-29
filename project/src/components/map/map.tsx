@@ -31,7 +31,19 @@ export default function Map({ city,points,selectedOffer,isMainMap}: MapProps) {
   const map = useMap(mapRef, city);
 
   useEffect(() => {
+
     if (map) {
+
+      map.setView(
+        {
+          lat: city.location.latitude,
+          lng: city.location.longitude
+        },
+        city.location.zoom
+
+      );
+
+
       points.forEach((point) => {
         const marker = new Marker({
           lat: point.location.latitude,
@@ -43,7 +55,7 @@ export default function Map({ city,points,selectedOffer,isMainMap}: MapProps) {
           .addTo(map);
       });
     }
-  }, [map, points,selectedOffer]);
+  }, [map,city, points, selectedOffer]);
 
 
   return (
