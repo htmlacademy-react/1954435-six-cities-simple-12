@@ -1,4 +1,3 @@
-import {useState} from 'react';
 import {Helmet} from 'react-helmet-async';
 import { useAppSelector } from '../../hooks';
 import SvgUpper from '../../components/svg-upper/svg-upper';
@@ -14,10 +13,6 @@ export default function MainScreen() {
 
   const currentCity = useAppSelector((state) => state.currentCity);
   const offers = useAppSelector((state) => state.offers);
-
-  const [activeCardId, setActiveCardId] = useState<number|null>(null);
-
-  const onListItemHover = (id: number | null) => {setActiveCardId(id);};
 
   const filteredOffersByCity = offers.filter((offer)=>(offer.city.name === currentCity));
 
@@ -44,7 +39,7 @@ export default function MainScreen() {
               <Sorting/>
 
               <div className="cities__places-list places__list tabs__content">
-                <OfferList offers={filteredOffersByCity} onListItemHover={onListItemHover} />
+                <OfferList offers={filteredOffersByCity} />
               </div>
 
             </section>
@@ -53,7 +48,6 @@ export default function MainScreen() {
               <Map
                 city={filteredOffersByCity[0].city}
                 points={filteredOffersByCity}
-                selectedOffer={activeCardId}
                 isMainMap
               />
 

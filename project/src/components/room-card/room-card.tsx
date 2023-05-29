@@ -7,10 +7,10 @@ import PremiumLabel from '../premium/premium-label';
 
 type RoomCardProps = {
   offer: Offer;
-  onListItemHover: (value: number|null) => void;
+
 };
 
-export default function RoomCard({ offer, onListItemHover }: RoomCardProps) {
+export default function RoomCard({ offer,}: RoomCardProps) {
   const dispatch = useAppDispatch();
 
   return (

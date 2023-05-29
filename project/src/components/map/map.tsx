@@ -23,11 +23,10 @@ const currentCustomIcon = new Icon({
 type MapProps = {
   city: City;
   points : Offers;
-  selectedOffer: number | null;
   isMainMap?: boolean;
 };
 
-export default function Map({ city,points,selectedOffer,isMainMap}: MapProps) {
+export default function Map({ city,points,isMainMap}: MapProps) {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
