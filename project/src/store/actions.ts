@@ -5,4 +5,8 @@ export const changeCity = createAction('offers/changeCity',
     payload: value,
   }));
 
+export const selectOffer = createAction('offers/selectOffer',
+  (id: number | null) => ({
+    payload: id})
+);
 
