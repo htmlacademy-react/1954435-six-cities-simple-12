@@ -3,7 +3,6 @@ import 'leaflet/dist/leaflet.css';
 import cn from 'classnames';
 import { useRef, useEffect } from 'react';
 import { useAppSelector } from '../../hooks';
-import {City, Offers} from '../../types/offer';
 import useMap from '../../hooks/useMap/useMap';
 
 const defaultCustomIcon = new Icon({
@@ -21,16 +20,18 @@ const currentCustomIcon = new Icon({
 
 
 type MapProps = {
-  city: City;
-  points : Offers;
+
   isMainMap?: boolean;
 };
 
-export default function Map({ city,points,isMainMap}: MapProps) {
-  const mapRef = useRef(null);
-  const map = useMap(mapRef, city);
+export default function Map({ isMainMap}: MapProps) {
 
   const selectedOfferId = useAppSelector((state) => state.selectedOfferId);
+  const offers = useAppSelector((state) => state.offers);
+  const city = offers[0].city;
+
+  const mapRef = useRef(null);
+  const map = useMap(mapRef, city);
 
   useEffect(() => {
 
@@ -46,7 +47,7 @@ export default function Map({ city,points,isMainMap}: MapProps) {
       );
 
 
-      points.forEach((point) => {
+      offers.forEach((point) => {
         const marker = new Marker({
           lat: point.location.latitude,
           lng: point.location.longitude,
@@ -57,7 +58,7 @@ export default function Map({ city,points,isMainMap}: MapProps) {
           .addTo(map);
       });
     }
-  }, [map,city, points, selectedOfferId]);
+  }, [map,city,offers, selectedOfferId]);
 
 
   return (

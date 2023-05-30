@@ -47,7 +47,7 @@ export default function RoomScreen({offers, reviews}: RoomcreenProps) {
             </div>
           </div>
 
-          <Map city={offers[0].city} points={nearOffers} />
+          <Map />
 
         </section>
 

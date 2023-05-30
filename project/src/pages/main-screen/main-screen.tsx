@@ -42,11 +42,7 @@ export default function MainScreen() {
             </section>
             <div className="cities__right-section">
 
-              <Map
-                city={offers[0].city}
-                points={offers}
-                isMainMap
-              />
+              <Map isMainMap />
 
             </div>
           </div>
