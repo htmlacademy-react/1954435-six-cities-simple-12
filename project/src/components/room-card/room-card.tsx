@@ -1,16 +1,14 @@
 import { Link } from 'react-router-dom';
-import { useAppDispatch} from '../../hooks';
+import { useAppDispatch } from '../../hooks';
 import { selectOffer } from '../../store/actions';
-//import {AppRoute} from '../../const';
 import { Offer } from '../../types/offer';
-import PremiumLabel from '../premium/premium-label';
+import Badge from '../badge/badge';
 
 type RoomCardProps = {
   offer: Offer;
-
 };
 
-export default function RoomCard({ offer,}: RoomCardProps) {
+export default function RoomCard({ offer }: RoomCardProps) {
   const dispatch = useAppDispatch();
 
   return (
@@ -19,7 +17,7 @@ export default function RoomCard({ offer,}: RoomCardProps) {
       onMouseEnter={() => dispatch(selectOffer(offer.id))}
       onMouseLeave={() => dispatch(selectOffer(null))}
     >
-      {offer.isPremium && <PremiumLabel cssClass="place-card__mark" />}
+      {offer.isPremium && <Badge className="place-card__mark" text='Premium' />}
 
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={`/offer/${offer.id}`}>
@@ -46,8 +44,7 @@ export default function RoomCard({ offer,}: RoomCardProps) {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`/offer/${offer.id}`}>{offer.title} </Link>
-          {/*<Link to={`${AppRoute.Offer}/${offer.id}`}>{offer.title} </Link>*/}
+          <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
         </h2>
         <p className="place-card__type">{offer.type}</p>
       </div>

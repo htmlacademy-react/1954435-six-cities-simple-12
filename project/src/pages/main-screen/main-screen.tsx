@@ -42,7 +42,7 @@ export default function MainScreen() {
             </section>
             <div className="cities__right-section">
 
-              <Map isMainMap />
+              <Map className="cities__map"/>
 
             </div>
           </div>
