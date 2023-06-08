@@ -1,4 +1,4 @@
-import { Icon, Marker } from 'leaflet';
+import { Icon, LayerGroup, Marker } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import cn from 'classnames';
 import { useRef, useEffect } from 'react';
@@ -28,21 +28,11 @@ export default function Map({ className }: MapProps) {
 
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
-  //Создаёт контейнер для хранения значений маркеров
-  /*const markersRef = useRef<Marker[]>([]);*/
+
 
   useEffect(() => {
     if (map) {
-      map.setView(
-        {
-          lat: city.location.latitude,
-          lng: city.location.longitude,
-        },
-        city.location.zoom
-      );
-
-      //Удаляет/очищает все маркеры с карты
-      /*markersRef.current.forEach((markerItem) => markerItem.remove());*/
+      const layer = new LayerGroup();
 
       offers.forEach((point) => {
         const marker = new Marker({
@@ -56,13 +46,27 @@ export default function Map({ className }: MapProps) {
               ? currentCustomIcon
               : defaultCustomIcon
           )
-          .addTo(map);
-        //Добавляет/обновляет текущие маркеры по выбранному городу
-        /*markersRef.current.push(marker);*/
+          .addTo(layer);
+        layer.addTo(map);
 
       });
+
+      return () => { map.removeLayer( layer);};
     }
-  }, [map, city, offers, selectedOfferId]);
+  }, [map,offers, selectedOfferId]);
+
+  useEffect(() => {
+    if (map) {
+      map.setView(
+        {
+          lat: city.location.latitude,
+          lng: city.location.longitude,
+        },
+        city.location.zoom
+      );
+    }
+  }, [map, city,]);
+
 
   return (
     <section
