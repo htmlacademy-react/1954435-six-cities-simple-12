@@ -28,6 +28,8 @@ export default function Map({ className }: MapProps) {
 
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
+  //Создаёт контейнер для хранения значений маркеров
+  /*const markersRef = useRef<Marker[]>([]);*/
 
   useEffect(() => {
     if (map) {
@@ -38,6 +40,9 @@ export default function Map({ className }: MapProps) {
         },
         city.location.zoom
       );
+
+      //Удаляет/очищает все маркеры с карты
+      /*markersRef.current.forEach((markerItem) => markerItem.remove());*/
 
       offers.forEach((point) => {
         const marker = new Marker({
@@ -52,6 +57,9 @@ export default function Map({ className }: MapProps) {
               : defaultCustomIcon
           )
           .addTo(map);
+        //Добавляет/обновляет текущие маркеры по выбранному городу
+        /*markersRef.current.push(marker);*/
+
       });
     }
   }, [map, city, offers, selectedOfferId]);
