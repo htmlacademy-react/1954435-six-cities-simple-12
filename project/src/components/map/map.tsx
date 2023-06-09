@@ -29,7 +29,6 @@ export default function Map({ className }: MapProps) {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
-
   useEffect(() => {
     if (map) {
       const layer = new LayerGroup();
@@ -48,12 +47,13 @@ export default function Map({ className }: MapProps) {
           )
           .addTo(layer);
         layer.addTo(map);
-
       });
 
-      return () => { map.removeLayer( layer);};
+      return () => {
+        map.removeLayer(layer);
+      };
     }
-  }, [map,offers, selectedOfferId]);
+  }, [map, offers, selectedOfferId]);
 
   useEffect(() => {
     if (map) {
@@ -65,8 +65,7 @@ export default function Map({ className }: MapProps) {
         city.location.zoom
       );
     }
-  }, [map, city,]);
-
+  }, [map, city]);
 
   return (
     <section
