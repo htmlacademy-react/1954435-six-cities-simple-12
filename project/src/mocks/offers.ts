@@ -25,15 +25,15 @@ export const offers: Offers = [
     city: {
       location: {
         zoom: 10,
-        latitude: 52.370216,
-        longitude: 4.895168
+        latitude:  48.853410,
+        longitude:  2.348800
       },
-      name: 'Amsterdam'
+      name: 'Paris'
     },
     location: {
       zoom: 8,
-      latitude: 52.3909553943508,
-      longitude:  4.85309666406198
+      latitude: 48.85341077777777,
+      longitude:  2.34880077777777
     }
   },
   {

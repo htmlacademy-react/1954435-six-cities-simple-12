@@ -1,5 +1,5 @@
 import { Fragment, ChangeEvent } from 'react';
-//test
+
 type RatingFormProps = {
   onRate: (evt: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
 };

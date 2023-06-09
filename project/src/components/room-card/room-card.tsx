@@ -1,24 +1,29 @@
-import {Link} from 'react-router-dom';
-//import {AppRoute} from '../../const';
-import {Offer} from '../../types/offer';
-import PremiumLabel from '../premium/premium-label';
+import { Link } from 'react-router-dom';
+import { useAppDispatch } from '../../hooks';
+import { selectOffer } from '../../store/actions';
+import { Offer } from '../../types/offer';
+import Badge from '../badge/badge';
 
 type RoomCardProps = {
   offer: Offer;
-  onListItemHover:(value:number)=>void;
 };
 
-export default function RoomCard ({offer,onListItemHover}: RoomCardProps){
-  return(
-    <article className="cities__card place-card" onMouseEnter={()=>{onListItemHover(offer.id);}}>
-      {offer.isPremium && <PremiumLabel cssClass="place-card__mark"/>}
+export default function RoomCard({ offer }: RoomCardProps) {
+  const dispatch = useAppDispatch();
+
+  return (
+    <article
+      className="cities__card place-card"
+      onMouseEnter={() => dispatch(selectOffer(offer.id))}
+      onMouseLeave={() => dispatch(selectOffer(null))}
+    >
+      {offer.isPremium && <Badge className="place-card__mark" text='Premium' />}
 
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={`/offer/${offer.id}`}>
-
           <img
             className="place-card__image"
-            src= {offer.previewImage}
+            src={offer.previewImage}
             width="260"
             height="200"
             alt={offer.title}
@@ -29,20 +34,17 @@ export default function RoomCard ({offer,onListItemHover}: RoomCardProps){
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{offer.price}</b>
-            <span className="place-card__price-text">
-      &#47;&nbsp;night
-            </span>
+            <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: `${offer.rating / 5 * 100}%` }}></span>
+            <span style={{ width: `${(offer.rating / 5) * 100}%` }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`/offer/${offer.id}`}>{offer.title} </Link>
-          {/*<Link to={`${AppRoute.Offer}/${offer.id}`}>{offer.title} </Link>*/}
+          <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
         </h2>
         <p className="place-card__type">{offer.type}</p>
       </div>
