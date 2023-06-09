@@ -47,7 +47,7 @@ export default function RoomScreen({offers, reviews}: RoomcreenProps) {
             </div>
           </div>
 
-          <Map className="property__map" />
+          <Map className="property__map" offers={[]} />
 
         </section>
 

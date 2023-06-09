@@ -6,12 +6,15 @@ import LocationNav from '../../components/location-nav/location-nav';
 import Sorting from '../../components/sorting/sorting';
 import OfferList from '../../components/offer-list/offer-list';
 import Map from '../../components/map/map';
+import { getOffersByCity } from '../../utils';
 
 
 export default function MainScreen() {
 
   const currentCity = useAppSelector((state) => state.currentCity);
   const offers = useAppSelector((state) => state.offers);
+
+  const filteredOffers = getOffersByCity(offers, currentCity);
 
   return (
     <div className="page page--gray page--main">
@@ -36,13 +39,13 @@ export default function MainScreen() {
               <Sorting/>
 
               <div className="cities__places-list places__list tabs__content">
-                <OfferList offers={offers} />
+                <OfferList offers={filteredOffers} />
               </div>
 
             </section>
             <div className="cities__right-section">
 
-              <Map className="cities__map"/>
+              <Map className="cities__map" offers={filteredOffers}/>
 
             </div>
           </div>

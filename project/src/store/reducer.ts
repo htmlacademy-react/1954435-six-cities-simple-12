@@ -2,7 +2,7 @@ import {createReducer} from '@reduxjs/toolkit';
 import {changeCity,selectOffer} from './actions';
 import { CITIES } from '../const';
 import { Offers } from '../types/offer';
-import { getOffersByCity } from '../utils';
+import { offers } from '../mocks/offers';
 
 type InitialState = {
   currentCity: string;
@@ -12,7 +12,7 @@ type InitialState = {
 
 const initialState:InitialState = {
   currentCity: CITIES[0],
-  offers:getOffersByCity(CITIES[0]),
+  offers: offers,
   selectedOfferId: null,
 };
 
@@ -20,7 +20,6 @@ const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(changeCity, (state,action) => {
       state.currentCity = action.payload;
-      state.offers = getOffersByCity(action.payload);
     });
   builder
     .addCase(selectOffer,(state,action) =>{

@@ -4,6 +4,7 @@ import cn from 'classnames';
 import { useRef, useEffect } from 'react';
 import { useAppSelector } from '../../hooks';
 import useMap from '../../hooks/useMap/useMap';
+import { Offer } from '../../types/offer';
 
 const defaultCustomIcon = new Icon({
   iconUrl: './img/pin.svg',
@@ -19,11 +20,11 @@ const currentCustomIcon = new Icon({
 
 type MapProps = {
   className: string;
+  offers: Offer[];
 };
 
-export default function Map({ className }: MapProps) {
+export default function Map({ className, offers }: MapProps) {
   const selectedOfferId = useAppSelector((state) => state.selectedOfferId);
-  const offers = useAppSelector((state) => state.offers);
   const city = offers[0].city;
 
   const mapRef = useRef(null);
