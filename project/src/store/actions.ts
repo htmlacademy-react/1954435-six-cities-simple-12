@@ -10,3 +10,9 @@ export const selectOffer = createAction('offers/selectOffer',
     payload: id})
 );
 
+export const sortOffer = createAction('offers/sortOffer',
+  (value: string) => ({
+    payload: value,
+  }));
+
+

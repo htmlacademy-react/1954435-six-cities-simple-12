@@ -1,15 +1,38 @@
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { sortOffer } from '../../store/actions';
+import { SORTS } from '../../const';
+
 export default function Sorting() {
+  const sortType = useAppSelector((state) => state.sortType);
+  const dispatch = useAppDispatch();
+
+
   return (
     <form className="places__sorting" action="todo" method="get">
       <span className="places__sorting-caption">Sort by</span>
       <span className="places__sorting-type" tabIndex={0}>
-        Popular
+        {sortType}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="todoicon-arrow-select"></use>
         </svg>
       </span>
       <ul className="places__options places__options--custom places__options--opened">
-        <li
+        {SORTS.map((sort) => {
+          const isActive = sort === sortType;
+
+          return (
+            <li key={sort} className={`places__option ${ isActive ? 'places__option--active' : ''} `} tabIndex={0}
+              onClick={(evt) => {
+                dispatch(sortOffer(sort));
+              }}
+            >
+              {sort}
+            </li>
+          );
+
+        })}
+
+        {/*         <li
           className="places__option places__option--active"
           tabIndex={0}
         >
@@ -23,9 +46,9 @@ export default function Sorting() {
         </li>
         <li className="places__option" tabIndex={0}>
           Top rated first
-        </li>
+        </li>*/}
+
       </ul>
     </form>
-
   );
 }
