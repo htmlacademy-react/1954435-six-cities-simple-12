@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import cn from 'classnames';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { sortOffer } from '../../store/actions';
+import { changeSortType } from '../../store/actions';
 import { SORTS } from '../../const';
 
 export default function Sorting() {
@@ -11,8 +12,7 @@ export default function Sorting() {
 
   return (
     <form className="places__sorting" action="todo" method="get">
-      <span className="places__sorting-caption">Sort by</span>
-      {' '}
+      <span className="places__sorting-caption">Sort by</span>{' '}
       <span
         className="places__sorting-type"
         tabIndex={0}
@@ -25,29 +25,25 @@ export default function Sorting() {
         </svg>
       </span>
       <ul
-        className={`places__options places__options--custom ${
-          isOpen ? 'places__options--opened' : ''
-        }`}
-      >
-        {SORTS.map((sort) => {
-          const isActive = sort === sortType;
-
-          return (
-            <li
-              key={sort}
-              className={`places__option ${
-                isActive ? 'places__option--active' : ''
-              } `}
-              tabIndex={0}
-              onClick={(evt) => {
-                dispatch(sortOffer(sort));
-                setIsOpen(!isOpen);
-              }}
-            >
-              {sort}
-            </li>
-          );
+        className={cn('places__options', 'places__options--custom', {
+          'places__options--opened': isOpen,
         })}
+      >
+        {SORTS.map((sort) => (
+          <li
+            key={sort}
+            className={cn('places__option', {
+              'places__option--active': sort === sortType,
+            })}
+            tabIndex={0}
+            onClick={(evt) => {
+              dispatch(changeSortType(sort));
+              setIsOpen(!isOpen);
+            }}
+          >
+            {sort}
+          </li>
+        ))}
       </ul>
     </form>
   );
