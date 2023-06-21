@@ -1,4 +1,4 @@
-import {useParams} from 'react-router-dom';
+import {Navigate, useParams} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
 import Header from '../../components/header/header';
 import Gallery from '../../components/gallery/gallery';
@@ -8,7 +8,7 @@ import Host from '../../components/host/host';
 import RoomReviews from '../../components/reviews/room-reviews';
 import OfferList from '../../components/offer-list/offer-list';
 import { nearOffers } from '../../mocks/offers';
-import {Offers, Offer} from '../../types/offer';
+import { Offers } from '../../types/offer';
 import { Reviews } from '../../types/review';
 import Map from '../../components/map/map';
 
@@ -20,10 +20,14 @@ type RoomcreenProps = {
 
 
 export default function RoomScreen({offers, reviews}: RoomcreenProps) {
-
   const {id} = useParams();
+  const offer = offers.find((item) => item.id === Number(id));
 
-  const offer = offers.find((item) => item.id === Number(id)) as Offer;
+  if (!offer){
+    return <Navigate to={'/'} />;
+
+  }
+
   return (
     <div className="page">
       <Helmet>
@@ -45,7 +49,7 @@ export default function RoomScreen({offers, reviews}: RoomcreenProps) {
             </div>
           </div>
 
-          <Map className="property__map" offers={[]} />
+          <Map className="property__map" offers={[offer]} />
 
         </section>
 
