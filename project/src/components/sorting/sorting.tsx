@@ -12,15 +12,16 @@ export default function Sorting() {
   return (
     <form className="places__sorting" action="todo" method="get">
       <span className="places__sorting-caption">Sort by</span>
+      {' '}
       <span
         className="places__sorting-type"
         tabIndex={0}
         onClick={() => setIsOpen(!isOpen)}
       >
         {sortType}
-        {/* Не отображается стрелка*/}
+
         <svg className="places__sorting-arrow" width="7" height="4">
-          <use xlinkHref="todoicon-arrow-select"></use>
+          <use xlinkHref="#icon-arrow-select"></use>
         </svg>
       </span>
       <ul
@@ -40,6 +41,7 @@ export default function Sorting() {
               tabIndex={0}
               onClick={(evt) => {
                 dispatch(sortOffer(sort));
+                setIsOpen(!isOpen);
               }}
             >
               {sort}
