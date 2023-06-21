@@ -1,6 +1,5 @@
 import {useParams} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
-import SvgUpper from '../../components/svg-upper/svg-upper';
 import Header from '../../components/header/header';
 import Gallery from '../../components/gallery/gallery';
 import RoomHeader from '../../components/room-header/room-header';
@@ -27,7 +26,6 @@ export default function RoomScreen({offers, reviews}: RoomcreenProps) {
   const offer = offers.find((item) => item.id === Number(id)) as Offer;
   return (
     <div className="page">
-      <SvgUpper/>
       <Helmet>
         <title>Six cities: offer</title>
       </Helmet>

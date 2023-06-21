@@ -18,7 +18,7 @@ export default function Sorting() {
         onClick={() => setIsOpen(!isOpen)}
       >
         {sortType}
-        {/* Не отображается стрелка, переделать*/}
+        {/* Не отображается стрелка*/}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="todoicon-arrow-select"></use>
         </svg>

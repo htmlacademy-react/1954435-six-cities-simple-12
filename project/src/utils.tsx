@@ -7,7 +7,7 @@ function getSortOffers(a:number, b:number) {
   return (a - b);
 }
 
-export const getOffersBySortType = (filteredOffers:Offer[], sortType: string) =>{
+export const getOffersBySortType = (filteredOffers:Offer[], sortType: string) => {
   const sortebleOffers = [...filteredOffers];
 
   if (sortType === 'Price: low to high') {

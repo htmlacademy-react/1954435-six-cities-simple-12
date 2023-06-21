@@ -1,6 +1,5 @@
 import {Helmet} from 'react-helmet-async';
 import { useAppSelector } from '../../hooks';
-import SvgUpper from '../../components/svg-upper/svg-upper';
 import Header from '../../components/header/header';
 import LocationNav from '../../components/location-nav/location-nav';
 import Sorting from '../../components/sorting/sorting';
@@ -20,8 +19,6 @@ export default function MainScreen() {
 
   return (
     <div className="page page--gray page--main">
-      <SvgUpper/>
-
       <Helmet>
         <title>Six cities</title>
       </Helmet>
@@ -38,7 +35,7 @@ export default function MainScreen() {
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{offers.length} places to stay in {currentCity}</b>
 
-              <Sorting/>
+              <Sorting />
 
               <div className="cities__places-list places__list tabs__content">
                 <OfferList offers={sortedOffers} />
