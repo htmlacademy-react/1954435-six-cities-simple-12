@@ -1,25 +1,24 @@
 import {Helmet} from 'react-helmet-async';
 import { useAppSelector } from '../../hooks';
-import SvgUpper from '../../components/svg-upper/svg-upper';
 import Header from '../../components/header/header';
 import LocationNav from '../../components/location-nav/location-nav';
 import Sorting from '../../components/sorting/sorting';
 import OfferList from '../../components/offer-list/offer-list';
 import Map from '../../components/map/map';
-import { getOffersByCity } from '../../utils';
+import { getOffersByCity, getOffersBySortType } from '../../utils';
 
 
 export default function MainScreen() {
 
   const currentCity = useAppSelector((state) => state.currentCity);
   const offers = useAppSelector((state) => state.offers);
+  const sortType = useAppSelector((state) => state.sortType);
 
   const filteredOffers = getOffersByCity(offers, currentCity);
+  const sortedOffers = getOffersBySortType(filteredOffers, sortType);
 
   return (
     <div className="page page--gray page--main">
-      <SvgUpper/>
-
       <Helmet>
         <title>Six cities</title>
       </Helmet>
@@ -36,10 +35,10 @@ export default function MainScreen() {
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{offers.length} places to stay in {currentCity}</b>
 
-              <Sorting/>
+              <Sorting />
 
               <div className="cities__places-list places__list tabs__content">
-                <OfferList offers={filteredOffers} />
+                <OfferList offers={sortedOffers} />
               </div>
 
             </section>

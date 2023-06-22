@@ -31,7 +31,7 @@ export default function RatingForm({onRate}:RatingFormProps) {
             </label>
           </Fragment>
         );
-      })};
+      })}
     </div>
   );
 

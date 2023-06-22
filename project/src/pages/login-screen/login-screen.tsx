@@ -1,5 +1,5 @@
 import {Helmet} from 'react-helmet-async';
-import SvgUpper from '../../components/svg-upper/svg-upper';
+
 
 import Header from '../../components/header/header';
 
@@ -7,9 +7,6 @@ import Header from '../../components/header/header';
 export default function LoginScreen() {
   return (
     <div className="page page--gray page--login">
-      <SvgUpper/>
-
-
       <Helmet>
         <title>Six cities: sign in</title>
       </Helmet>
