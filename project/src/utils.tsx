@@ -6,7 +6,7 @@ export const getOffersByCity = (offers:Offer[], city: string) =>
 function getSortOffers(a:number, b:number) {
   return (a - b);
 }
-
+/* Переделать дженериками на динамическое подставление ключей*/
 export const getOffersBySortType = (filteredOffers:Offer[], sortType: string) => {
   const sortebleOffers = [...filteredOffers];
 
