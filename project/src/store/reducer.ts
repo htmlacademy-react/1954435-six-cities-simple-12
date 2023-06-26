@@ -2,7 +2,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import { changeCity, selectOffer, changeSortType, loadOffers, requireAuthorization } from './actions';
 import { CITIES, SORTS, AuthorizationStatus } from '../const';
 import { Offers } from '../types/offer';
-import { offers } from '../mocks/offers';
+
 
 type InitialState = {
   currentCity: string;
@@ -14,7 +14,7 @@ type InitialState = {
 
 const initialState: InitialState = {
   currentCity: CITIES[0],
-  offers: offers,
+  offers: [],
   selectedOfferId: null,
   sortType: SORTS[0],
   authorizationStatus: AuthorizationStatus.Unknown,
