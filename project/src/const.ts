@@ -33,3 +33,5 @@ export const SORTS = [
   'Price: high to low',
   'Top rated first'
 ];
+
+export const TIMEOUT_SHOW_ERROR = 2000;

@@ -26,4 +26,9 @@ export const requireAuthorization = createAction(
   'user/requireAuthorization',
   (status: AuthorizationStatus) => ({ payload: status }));
 
+export const setError = createAction(
+  'data/checkError',
+  (error: string | null) => ({payload: error})
+);
+
 
