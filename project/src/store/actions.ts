@@ -24,6 +24,6 @@ export const loadOffers = createAction(
 
 export const requireAuthorization = createAction(
   'user/requireAuthorization',
-  (status: AuthorizationStatus) => ({
-    payload: status })
-);
+  (status: AuthorizationStatus) => ({ payload: status }));
+
+

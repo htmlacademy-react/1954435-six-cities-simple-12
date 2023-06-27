@@ -6,8 +6,8 @@ import RoomHeader from '../../components/room-header/room-header';
 import RoomInside from '../../components/room-inside/room-inside';
 import Host from '../../components/host/host';
 import RoomReviews from '../../components/reviews/room-reviews';
-import OfferList from '../../components/offer-list/offer-list';
-import { nearOffers } from '../../mocks/offers';
+//import OfferList from '../../components/offer-list/offer-list';
+//import { nearOffers } from '../../mocks/offers';
 import { Offers } from '../../types/offer';
 import { Reviews } from '../../types/review';
 import Map from '../../components/map/map';
@@ -57,7 +57,7 @@ export default function RoomScreen({offers, reviews}: RoomcreenProps) {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <OfferList offers={nearOffers} />
+              {/*<OfferList offers={nearOffers} />*/}
             </div>
           </section>
         </div>
