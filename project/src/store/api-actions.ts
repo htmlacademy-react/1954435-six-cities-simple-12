@@ -35,7 +35,7 @@ export const fetchOfferAction = createAsyncThunk<
   dispatch(loadOffers(data));
 });
 
-export const checkAuthorizationAction = createAsyncThunk<
+export const checkAuthAction = createAsyncThunk<
   void,
   undefined,
   {
