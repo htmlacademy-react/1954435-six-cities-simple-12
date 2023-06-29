@@ -24,9 +24,10 @@ type MapProps = {
 };
 
 export default function Map({ className, offers }: MapProps) {
+  //console.log(offers);
   const selectedOfferId = useAppSelector((state) => state.selectedOfferId);
   const city = offers[0].city;
-
+  //console.log(city);
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
