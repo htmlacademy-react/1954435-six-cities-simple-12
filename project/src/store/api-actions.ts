@@ -7,7 +7,7 @@ import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user';
 import { store } from './';
 
-import { loadOffers, requireAuthorization,setError } from './actions';
+import { loadOffers, requireAuthorization, setError, setOffersLoadingStatus } from './actions';
 import { dropToken, saveToken } from '../services/token';
 
 import { APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
@@ -31,7 +31,9 @@ export const fetchOfferAction = createAsyncThunk<
     extra: AxiosInstance;
   }
 >('data/fetchOffers', async (_arg, { dispatch, extra: api }) => {
+  dispatch(setOffersLoadingStatus(true));
   const { data } = await api.get<Offer[]>(APIRoute.Offers);
+  dispatch(setOffersLoadingStatus(false));
   dispatch(loadOffers(data));
 });
 

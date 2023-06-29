@@ -10,11 +10,13 @@ export const selectOffer = createAction(
   'offers/selectOffer',
   (id: number | null) => ({ payload: id, }));
 
-
 export const changeSortType = createAction(
   'offers/changeSortType',
   (value: string) => ({ payload: value, }));
 
+export const setOffersLoadingStatus = createAction(
+  'data/setLoadingStatus',
+  (isLoading: boolean) => ({ payload: isLoading }));
 
 export const loadOffers = createAction(
   'data/loadOffers',
@@ -28,7 +30,5 @@ export const requireAuthorization = createAction(
 
 export const setError = createAction(
   'data/checkError',
-  (error: string | null) => ({payload: error})
-);
-
+  (error: string | null) => ({ payload: error }));
 
