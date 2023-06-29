@@ -15,13 +15,11 @@ export default function MainScreen() {
   const offers = useAppSelector((state) => state.offers);
   const sortType = useAppSelector((state) => state.sortType);
   const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
-  //console.log(offers);
+
   const filteredOffers = getOffersByCity(offers, currentCity);
   const sortedOffers = getOffersBySortType(filteredOffers, sortType);
-  //console.log(filteredOffers);
 
   if (isOffersDataLoading ) {return <Loader />;}
-
 
   return (
     <div className="page page--gray page--main">
