@@ -31,7 +31,7 @@ const initialState: InitialState = {
   isOffersDataLoading: false,
 };
 
-const reducer = createReducer(initialState, (builder) => {
+export const offersReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(changeCity, (state, action) => {
       state.currentCity = action.payload;
@@ -56,4 +56,4 @@ const reducer = createReducer(initialState, (builder) => {
     });
 });
 
-export { reducer };
+
