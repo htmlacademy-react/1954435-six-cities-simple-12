@@ -1,32 +1,35 @@
-import {Navigate, useParams} from 'react-router-dom';
-import {Helmet} from 'react-helmet-async';
+import { Navigate, useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
+import { useAppSelector } from '../../hooks';
+import { useEffect } from 'react';
+import { store } from '../../store';
+import { fetchOfferItemAction } from '../../store/api-actions';
+
+import Loader from '../../components/loader/loader';
 import Header from '../../components/header/header';
 import Gallery from '../../components/gallery/gallery';
 import RoomHeader from '../../components/room-header/room-header';
 import RoomInside from '../../components/room-inside/room-inside';
 import Host from '../../components/host/host';
-import RoomReviews from '../../components/reviews/room-reviews';
+//import RoomReviews from '../../components/reviews/room-reviews';
 //import OfferList from '../../components/offer-list/offer-list';
 //import { nearOffers } from '../../mocks/offers';
-import { Offers } from '../../types/offer';
-import { Reviews } from '../../types/review';
+//import { Offers } from '../../types/offer';
+//import { Reviews } from '../../types/review';
 import Map from '../../components/map/map';
 
 
-type RoomcreenProps = {
-  offers: Offers;
-  reviews: Reviews;
-};
-
-
-export default function RoomScreen({offers, reviews}: RoomcreenProps) {
+export default function RoomScreen() {
   const {id} = useParams();
-  const offer = offers.find((item) => item.id === Number(id));
+  const offer = useAppSelector((state) => state.offer.offerItem);
+  const isOfferLoading = useAppSelector((state) => state.offer.isOfferLoading);
 
-  if (!offer){
-    return <Navigate to={'/'} />;
+  useEffect(() => {
+    store.dispatch(fetchOfferItemAction(Number(id)));
+  }, [id]);
 
-  }
+  if (isOfferLoading ) {return <Loader />;}
+  if (!offer){return <Navigate to={'/'} />;}
 
   return (
     <div className="page">
@@ -45,7 +48,7 @@ export default function RoomScreen({offers, reviews}: RoomcreenProps) {
               <RoomHeader offer={offer}/>
               <RoomInside offer={offer}/>
               <Host offer={offer}/>
-              <RoomReviews reviews={reviews}/>
+              {/*<RoomReviews reviews={reviews}/>*/}
             </div>
           </div>
 

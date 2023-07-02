@@ -1,8 +1,15 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCity, selectOffer, changeSortType, loadOffers, requireAuthorization, setError, setOffersLoadingStatus } from './actions';
+import {
+  changeCity,
+  selectOffer,
+  changeSortType,
+  loadOffers,
+  requireAuthorization,
+  setError,
+  setOffersLoadingStatus,
+} from './offers-actions';
 import { CITIES, SORTS, AuthorizationStatus } from '../const';
 import { Offers } from '../types/offer';
-
 
 type InitialState = {
   currentCity: string;

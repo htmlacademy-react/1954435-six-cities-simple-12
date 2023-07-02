@@ -11,10 +11,10 @@ import { getOffersByCity, getOffersBySortType } from '../../utils';
 
 export default function MainScreen() {
 
-  const currentCity = useAppSelector((state) => state.currentCity);
-  const offers = useAppSelector((state) => state.offers);
-  const sortType = useAppSelector((state) => state.sortType);
-  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
+  const currentCity = useAppSelector((state) => state.offers.currentCity);
+  const offers = useAppSelector((state) => state.offers.offers);
+  const sortType = useAppSelector((state) => state.offers.sortType);
+  const isOffersDataLoading = useAppSelector((state) => state.offers.isOffersDataLoading);
 
   const filteredOffers = getOffersByCity(offers, currentCity);
   const sortedOffers = getOffersBySortType(filteredOffers, sortType);

@@ -1,5 +1,5 @@
 import { store } from '../store';
-import { setError } from '../store/actions';
+import { setError } from '../store/offers-actions';
 import { clearErrorAction } from '../store/api-actions';
 
 export const processErrorHandle = (message: string): void => {

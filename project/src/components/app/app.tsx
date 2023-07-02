@@ -4,7 +4,7 @@ import { AppRoute } from '../../const';
 
 import MainScreen from '../../pages/main-screen/main-screen';
 import LoginScren from '../../pages/login-screen/login-screen';
-//import RoomScreen from '../../pages/room-screen/room-screen';
+import RoomScreen from '../../pages/room-screen/room-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 
 
@@ -22,10 +22,10 @@ export default function App(): JSX.Element {
             path={AppRoute.Login}
             element={<LoginScren />}
           />
-          {/*<Route
+          <Route
             path={AppRoute.Offer}
-            element={<RoomScreen offers={offers} reviews={reviews} />}
-          />*/}
+            element={<RoomScreen />}
+          />
           <Route
             path={AppRoute.NotFound}
             element={<NotFoundScreen />}

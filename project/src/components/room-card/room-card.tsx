@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks';
-import { selectOffer } from '../../store/actions';
+import { selectOffer } from '../../store/offers-actions';
 import { Offer } from '../../types/offer';
 import Badge from '../badge/badge';
 
@@ -17,7 +17,7 @@ export default function RoomCard({ offer }: RoomCardProps) {
       onMouseEnter={() => dispatch(selectOffer(offer.id))}
       onMouseLeave={() => dispatch(selectOffer(null))}
     >
-      {offer.isPremium && <Badge className="place-card__mark" text='Premium' />}
+      {offer.isPremium && <Badge className="place-card__mark" text="Premium" />}
 
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={`/offer/${offer.id}`}>
