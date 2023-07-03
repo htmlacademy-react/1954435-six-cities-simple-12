@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { useAppSelector } from '../../hooks';
 import { useEffect } from 'react';
 import { store } from '../../store';
-import { fetchOfferItemAction,fetchReviewsAction } from '../../store/api-actions';
+import { fetchOfferItemAction, fetchReviewsAction, fetchOffersNearByAction } from '../../store/api-actions';
 
 import Loader from '../../components/loader/loader';
 import Header from '../../components/header/header';
@@ -12,10 +12,7 @@ import RoomHeader from '../../components/room-header/room-header';
 import RoomInside from '../../components/room-inside/room-inside';
 import Host from '../../components/host/host';
 import RoomReviews from '../../components/reviews/room-reviews';
-//import OfferList from '../../components/offer-list/offer-list';
-//import { nearOffers } from '../../mocks/offers';
-//import { Offers } from '../../types/offer';
-//import { Reviews } from '../../types/review';
+import OfferList from '../../components/offer-list/offer-list';
 import Map from '../../components/map/map';
 
 
@@ -25,13 +22,17 @@ export default function RoomScreen() {
   const isOfferLoading = useAppSelector((state) => state.offer.isOfferLoading);
   const reviews = useAppSelector((state) => state.offer.reviews);
   const isReviewsLoading = useAppSelector((state) => state.offer.isReviewsLoading);
+  const offersNearBy = useAppSelector((state) => state.offer.offersNearBy);
+  const isOffersNearByLoading = useAppSelector((state) => state.offer.isOffersNearBy);
 
   useEffect(() => {
     store.dispatch(fetchOfferItemAction(Number(id)));
     store.dispatch(fetchReviewsAction(Number(id)));
+    store.dispatch(fetchOffersNearByAction(Number(id)));
   }, [id]);
 
-  if (isOfferLoading || isReviewsLoading ) {return <Loader />;}
+  const areDataLoading = (isOfferLoading || isReviewsLoading || isOffersNearByLoading );
+  if (areDataLoading) {return <Loader />;}
   if (!offer){return <Navigate to={'/'} />;}
 
   return (
@@ -55,7 +56,7 @@ export default function RoomScreen() {
             </div>
           </div>
 
-          <Map className="property__map" offers={[offer]} />
+          <Map className="property__map" offers={offersNearBy} />
 
         </section>
 
@@ -63,7 +64,7 @@ export default function RoomScreen() {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              {/*<OfferList offers={nearOffers} />*/}
+              <OfferList className="near-places__card" offers={offersNearBy} />
             </div>
           </section>
         </div>

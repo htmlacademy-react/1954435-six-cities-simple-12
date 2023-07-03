@@ -19,3 +19,13 @@ export const setReviewsLoadingStatus = createAction(
   'reviews/setLoadingStatus',
   (isLoading: boolean) => ({payload: isLoading})
 );
+
+export const loadOffersNearBy = createAction(
+  'data/loadNearBy',
+  (offers: Offer[]) => ({payload: offers})
+);
+
+export const setOffersNearByLoadingStatus = createAction(
+  'data/setNearByLoadingStatus',
+  (isLoading: boolean) => ({payload: isLoading})
+);

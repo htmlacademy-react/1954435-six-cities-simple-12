@@ -42,7 +42,7 @@ export default function MainScreen() {
               <Sorting />
 
               <div className="cities__places-list places__list tabs__content">
-                <OfferList offers={sortedOffers} />
+                <OfferList className="cities__card" offers={sortedOffers} />
               </div>
 
             </section>

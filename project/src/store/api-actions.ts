@@ -14,7 +14,14 @@ import {
   setError,
   setOffersLoadingStatus,
 } from './offers-actions';
-import { loadOfferItem, setOfferItemLoadingStatus, loadReviews, setReviewsLoadingStatus} from './offer-actions';
+import {
+  loadOfferItem,
+  setOfferItemLoadingStatus,
+  loadReviews,
+  setReviewsLoadingStatus,
+  loadOffersNearBy,
+  setOffersNearByLoadingStatus,
+} from './offer-actions';
 import { dropToken, saveToken } from '../services/token';
 
 import { APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
@@ -53,7 +60,6 @@ export const fetchOfferItemAction = createAsyncThunk<
   dispatch(loadOfferItem(data));
 });
 
-
 export const fetchReviewsAction = createAsyncThunk<
   void,
   OfferId,
@@ -69,6 +75,20 @@ export const fetchReviewsAction = createAsyncThunk<
   dispatch(loadReviews(data));
 });
 
+export const fetchOffersNearByAction = createAsyncThunk<
+  void,
+  OfferId,
+  {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+  }
+>('data, fetchOffersNearBy', async (id, { dispatch, extra: api }) => {
+  dispatch(setOffersNearByLoadingStatus(true));
+  const { data } = await api.get<Offer[]>(`${APIRoute.Offers}/${id}/nearby`);
+  dispatch(loadOffersNearBy(data));
+  dispatch(setOffersNearByLoadingStatus(false));
+});
 
 export const checkAuthAction = createAsyncThunk<
   void,

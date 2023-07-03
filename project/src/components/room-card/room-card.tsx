@@ -1,19 +1,21 @@
 import { Link } from 'react-router-dom';
+import cn from 'classnames';
 import { useAppDispatch } from '../../hooks';
 import { selectOffer } from '../../store/offers-actions';
 import { Offer } from '../../types/offer';
 import Badge from '../badge/badge';
 
 type RoomCardProps = {
+  className: string;
   offer: Offer;
 };
 
-export default function RoomCard({ offer }: RoomCardProps) {
+export default function RoomCard({ offer,className }: RoomCardProps) {
   const dispatch = useAppDispatch();
 
   return (
     <article
-      className="cities__card place-card"
+      className={cn('place-card', className)}
       onMouseEnter={() => dispatch(selectOffer(offer.id))}
       onMouseLeave={() => dispatch(selectOffer(null))}
     >
