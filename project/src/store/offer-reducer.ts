@@ -2,7 +2,14 @@ import { createReducer } from '@reduxjs/toolkit';
 
 import { Offer } from '../types/offer';
 import { Review } from '../types/review';
-import { loadOfferItem, setOfferItemLoadingStatus, loadReviews, setReviewsLoadingStatus, loadOffersNearBy,setOffersNearByLoadingStatus } from './offer-actions';
+import {
+  loadOfferItem,
+  setOfferItemLoadingStatus,
+  loadReviews,
+  setReviewsLoadingStatus,
+  loadOffersNearBy,
+  setOffersNearByLoadingStatus,
+} from './offer-actions';
 
 type InitialState = {
   offerItem: Offer | null;
@@ -10,7 +17,7 @@ type InitialState = {
   reviews: Review[];
   isReviewsLoading: boolean;
   offersNearBy: Offer[];
-  isOffersNearBy: boolean;
+  isOffersNearByLoading: boolean;
 };
 
 const initialState: InitialState = {
@@ -19,8 +26,7 @@ const initialState: InitialState = {
   reviews: [],
   isReviewsLoading: false,
   offersNearBy: [],
-  isOffersNearBy: false,
-
+  isOffersNearByLoading: false,
 };
 
 export const offerReducer = createReducer(initialState, (builder) => {
@@ -41,6 +47,6 @@ export const offerReducer = createReducer(initialState, (builder) => {
       state.offersNearBy = action.payload;
     })
     .addCase(setOffersNearByLoadingStatus, (state, action) => {
-      state.isOffersNearBy = action.payload;
+      state.isOffersNearByLoading = action.payload;
     });
 });

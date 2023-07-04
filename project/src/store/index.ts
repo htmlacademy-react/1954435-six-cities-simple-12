@@ -7,8 +7,8 @@ export const api = createAPI();
 
 export const store = configureStore({
   reducer:{
-    offers:offersReducer,
-    offer:offerReducer,
+    offers: offersReducer,
+    offer: offerReducer,
   },
 
   middleware: (getDefaultMiddleware) =>

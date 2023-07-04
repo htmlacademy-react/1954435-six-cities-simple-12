@@ -1,4 +1,4 @@
-import {Offer} from '../../types/offer';
+import { Offer } from '../../types/offer';
 import RoomCard from '../../components/room-card/room-card';
 
 type OfferListProps = {
@@ -6,7 +6,7 @@ type OfferListProps = {
   offers: Offer[];
 };
 
-export default function OfferList({offers,className}: OfferListProps): JSX.Element {
+export default function OfferList({ offers, className }: OfferListProps): JSX.Element {
 
   return (
     <>

@@ -10,7 +10,7 @@ type RoomCardProps = {
   offer: Offer;
 };
 
-export default function RoomCard({ offer,className }: RoomCardProps) {
+export default function RoomCard({ offer, className }: RoomCardProps) {
   const dispatch = useAppDispatch();
 
   return (

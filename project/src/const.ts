@@ -35,3 +35,7 @@ export const SORTS = [
 ];
 
 export const TIMEOUT_SHOW_ERROR = 2000;
+
+export const PHOTOS_GALLERY = 6;
+
+

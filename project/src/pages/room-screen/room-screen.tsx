@@ -23,7 +23,7 @@ export default function RoomScreen() {
   const reviews = useAppSelector((state) => state.offer.reviews);
   const isReviewsLoading = useAppSelector((state) => state.offer.isReviewsLoading);
   const offersNearBy = useAppSelector((state) => state.offer.offersNearBy);
-  const isOffersNearByLoading = useAppSelector((state) => state.offer.isOffersNearBy);
+  const isOffersNearByLoading = useAppSelector((state) => state.offer.isOffersNearByLoading);
 
   useEffect(() => {
     store.dispatch(fetchOfferItemAction(Number(id)));
