@@ -33,7 +33,6 @@ export default function RoomScreen() {
 
   const areDataLoading = isOfferLoading || isReviewsLoading || isOffersNearByLoading;
   if (areDataLoading || !offer) {return <Loader />;}
-  //if (!offer){return <Navigate to={'/'} />;}
 
   return (
     <div className="page">
