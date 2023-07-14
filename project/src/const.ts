@@ -11,6 +11,13 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN'
 }
 
+export enum APIRoute {
+  Offers = '/hotels',
+  Login = '/login',
+  Logout = '/logout',
+  Reviews = '/comments',
+}
+
 export const CITIES = [
   'Paris',
   'Cologne',
@@ -26,3 +33,9 @@ export const SORTS = [
   'Price: high to low',
   'Top rated first'
 ];
+
+export const TIMEOUT_SHOW_ERROR = 2000;
+
+export const PHOTOS_GALLERY = 6;
+
+
