@@ -1,4 +1,4 @@
-import { Navigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useAppSelector } from '../../hooks';
 import { useEffect } from 'react';
@@ -31,9 +31,9 @@ export default function RoomScreen() {
     store.dispatch(fetchOffersNearByAction(Number(id)));
   }, [id]);
 
-  const areDataLoading = (isOfferLoading || isReviewsLoading || isOffersNearByLoading );
-  if (areDataLoading) {return <Loader />;}
-  if (!offer){return <Navigate to={'/'} />;}
+  const areDataLoading = isOfferLoading || isReviewsLoading || isOffersNearByLoading;
+  if (areDataLoading || !offer) {return <Loader />;}
+  //if (!offer){return <Navigate to={'/'} />;}
 
   return (
     <div className="page">
@@ -45,7 +45,7 @@ export default function RoomScreen() {
       <main className="page__main page__main--property">
         <section className="property">
 
-          < Gallery offer={offer}/>
+          <Gallery offer={offer}/>
 
           <div className="property__container container">
             <div className="property__wrapper">
