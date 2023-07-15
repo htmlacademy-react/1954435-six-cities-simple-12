@@ -1,6 +1,5 @@
 import {useEffect, useState, useRef, MutableRefObject} from 'react';
 import {Map, TileLayer} from 'leaflet';
-//import leaflet from 'leaflet';
 import {City} from '../../types/offer';
 
 const LAYER_OPTION = {
