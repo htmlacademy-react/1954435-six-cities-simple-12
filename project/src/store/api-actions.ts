@@ -10,6 +10,7 @@ import {
   requireAuthorization,
   setError,
   setOffersLoadingStatus,
+  setLoginLoadingStatus
 } from './offers-actions';
 import {
   loadOfferItem,
@@ -95,11 +96,13 @@ export const loginAction = createAsyncThunk<
 >(
   'user/login',
   async ({ login: email, password }, { dispatch, extra: api }) => {
+    dispatch(setLoginLoadingStatus(true));
     const {
       data: { token },
     } = await api.post<UserData>(APIRoute.Login, { email, password });
     saveToken(token);
     dispatch(requireAuthorization(AuthorizationStatus.Authorized));
+    dispatch(setLoginLoadingStatus(false));
   }
 );
 

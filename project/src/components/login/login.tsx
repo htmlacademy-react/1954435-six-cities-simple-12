@@ -1,16 +1,20 @@
 import { useRef, FormEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../hooks';
+//import { useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
 import { AuthData } from '../../types/auth-data';
-import { AppRoute } from '../../const';
+//import { AppRoute } from '../../const';
+import LoginLoader from '../login-loader/login-loader';
 
 export default function Login() {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const isLoginLoadingStatus = useAppSelector(
+    (state) => state.offers.isLoginLoadingStatus
+  );
 
   const onSubmit = (authData: AuthData) => {
     dispatch(loginAction(authData));
@@ -59,11 +63,11 @@ export default function Login() {
           />
         </div>
         <button
-          onClick={() => navigate(AppRoute.Main)}
+          /*onClick={() => navigate(AppRoute.Main)}*/
           className="login__submit form__submit button"
           type="submit"
         >
-          Sign in
+          {isLoginLoadingStatus ? <LoginLoader /> : 'Sign in'}
         </button>
       </form>
     </section>
