@@ -1,9 +1,9 @@
 import { useRef, FormEvent } from 'react';
-//import { useNavigate } from 'react-router-dom';
+import { /*useNavigate*/ Navigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
 import { AuthData } from '../../types/auth-data';
-//import { AppRoute } from '../../const';
+import { AppRoute, AuthorizationStatus } from '../../const';
 import LoginLoader from '../login-loader/login-loader';
 
 export default function Login() {
@@ -12,8 +12,12 @@ export default function Login() {
 
   const dispatch = useAppDispatch();
   // const navigate = useNavigate();
+
   const isLoginLoadingStatus = useAppSelector(
     (state) => state.offers.isLoginLoadingStatus
+  );
+  const authorizationStatus = useAppSelector(
+    (state) => state.offers.authorizationStatus
   );
 
   const onSubmit = (authData: AuthData) => {
@@ -23,13 +27,17 @@ export default function Login() {
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    if (loginRef.current !== null && passwordRef.current !== null) {
+    if (loginRef.current !== null && passwordRef.current !== null ) {
       onSubmit({
         login: loginRef.current.value,
         password: passwordRef.current.value,
       });
     }
   };
+
+  if (authorizationStatus === AuthorizationStatus.Authorized) {
+    return <Navigate to ={AppRoute.Main} />;
+  }
 
   return (
     <section className="login">
