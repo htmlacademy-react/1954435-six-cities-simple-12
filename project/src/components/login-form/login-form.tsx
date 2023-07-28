@@ -27,7 +27,7 @@ export default function Login() {
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    if (loginRef.current !== null && passwordRef.current !== null ) {
+    if (loginRef.current !== null && passwordRef.current !== null && passwordRef.current.value.length > 6 ) {
       onSubmit({
         login: loginRef.current.value,
         password: passwordRef.current.value,

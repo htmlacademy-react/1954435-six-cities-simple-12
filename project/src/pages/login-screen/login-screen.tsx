@@ -1,7 +1,7 @@
 import {Helmet} from 'react-helmet-async';
 
 import Header from '../../components/header/header';
-import Login from '../../components/login/login';
+import Login from '../../components/login-form/login-form';
 
 
 export default function LoginScreen() {
