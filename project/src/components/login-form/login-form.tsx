@@ -6,7 +6,7 @@ import { AuthData } from '../../types/auth-data';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import LoginLoader from '../login-loader/login-loader';
 
-export default function Login() {
+export default function LoginForm() {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
