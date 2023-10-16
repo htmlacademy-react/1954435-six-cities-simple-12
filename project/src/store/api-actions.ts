@@ -10,7 +10,8 @@ import {
   requireAuthorization,
   setError,
   setOffersLoadingStatus,
-  setLoginLoadingStatus
+  setLoginLoadingStatus,
+  redirectToRoute
 } from './offers-actions';
 import {
   loadOfferItem,
@@ -22,7 +23,7 @@ import {
 } from './offer-actions';
 import { dropToken, saveToken } from '../services/token';
 
-import { APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
+import { APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR, AppRoute } from '../const';
 
 export const clearErrorAction = createAsyncThunk('data/clearError', (_arg, { dispatch }) => {
   setTimeout(() => dispatch(setError(null)), TIMEOUT_SHOW_ERROR);
@@ -103,6 +104,7 @@ export const loginAction = createAsyncThunk<
     saveToken(token);
     dispatch(requireAuthorization(AuthorizationStatus.Authorized));
     dispatch(setLoginLoadingStatus(false));
+    dispatch(redirectToRoute(AppRoute.Main));
   }
 );
 

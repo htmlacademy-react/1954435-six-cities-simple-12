@@ -12,7 +12,7 @@ import {
 import { CITIES, SORTS, AuthorizationStatus } from '../const';
 import { Offers } from '../types/offer';
 
-type InitialState = {
+type OffersState = {
   currentCity: string;
   offers: Offers;
   selectedOfferId: number | null;
@@ -23,7 +23,7 @@ type InitialState = {
   isLoginLoadingStatus: boolean;
 };
 
-const initialState: InitialState = {
+const initialState: OffersState = {
   currentCity: CITIES[0],
   offers: [],
   selectedOfferId: null,
