@@ -27,6 +27,7 @@ type MapProps = {
 
 export default function Map({ className, offers, activePoint }: MapProps) {
   const selectedOfferId = useAppSelector( (state) => state.offers.selectedOfferId );
+  //const activePoint = useAppSelector( (state) => state.offer.offerItem);
 
   const city = offers[0].city;
 
