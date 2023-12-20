@@ -53,7 +53,7 @@ export default function MainScreen() {
               <Map
                 className="cities__map"
                 offers={filteredOffers}
-                activePoint={null}
+                //activePoint={null}
               />
             </div>
           </div>

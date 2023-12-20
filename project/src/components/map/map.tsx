@@ -22,12 +22,13 @@ const currentCustomIcon = new Icon({
 type MapProps = {
   className: string;
   offers: Offer[];
-  activePoint: Offer | null;
+  //activePoint: Offer | null;
 };
 
-export default function Map({ className, offers, activePoint }: MapProps) {
+export default function Map({ className, offers /*activePoint*/ }: MapProps) {
   const selectedOfferId = useAppSelector( (state) => state.offers.selectedOfferId );
-  //const activePoint = useAppSelector( (state) => state.offer.offerItem);
+  //замена пропса activePoint
+  const activePoint = useAppSelector( (state) => state.offer.offerItem);
 
   const city = offers[0].city;
 
@@ -53,7 +54,7 @@ export default function Map({ className, offers, activePoint }: MapProps) {
           .addTo(layer);
         layer.addTo(map);
       });
-
+      // отрисовывает активную точку(не выбранную при наведении), а активную
       if (activePoint) {
         const marker = new Marker({
           lat: activePoint.location.latitude,

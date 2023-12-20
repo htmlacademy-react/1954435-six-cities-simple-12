@@ -1,8 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { useAppSelector } from '../../hooks';
+import { useAppSelector, useAppDispatch } from '../../hooks';
 import { useEffect } from 'react';
-import { store } from '../../store';
 import {
   fetchOfferItemAction,
   fetchReviewsAction,
@@ -32,11 +31,13 @@ export default function RoomScreen() {
     (state) => state.offer.isOffersNearByLoading
   );
 
+  const dispatch = useAppDispatch();
+
   useEffect(() => {
-    store.dispatch(fetchOfferItemAction(Number(id)));
-    store.dispatch(fetchReviewsAction(Number(id)));
-    store.dispatch(fetchOffersNearByAction(Number(id)));
-  }, [id]);
+    dispatch(fetchOfferItemAction(Number(id)));
+    dispatch(fetchReviewsAction(Number(id)));
+    dispatch(fetchOffersNearByAction(Number(id)));
+  }, [dispatch, id]);
 
   const areDataLoading = isOfferLoading || isReviewsLoading || isOffersNearByLoading;
   if (areDataLoading || !offer) {
@@ -66,7 +67,7 @@ export default function RoomScreen() {
           <Map
             className="property__map"
             offers={offersNearBy}
-            activePoint={offer}
+            //activePoint={offer}
           />
         </section>
 
