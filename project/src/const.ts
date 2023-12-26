@@ -38,4 +38,7 @@ export const TIMEOUT_SHOW_ERROR = 2000;
 
 export const PHOTOS_GALLERY = 6;
 
+export const REGEXP_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+export const REGEXP_PASS = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
 

@@ -3,8 +3,9 @@ import { /*useNavigate*//* Navigate */} from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
 import { AuthData } from '../../types/auth-data';
-import { /*AppRoute, AuthorizationStatus*/ } from '../../const';
+import { /*AppRoute, AuthorizationStatus*/ REGEXP_EMAIL,REGEXP_PASS } from '../../const';
 import LoginLoader from '../login-loader/login-loader';
+
 
 export default function LoginForm() {
   const loginRef = useRef<HTMLInputElement | null>(null);
@@ -24,10 +25,23 @@ export default function LoginForm() {
     dispatch(loginAction(authData));
   };
 
+  const validateDataForm = ():boolean => {
+    if(loginRef.current === null || passwordRef.current === null){
+      return false;
+    }
+
+    const emailValue = loginRef.current.value;
+    const passValue = passwordRef.current.value;
+
+    return REGEXP_EMAIL.test(emailValue) && REGEXP_PASS.test(passValue);
+
+  };
+
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
+    const isValid = validateDataForm();
 
-    if (loginRef.current !== null && passwordRef.current !== null && passwordRef.current.value.length > 6 ) {
+    if (loginRef.current !== null && passwordRef.current !== null && isValid ) {
       onSubmit({
         login: loginRef.current.value,
         password: passwordRef.current.value,
