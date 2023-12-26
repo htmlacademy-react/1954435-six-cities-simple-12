@@ -3,9 +3,3 @@ export type AuthData = {
   password: string;
 };
 
-export type AuthFormFields = {
-  email: HTMLInputElement;
-  password: HTMLInputElement;
-};
-
-
