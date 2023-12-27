@@ -1,8 +1,10 @@
 import { useRef, FormEvent } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
 import { AuthData } from '../../types/auth-data';
-import { REGEXP_EMAIL,REGEXP_PASS } from '../../const';
+import { REGEXP_EMAIL, REGEXP_PASS } from '../../const';
 import LoginLoader from '../login-loader/login-loader';
 
 
@@ -12,11 +14,9 @@ export default function LoginForm() {
 
   const dispatch = useAppDispatch();
 
-
   const isLoginLoadingStatus = useAppSelector(
     (state) => state.offers.isLoginLoadingStatus
   );
-
 
   const onSubmit = (authData: AuthData) => {
     dispatch(loginAction(authData));
@@ -30,7 +30,19 @@ export default function LoginForm() {
     const emailValue = loginRef.current.value;
     const passValue = passwordRef.current.value;
 
-    return REGEXP_EMAIL.test(emailValue) && REGEXP_PASS.test(passValue);
+    const isEmailValid = REGEXP_EMAIL.test(emailValue);
+    if(!isEmailValid){
+      toast.error('Email is invalid', {position:toast.POSITION.BOTTOM_LEFT});
+    }
+
+    const isPasswordValid = REGEXP_PASS.test(passValue);
+    if(!isPasswordValid){
+      toast.error('Password is invalid', {position:toast.POSITION.BOTTOM_LEFT});
+    }
+
+    return isEmailValid && isPasswordValid;
+
+    //return REGEXP_EMAIL.test(emailValue) && REGEXP_PASS.test(passValue);
 
   };
 
@@ -67,6 +79,7 @@ export default function LoginForm() {
             required
           />
         </div>
+        <ToastContainer />
         <div className="login__input-wrapper form__input-wrapper">
           <label className="visually-hidden">Password</label>
           <input
