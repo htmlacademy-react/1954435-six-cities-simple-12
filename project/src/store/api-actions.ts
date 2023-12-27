@@ -8,7 +8,6 @@ import { UserData } from '../types/user';
 import {
   loadOffers,
   requireAuthorization,
-  setError,
   setOffersLoadingStatus,
   setLoginLoadingStatus,
   redirectToRoute
@@ -23,15 +22,8 @@ import {
 } from './offer-actions';
 import { dropToken, saveToken } from '../services/token';
 
-import { APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR, AppRoute } from '../const';
+import { APIRoute, AuthorizationStatus, AppRoute } from '../const';
 
-export const clearErrorAction = createAsyncThunk('data/clearError', (_arg, { dispatch }) => {
-  setTimeout(() => dispatch(setError(null)), TIMEOUT_SHOW_ERROR);
-});
-
-/*export const clearErrorAction = createAsyncThunk('data/clearError', () => {
-  setTimeout(() => store.dispatch(setError(null)), TIMEOUT_SHOW_ERROR);
-});*/
 
 export const fetchOffersAction = createAsyncThunk<
   void,
