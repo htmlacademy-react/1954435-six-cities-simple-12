@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkOptions } from '../types/thunk-options';
+import { toast } from 'react-toastify';
 import { Offer, OfferId } from '../types/offer';
 import { Review } from '../types/review';
 import { AuthData } from '../types/auth-data';
@@ -10,7 +11,8 @@ import {
   requireAuthorization,
   setOffersLoadingStatus,
   setLoginLoadingStatus,
-  redirectToRoute
+  redirectToRoute,
+  loadUserData,
 } from './offers-actions';
 import {
   loadOfferItem,
@@ -89,14 +91,19 @@ export const loginAction = createAsyncThunk<
 >(
   'user/login',
   async ({ login: email, password }, { dispatch, extra: api }) => {
-    dispatch(setLoginLoadingStatus(true));
-    const {
-      data: { token },
-    } = await api.post<UserData>(APIRoute.Login, { email, password });
-    saveToken(token);
-    dispatch(requireAuthorization(AuthorizationStatus.Authorized));
-    dispatch(setLoginLoadingStatus(false));
-    dispatch(redirectToRoute(AppRoute.Main));
+    try {
+      dispatch(setLoginLoadingStatus(true));
+      const { data } = await api.post<UserData>(APIRoute.Login, { email, password });
+
+      saveToken(data.token);
+      dispatch(requireAuthorization(AuthorizationStatus.Authorized));
+      dispatch(setLoginLoadingStatus(false));
+      dispatch(redirectToRoute(AppRoute.Main));
+      dispatch(loadUserData(data));
+    } catch {
+      dispatch(requireAuthorization(AuthorizationStatus.NoAuthorized));
+      toast.error('Can\'t login');
+    }
   }
 );
 

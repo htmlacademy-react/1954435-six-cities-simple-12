@@ -7,9 +7,11 @@ import {
   requireAuthorization,
   setOffersLoadingStatus,
   setLoginLoadingStatus,
+  loadUserData,
 } from './offers-actions';
 import { CITIES, SORTS, AuthorizationStatus } from '../const';
 import { Offers } from '../types/offer';
+import { UserData } from '../types/user';
 
 type OffersState = {
   currentCity: string;
@@ -19,6 +21,7 @@ type OffersState = {
   authorizationStatus: AuthorizationStatus;
   isOffersDataLoading: boolean;
   isLoginLoadingStatus: boolean;
+  userData: UserData | null;
 };
 
 const initialState: OffersState = {
@@ -29,6 +32,7 @@ const initialState: OffersState = {
   authorizationStatus: AuthorizationStatus.Unknown,
   isOffersDataLoading: false,
   isLoginLoadingStatus: false,
+  userData: {} as UserData | null,
 };
 
 export const offersReducer = createReducer(initialState, (builder) => {
@@ -53,6 +57,9 @@ export const offersReducer = createReducer(initialState, (builder) => {
     })
     .addCase(setLoginLoadingStatus, (state, action) => {
       state.isLoginLoadingStatus = action.payload;
+    })
+    .addCase(loadUserData, (state, action) => {
+      state.userData = action.payload;
     });
 });
 

@@ -1,5 +1,6 @@
 import { createAction } from '@reduxjs/toolkit';
 import { Offer } from '../types/offer';
+import { UserData } from '../types/user';
 import { AuthorizationStatus, AppRoute } from '../const';
 
 export const changeCity = createAction(
@@ -37,3 +38,7 @@ export const redirectToRoute = createAction(
   'app/redirectToRoute',
   (route: AppRoute) => ({payload: route}));
 
+export const loadUserData = createAction(
+  'user/loadUserData',
+  (userData: UserData) => ({payload: userData})
+);
