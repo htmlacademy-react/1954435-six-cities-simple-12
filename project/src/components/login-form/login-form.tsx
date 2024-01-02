@@ -31,7 +31,10 @@ export default function LoginForm() {
 
     const isEmailValid = REGEXP_EMAIL.test(emailValue);
     if (!isEmailValid) {
-      toast.error('Введите корректный Email', { position: toast.POSITION.BOTTOM_LEFT });
+      toast.error('Введите корректный Email', {
+        position: toast.POSITION.BOTTOM_LEFT,
+      });
+      return false;
     }
 
     const isPasswordValid = REGEXP_PASS.test(passValue);
@@ -39,6 +42,7 @@ export default function LoginForm() {
       toast.error('Пароль должен состоять минимум из одной буквы и цифры', {
         position: toast.POSITION.BOTTOM_LEFT,
       });
+      return false;
     }
 
     return isEmailValid && isPasswordValid;
