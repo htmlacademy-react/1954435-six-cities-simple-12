@@ -6,6 +6,7 @@ import { useAppSelector } from '../../hooks';
 import useMap from '../../hooks/useMap/useMap';
 import { Offer } from '../../types/offer';
 
+
 const defaultCustomIcon = new Icon({
   iconUrl: './img/pin.svg',
   iconSize: [28, 40],
@@ -21,10 +22,13 @@ const currentCustomIcon = new Icon({
 type MapProps = {
   className: string;
   offers: Offer[];
+  //activePoint: Offer | null;
 };
 
-export default function Map({ className, offers }: MapProps) {
+export default function Map({ className, offers /*activePoint*/ }: MapProps) {
   const selectedOfferId = useAppSelector( (state) => state.offers.selectedOfferId );
+  //замена пропса activePoint
+  const activePoint = useAppSelector( (state) => state.offer.offerItem);
 
   const city = offers[0].city;
 
@@ -50,12 +54,23 @@ export default function Map({ className, offers }: MapProps) {
           .addTo(layer);
         layer.addTo(map);
       });
+      // отрисовывает активную точку(не выбранную при наведении), а активную
+      if (activePoint) {
+        const marker = new Marker({
+          lat: activePoint.location.latitude,
+          lng: activePoint.location.longitude,
+        });
+
+        marker.setIcon(currentCustomIcon)
+          .addTo(layer);
+        layer.addTo(map);
+      }
 
       return () => {
         map.removeLayer(layer);
       };
     }
-  }, [map, offers, selectedOfferId]);
+  }, [map, offers, selectedOfferId, activePoint]);
 
   useEffect(() => {
     if (map) {

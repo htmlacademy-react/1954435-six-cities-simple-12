@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkOptions } from '../types/thunk-options';
+import { toast } from 'react-toastify';
 import { Offer, OfferId } from '../types/offer';
 import { Review } from '../types/review';
 import { AuthData } from '../types/auth-data';
@@ -8,8 +9,10 @@ import { UserData } from '../types/user';
 import {
   loadOffers,
   requireAuthorization,
-  setError,
   setOffersLoadingStatus,
+  setLoginLoadingStatus,
+  redirectToRoute,
+  loadUserData,
 } from './offers-actions';
 import {
   loadOfferItem,
@@ -21,15 +24,8 @@ import {
 } from './offer-actions';
 import { dropToken, saveToken } from '../services/token';
 
-import { APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
+import { APIRoute, AuthorizationStatus, AppRoute } from '../const';
 
-export const clearErrorAction = createAsyncThunk('data/clearError', (_arg, { dispatch }) => {
-  setTimeout(() => dispatch(setError(null)), TIMEOUT_SHOW_ERROR);
-});
-
-/*export const clearErrorAction = createAsyncThunk('data/clearError', () => {
-  setTimeout(() => store.dispatch(setError(null)), TIMEOUT_SHOW_ERROR);
-});*/
 
 export const fetchOffersAction = createAsyncThunk<
   void,
@@ -95,11 +91,19 @@ export const loginAction = createAsyncThunk<
 >(
   'user/login',
   async ({ login: email, password }, { dispatch, extra: api }) => {
-    const {
-      data: { token },
-    } = await api.post<UserData>(APIRoute.Login, { email, password });
-    saveToken(token);
-    dispatch(requireAuthorization(AuthorizationStatus.Authorized));
+    try {
+      dispatch(setLoginLoadingStatus(true));
+      const { data } = await api.post<UserData>(APIRoute.Login, { email, password });
+
+      saveToken(data.token);
+      dispatch(requireAuthorization(AuthorizationStatus.Authorized));
+      dispatch(setLoginLoadingStatus(false));
+      dispatch(redirectToRoute(AppRoute.Main));
+      dispatch(loadUserData(data));
+    } catch {
+      dispatch(requireAuthorization(AuthorizationStatus.NoAuthorized));
+      toast.error('Can\'t login');
+    }
   }
 );
 

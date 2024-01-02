@@ -1,6 +1,8 @@
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import {HelmetProvider} from 'react-helmet-async';
+import { Routes, Route } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import { AppRoute } from '../../const';
+import HistoryRouter from '../history-route/history-route';
+import browserHistory from '../../browser-history';
 
 import MainScreen from '../../pages/main-screen/main-screen';
 import LoginScren from '../../pages/login-screen/login-screen';
@@ -12,7 +14,7 @@ export default function App(): JSX.Element {
 
   return(
     <HelmetProvider>
-      <BrowserRouter>
+      <HistoryRouter history={browserHistory}>
         <Routes>
           <Route
             path={AppRoute.Main}
@@ -31,7 +33,7 @@ export default function App(): JSX.Element {
             element={<NotFoundScreen />}
           />
         </Routes>
-      </BrowserRouter>
+      </HistoryRouter>
     </HelmetProvider>
 
   );
