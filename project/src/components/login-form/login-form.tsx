@@ -31,12 +31,12 @@ export default function LoginForm() {
 
     const isEmailValid = REGEXP_EMAIL.test(emailValue);
     if (!isEmailValid) {
-      toast.error('Email is invalid', { position: toast.POSITION.BOTTOM_LEFT });
+      toast.error('Введите корректный Email', { position: toast.POSITION.BOTTOM_LEFT });
     }
 
     const isPasswordValid = REGEXP_PASS.test(passValue);
     if (!isPasswordValid) {
-      toast.error('Password is invalid', {
+      toast.error('Пароль должен состоять минимум из одной буквы и цифры', {
         position: toast.POSITION.BOTTOM_LEFT,
       });
     }
