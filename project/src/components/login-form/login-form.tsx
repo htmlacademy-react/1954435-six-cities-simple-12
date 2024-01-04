@@ -47,7 +47,7 @@ export default function LoginForm() {
 
     return isEmailValid && isPasswordValid;
   };
-  //test
+
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     const isValid = validateDataForm();

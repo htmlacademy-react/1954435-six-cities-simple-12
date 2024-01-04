@@ -2,7 +2,6 @@ import { Icon, LayerGroup, Marker } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import cn from 'classnames';
 import { useRef, useEffect } from 'react';
-import { useAppSelector } from '../../hooks';
 import useMap from '../../hooks/useMap/useMap';
 import { Offer } from '../../types/offer';
 
@@ -22,14 +21,10 @@ const currentCustomIcon = new Icon({
 type MapProps = {
   className: string;
   offers: Offer[];
-  //activePoint: Offer | null;
+  activePointId: number | null;
 };
 
-export default function Map({ className, offers /*activePoint*/ }: MapProps) {
-  const selectedOfferId = useAppSelector( (state) => state.offers.selectedOfferId );
-  //замена пропса activePoint
-  const activePoint = useAppSelector( (state) => state.offer.offerItem);
-
+export default function Map({ className, offers, activePointId }: MapProps) {
   const city = offers[0].city;
 
   const mapRef = useRef(null);
@@ -47,30 +42,21 @@ export default function Map({ className, offers /*activePoint*/ }: MapProps) {
 
         marker
           .setIcon(
-            selectedOfferId !== null && point.id === selectedOfferId
+            activePointId !== null && point.id === activePointId
               ? currentCustomIcon
               : defaultCustomIcon
           )
           .addTo(layer);
-        layer.addTo(map);
-      });
-      // отрисовывает активную точку(не выбранную при наведении), а активную
-      if (activePoint) {
-        const marker = new Marker({
-          lat: activePoint.location.latitude,
-          lng: activePoint.location.longitude,
-        });
 
-        marker.setIcon(currentCustomIcon)
-          .addTo(layer);
-        layer.addTo(map);
-      }
+      });
+
+      layer.addTo(map);
 
       return () => {
         map.removeLayer(layer);
       };
     }
-  }, [map, offers, selectedOfferId, activePoint]);
+  }, [map, offers, activePointId]);
 
   useEffect(() => {
     if (map) {
