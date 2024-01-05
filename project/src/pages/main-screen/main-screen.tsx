@@ -12,9 +12,9 @@ export default function MainScreen() {
   const currentCity = useAppSelector((state) => state.offers.currentCity);
   const offers = useAppSelector((state) => state.offers.offers);
   const sortType = useAppSelector((state) => state.offers.sortType);
-  const isOffersDataLoading = useAppSelector(
-    (state) => state.offers.isOffersDataLoading
-  );
+  const isOffersDataLoading = useAppSelector((state) => state.offers.isOffersDataLoading);
+  const selectedOfferId = useAppSelector( (state) => state.offers.selectedOfferId );
+
 
   const filteredOffers = getOffersByCity(offers, currentCity);
   const sortedOffers = getOffersBySortType(filteredOffers, sortType);
@@ -53,7 +53,7 @@ export default function MainScreen() {
               <Map
                 className="cities__map"
                 offers={filteredOffers}
-                //activePoint={null}
+                activePointId={selectedOfferId}
               />
             </div>
           </div>

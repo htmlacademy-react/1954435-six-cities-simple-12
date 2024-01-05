@@ -32,7 +32,7 @@ const initialState: OffersState = {
   authorizationStatus: AuthorizationStatus.Unknown,
   isOffersDataLoading: false,
   isLoginLoadingStatus: false,
-  userData: {} as UserData | null,
+  userData: null,
 };
 
 export const offersReducer = createReducer(initialState, (builder) => {

@@ -66,8 +66,8 @@ export default function RoomScreen() {
 
           <Map
             className="property__map"
-            offers={offersNearBy}
-            //activePoint={offer}
+            offers={[...offersNearBy, offer] }
+            activePointId={offer.id}
           />
         </section>
 

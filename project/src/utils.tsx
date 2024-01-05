@@ -20,3 +20,6 @@ export const getOffersBySortType = (filteredOffers:Offer[], sortType: string) =>
 
   return sortebleOffers;
 };
+
+export const formatFirstLetter = (text: string): string =>
+  text.charAt(0).toUpperCase() + text.slice(1);

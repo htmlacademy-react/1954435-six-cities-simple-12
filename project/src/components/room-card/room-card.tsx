@@ -4,14 +4,19 @@ import { useAppDispatch } from '../../hooks';
 import { selectOffer } from '../../store/offers-actions';
 import { Offer } from '../../types/offer';
 import Badge from '../badge/badge';
+import { formatFirstLetter } from '../../utils';
 
 type RoomCardProps = {
   className: string;
   offer: Offer;
 };
 
+const MAX_STARS_QUANTITY = 5;
+
 export default function RoomCard({ offer, className }: RoomCardProps) {
   const dispatch = useAppDispatch();
+
+  const ratingValueStars = Math.round(offer.rating) / MAX_STARS_QUANTITY * 100;
 
   return (
     <article
@@ -41,14 +46,14 @@ export default function RoomCard({ offer, className }: RoomCardProps) {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: `${(offer.rating / 5) * 100}%` }}></span>
+            <span style={{ width: `${ratingValueStars}%` }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <h2 className="place-card__name">
           <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
         </h2>
-        <p className="place-card__type">{offer.type}</p>
+        <p className="place-card__type">{formatFirstLetter(offer.type)}</p>
       </div>
     </article>
   );
