@@ -4,6 +4,7 @@ import { useAppDispatch } from '../../hooks';
 import { selectOffer } from '../../store/offers-actions';
 import { Offer } from '../../types/offer';
 import Badge from '../badge/badge';
+import { formatFirstLetter } from '../../utils';
 
 type RoomCardProps = {
   className: string;
@@ -52,7 +53,7 @@ export default function RoomCard({ offer, className }: RoomCardProps) {
         <h2 className="place-card__name">
           <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
         </h2>
-        <p className="place-card__type">{offer.type}</p>
+        <p className="place-card__type">{formatFirstLetter(offer.type)}</p>
       </div>
     </article>
   );
