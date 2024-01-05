@@ -10,8 +10,12 @@ type RoomCardProps = {
   offer: Offer;
 };
 
+const MAX_STARS_QUANTITY = 5;
+
 export default function RoomCard({ offer, className }: RoomCardProps) {
   const dispatch = useAppDispatch();
+
+  const ratingValueStars = Math.round(offer.rating) / MAX_STARS_QUANTITY * 100;
 
   return (
     <article
@@ -41,7 +45,7 @@ export default function RoomCard({ offer, className }: RoomCardProps) {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: `${(offer.rating / 5) * 100}%` }}></span>
+            <span style={{ width: `${ratingValueStars}%` }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
