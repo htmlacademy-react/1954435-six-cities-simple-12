@@ -8,11 +8,8 @@ import { UserData } from '../types/user';
 
 import {
   loadOffers,
-  //requireAuthorization,
   setOffersLoadingStatus,
-  //setLoginLoadingStatus,
   redirectToRoute,
-  //loadUserData,
 } from './offers-actions';
 import {
   loadOfferItem,
@@ -24,7 +21,7 @@ import {
 } from './offer-actions';
 import { dropToken, saveToken } from '../services/token';
 
-import { APIRoute,/* AuthorizationStatus,*/ AppRoute } from '../const';
+import { APIRoute, AppRoute } from '../const';
 
 
 export const fetchOffersAction = createAsyncThunk<
@@ -80,8 +77,6 @@ export const checkAuthAction = createAsyncThunk<
     const { data } = await api.get<UserData>(APIRoute.Login);
 
     return data;
-    /*dispatch(loadUserData(data));*/
-    /*dispatch(requireAuthorization(AuthorizationStatus.Authorized));*/
   } catch {
     /*dispatch(requireAuthorization(AuthorizationStatus.NoAuthorized));*/
   }
@@ -95,17 +90,11 @@ export const loginAction = createAsyncThunk<
   'user/login',
   async ({ login: email, password }, { dispatch, extra: api }) => {
     try {
-      /*dispatch(setLoginLoadingStatus(true));*/
       const { data } = await api.post<UserData>(APIRoute.Login, { email, password });
-
       saveToken(data.token);
-      /*dispatch(requireAuthorization(AuthorizationStatus.Authorized));
-      dispatch(setLoginLoadingStatus(false));*/
       dispatch(redirectToRoute(AppRoute.Main));
-      /*dispatch(loadUserData(data));*/
       return data;
     } catch {
-      /*dispatch(requireAuthorization(AuthorizationStatus.NoAuthorized));*/
       toast.error('Can\'t login');
     }
   }
@@ -118,5 +107,4 @@ export const logoutAction = createAsyncThunk<
 >('user/logout', async (_arg, { dispatch, extra: api }) => {
   await api.delete(APIRoute.Logout);
   dropToken();
-  /*dispatch(requireAuthorization(AuthorizationStatus.NoAuthorized));*/
 });

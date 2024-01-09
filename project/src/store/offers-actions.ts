@@ -23,12 +23,6 @@ export const loadOffers = createAction(
   'data/loadOffers',
   (offers: Offer[]) => ({ payload: offers, }));
 
-//export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
-
-/*export const requireAuthorization = createAction(
-  'user/requireAuthorization',
-  (status: AuthorizationStatus) => ({ payload: status }));*/
-
 export const setLoginLoadingStatus = createAction(
   'data/setLoginLoadingStatus',
   (isLoading: boolean) => ({ payload: isLoading }));
