@@ -4,9 +4,9 @@ import {
   selectOffer,
   changeSortType,
   loadOffers,
-  requireAuthorization,
+  //requireAuthorization,
   setOffersLoadingStatus,
-  setLoginLoadingStatus,
+  //setLoginLoadingStatus,
   loadUserData,
 } from './offers-actions';
 import { CITIES, SORTS, AuthorizationStatus } from '../const';
@@ -20,7 +20,7 @@ type OffersState = {
   sortType: string;
   authorizationStatus: AuthorizationStatus;
   isOffersDataLoading: boolean;
-  isLoginLoadingStatus: boolean;
+  //isLoginLoadingStatus: boolean;
   userData: UserData | null;
 };
 
@@ -31,7 +31,7 @@ const initialState: OffersState = {
   sortType: SORTS[0],
   authorizationStatus: AuthorizationStatus.Unknown,
   isOffersDataLoading: false,
-  isLoginLoadingStatus: false,
+  //isLoginLoadingStatus: false,
   userData: null,
 };
 
@@ -52,12 +52,12 @@ export const offersReducer = createReducer(initialState, (builder) => {
     .addCase(setOffersLoadingStatus, (state, action) => {
       state.isOffersDataLoading = action.payload;
     })
-    .addCase(requireAuthorization, (state, action) => {
+    /*.addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;
     })
     .addCase(setLoginLoadingStatus, (state, action) => {
       state.isLoginLoadingStatus = action.payload;
-    })
+    })*/
     .addCase(loadUserData, (state, action) => {
       state.userData = action.payload;
     });

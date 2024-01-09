@@ -34,13 +34,22 @@ export const SORTS = [
   'Top rated first'
 ];
 
-//export const TIMEOUT_SHOW_ERROR = 2000;
-
-//export const REGEXP_PASS = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
-//export const REGEXP_EMAIL = /^([a-z0-9_.-]+)@([\da-z.-]+).([a-z.]{2,6})$/;
 
 export const PHOTOS_GALLERY = 6;
 
 export const REGEXP_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export const REGEXP_PASS = /([0-9].*[a-z])|([a-z].*[0-9])/;
+
+export enum NameSpace {
+  //Data = 'DATA',
+  //Game = 'GAME',
+  User = 'USER',
+}
+
+export const enum FetchStatus {
+	Idle = 'Idle',
+	Pending = 'Pending',
+	Successed = 'Successed',
+	Failed = 'Failed',
+}
 

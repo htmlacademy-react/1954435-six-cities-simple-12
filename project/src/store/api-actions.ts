@@ -8,11 +8,11 @@ import { UserData } from '../types/user';
 
 import {
   loadOffers,
-  requireAuthorization,
+  //requireAuthorization,
   setOffersLoadingStatus,
-  setLoginLoadingStatus,
+  //setLoginLoadingStatus,
   redirectToRoute,
-  loadUserData,
+  //loadUserData,
 } from './offers-actions';
 import {
   loadOfferItem,
@@ -24,7 +24,7 @@ import {
 } from './offer-actions';
 import { dropToken, saveToken } from '../services/token';
 
-import { APIRoute, AuthorizationStatus, AppRoute } from '../const';
+import { APIRoute,/* AuthorizationStatus,*/ AppRoute } from '../const';
 
 
 export const fetchOffersAction = createAsyncThunk<
@@ -72,37 +72,40 @@ export const fetchOffersNearByAction = createAsyncThunk<
 });
 
 export const checkAuthAction = createAsyncThunk<
-  void,
+  UserData | void,
   undefined,
   ThunkOptions
->('user/checkAuth', async (_arg, { dispatch, extra: api }) => {
+>('user/checkAuth', async (_arg, { extra: api }) => {
   try {
     const { data } = await api.get<UserData>(APIRoute.Login);
-    dispatch(loadUserData(data));
-    dispatch(requireAuthorization(AuthorizationStatus.Authorized));
+
+    return data;
+    /*dispatch(loadUserData(data));*/
+    /*dispatch(requireAuthorization(AuthorizationStatus.Authorized));*/
   } catch {
-    dispatch(requireAuthorization(AuthorizationStatus.NoAuthorized));
+    /*dispatch(requireAuthorization(AuthorizationStatus.NoAuthorized));*/
   }
 });
 
 export const loginAction = createAsyncThunk<
-  void,
+  UserData | void,
   AuthData,
   ThunkOptions
 >(
   'user/login',
   async ({ login: email, password }, { dispatch, extra: api }) => {
     try {
-      dispatch(setLoginLoadingStatus(true));
+      /*dispatch(setLoginLoadingStatus(true));*/
       const { data } = await api.post<UserData>(APIRoute.Login, { email, password });
 
       saveToken(data.token);
-      dispatch(requireAuthorization(AuthorizationStatus.Authorized));
-      dispatch(setLoginLoadingStatus(false));
+      /*dispatch(requireAuthorization(AuthorizationStatus.Authorized));
+      dispatch(setLoginLoadingStatus(false));*/
       dispatch(redirectToRoute(AppRoute.Main));
-      dispatch(loadUserData(data));
+      /*dispatch(loadUserData(data));*/
+      return data;
     } catch {
-      dispatch(requireAuthorization(AuthorizationStatus.NoAuthorized));
+      /*dispatch(requireAuthorization(AuthorizationStatus.NoAuthorized));*/
       toast.error('Can\'t login');
     }
   }
@@ -115,5 +118,5 @@ export const logoutAction = createAsyncThunk<
 >('user/logout', async (_arg, { dispatch, extra: api }) => {
   await api.delete(APIRoute.Logout);
   dropToken();
-  dispatch(requireAuthorization(AuthorizationStatus.NoAuthorized));
+  /*dispatch(requireAuthorization(AuthorizationStatus.NoAuthorized));*/
 });

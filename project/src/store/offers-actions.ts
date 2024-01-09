@@ -1,7 +1,7 @@
 import { createAction } from '@reduxjs/toolkit';
 import { Offer } from '../types/offer';
 import { UserData } from '../types/user';
-import { AuthorizationStatus, AppRoute } from '../const';
+import { /*AuthorizationStatus,*/ AppRoute } from '../const';
 
 export const changeCity = createAction(
   'city/changeCity',
@@ -25,9 +25,9 @@ export const loadOffers = createAction(
 
 //export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
 
-export const requireAuthorization = createAction(
+/*export const requireAuthorization = createAction(
   'user/requireAuthorization',
-  (status: AuthorizationStatus) => ({ payload: status }));
+  (status: AuthorizationStatus) => ({ payload: status }));*/
 
 export const setLoginLoadingStatus = createAction(
   'data/setLoginLoadingStatus',

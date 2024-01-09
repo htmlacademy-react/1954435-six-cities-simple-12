@@ -5,7 +5,6 @@ import { selectOffer } from '../../store/offers-actions';
 import { Offer } from '../../types/offer';
 import Badge from '../badge/badge';
 import { formatFirstLetter } from '../../utils';
-//test
 
 type RoomCardProps = {
   className: string;
