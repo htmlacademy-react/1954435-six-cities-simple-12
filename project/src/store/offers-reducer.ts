@@ -5,20 +5,16 @@ import {
   changeSortType,
   loadOffers,
   setOffersLoadingStatus,
-  loadUserData,
 } from './offers-actions';
-import { CITIES, SORTS, AuthorizationStatus } from '../const';
+import { CITIES, SORTS} from '../const';
 import { Offers } from '../types/offer';
-import { UserData } from '../types/user';
 
 type OffersState = {
   currentCity: string;
   offers: Offers;
   selectedOfferId: number | null;
   sortType: string;
-  authorizationStatus: AuthorizationStatus;
   isOffersDataLoading: boolean;
-  userData: UserData | null;
 };
 
 const initialState: OffersState = {
@@ -26,9 +22,7 @@ const initialState: OffersState = {
   offers: [],
   selectedOfferId: null,
   sortType: SORTS[0],
-  authorizationStatus: AuthorizationStatus.Unknown,
   isOffersDataLoading: false,
-  userData: null,
 };
 
 export const offersReducer = createReducer(initialState, (builder) => {
@@ -47,9 +41,6 @@ export const offersReducer = createReducer(initialState, (builder) => {
     })
     .addCase(setOffersLoadingStatus, (state, action) => {
       state.isOffersDataLoading = action.payload;
-    })
-    .addCase(loadUserData, (state, action) => {
-      state.userData = action.payload;
     });
 });
 

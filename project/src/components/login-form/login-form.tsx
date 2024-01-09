@@ -4,9 +4,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
 import { AuthData } from '../../types/auth-data';
-import { REGEXP_EMAIL, REGEXP_PASS, FetchStatus } from '../../const';
+import { REGEXP_EMAIL, REGEXP_PASS} from '../../const';
 import LoginLoader from '../login-loader/login-loader';
-import { getLoginLoadingStatus } from '../../store/user-data/selectors';
+import { getLoginStatus } from '../../store/user-data/selectors';
 
 export default function LoginForm() {
   const loginRef = useRef<HTMLInputElement | null>(null);
@@ -14,7 +14,7 @@ export default function LoginForm() {
 
   const dispatch = useAppDispatch();
 
-  const isLoginLoadingStatus = useAppSelector(getLoginLoadingStatus);
+  const status = useAppSelector(getLoginStatus);
 
   const onSubmit = (authData: AuthData) => {
     dispatch(loginAction(authData));
@@ -92,7 +92,7 @@ export default function LoginForm() {
           />
         </div>
         <button className="login__submit form__submit button" type="submit">
-          {isLoginLoadingStatus === FetchStatus.Pending ? <LoginLoader /> : 'Sign in'}
+          {status.isPending ? <LoginLoader /> : 'Sign in'}
         </button>
       </form>
     </section>

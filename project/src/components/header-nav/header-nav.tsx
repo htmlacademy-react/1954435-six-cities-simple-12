@@ -1,19 +1,18 @@
-import { AuthorizationStatus } from '../../const';
 import { useAppSelector } from '../../hooks';
+import { getAuthStatus } from '../../store/user-data/selectors';
 
 import HeaderProfile from '../header-profile/header-profile';
 import HeaderSignOut from '../header-sign-out/header-sign-out';
 import HeaderSignIn from '../header-sign-in/header-sign-in';
 
 export default function HeaderNav() {
-  const authorizationStatus = useAppSelector((state) => state.offers.authorizationStatus);
-  const isUserLogged = authorizationStatus === AuthorizationStatus.Authorized;
+  const status = useAppSelector(getAuthStatus);
 
   return (
     <nav className="header__nav">
       <ul className="header__nav-list">
         {
-          isUserLogged ?
+          status.isAuthorized ?
             <>
               <HeaderProfile />
               <HeaderSignOut />
