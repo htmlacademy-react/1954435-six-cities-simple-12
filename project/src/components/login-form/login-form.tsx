@@ -4,9 +4,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
 import { AuthData } from '../../types/auth-data';
-import { REGEXP_EMAIL, REGEXP_PASS} from '../../const';
+import { REGEXP_EMAIL, REGEXP_PASS } from '../../const';
 import LoginLoader from '../login-loader/login-loader';
-import { getLoginStatus } from '../../store/user-data/selectors';
+import { getLoginStatus } from '../../store/user/selectors';
 
 export default function LoginForm() {
   const loginRef = useRef<HTMLInputElement | null>(null);

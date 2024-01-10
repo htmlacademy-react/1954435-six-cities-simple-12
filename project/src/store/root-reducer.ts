@@ -2,9 +2,8 @@ import { combineReducers } from '@reduxjs/toolkit';
 
 import { offerReducer } from './offer-reducer';
 import { offersReducer } from './offers-reducer';
-import { userData } from './user-data/user-data';
+import { userData } from './user/user';
 import { NameSpace } from '../const';
-
 
 export const rootReducer = combineReducers({
   offers: offersReducer,
