@@ -7,7 +7,7 @@ import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user';
 
 import {
-  loadOffers,
+  //loadOffers,
   setOffersLoadingStatus,
   redirectToRoute,
 } from './offers-actions';
@@ -25,14 +25,15 @@ import { APIRoute, AppRoute } from '../const';
 
 
 export const fetchOffersAction = createAsyncThunk<
-  void,
+  Offer[],
   undefined,
   ThunkOptions
 >('data/fetchOffers', async (_arg, { dispatch, extra: api }) => {
   dispatch(setOffersLoadingStatus(true));
   const { data } = await api.get<Offer[]>(APIRoute.Offers);
-  dispatch(setOffersLoadingStatus(false));
-  dispatch(loadOffers(data));
+  /*dispatch(setOffersLoadingStatus(false));
+  dispatch(loadOffers(data));*/
+  return data;
 });
 
 export const fetchOfferItemAction = createAsyncThunk<

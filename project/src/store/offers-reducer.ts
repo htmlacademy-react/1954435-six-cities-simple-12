@@ -3,26 +3,26 @@ import {
   changeCity,
   selectOffer,
   changeSortType,
-  loadOffers,
-  setOffersLoadingStatus,
+  //loadOffers,
+  //setOffersLoadingStatus,
 } from './offers-actions';
 import { CITIES, SORTS} from '../const';
-import { Offers } from '../types/offer';
+//import { Offers } from '../types/offer';
 
 type OffersState = {
   currentCity: string;
-  offers: Offers;
+  //offers: Offers;
   selectedOfferId: number | null;
   sortType: string;
-  isOffersDataLoading: boolean;
+  //isOffersDataLoading: boolean;
 };
 
 const initialState: OffersState = {
   currentCity: CITIES[0],
-  offers: [],
+  //offers: [],
   selectedOfferId: null,
   sortType: SORTS[0],
-  isOffersDataLoading: false,
+  //isOffersDataLoading: false,
 };
 
 export const offersReducer = createReducer(initialState, (builder) => {
@@ -35,13 +35,13 @@ export const offersReducer = createReducer(initialState, (builder) => {
     })
     .addCase(changeSortType, (state, action) => {
       state.sortType = action.payload;
-    })
-    .addCase(loadOffers, (state, action) => {
+    });
+  /*.addCase(loadOffers, (state, action) => {
       state.offers = action.payload;
     })
     .addCase(setOffersLoadingStatus, (state, action) => {
       state.isOffersDataLoading = action.payload;
-    });
+    });*/
 });
 
 

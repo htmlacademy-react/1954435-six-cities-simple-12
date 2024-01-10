@@ -41,7 +41,7 @@ export const REGEXP_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export const REGEXP_PASS = /([0-9].*[a-z])|([a-z].*[0-9])/;
 
 export enum NameSpace {
-  //Data = 'DATA',
+  Offers = 'OFFERS',
   //Game = 'GAME',
   User = 'USER',
 }

@@ -7,19 +7,20 @@ import OfferList from '../../components/offer-list/offer-list';
 import Map from '../../components/map/map';
 import Loader from '../../components/loader/loader';
 import { getOffersByCity, getOffersBySortType } from '../../utils';
+import { getOffers, getOffersStatus } from '../../store/offers/selectors';
 
 export default function MainScreen() {
   const currentCity = useAppSelector((state) => state.offers.currentCity);
-  const offers = useAppSelector((state) => state.offers.offers);
+  const offers = useAppSelector(getOffers);
   const sortType = useAppSelector((state) => state.offers.sortType);
-  const isOffersDataLoading = useAppSelector((state) => state.offers.isOffersDataLoading);
+  const status = useAppSelector(getOffersStatus);
   const selectedOfferId = useAppSelector( (state) => state.offers.selectedOfferId );
 
 
   const filteredOffers = getOffersByCity(offers, currentCity);
   const sortedOffers = getOffersBySortType(filteredOffers, sortType);
 
-  if (isOffersDataLoading) {
+  if (status.isLoading) {
     return <Loader />;
   }
 
