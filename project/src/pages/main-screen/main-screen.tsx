@@ -8,11 +8,12 @@ import Map from '../../components/map/map';
 import Loader from '../../components/loader/loader';
 import { getOffersByCity, getOffersBySortType } from '../../utils';
 import { getOffers, getOffersStatus } from '../../store/offers/selectors';
+import { getCurrentCity, getCurrentSortType } from '../../store/app/selector';
 
 export default function MainScreen() {
-  const currentCity = useAppSelector((state) => state.offers.currentCity);
+  const currentCity = useAppSelector(getCurrentCity);
   const offers = useAppSelector(getOffers);
-  const sortType = useAppSelector((state) => state.offers.sortType);
+  const sortType = useAppSelector(getCurrentSortType);
   const status = useAppSelector(getOffersStatus);
   const selectedOfferId = useAppSelector( (state) => state.offers.selectedOfferId );
 

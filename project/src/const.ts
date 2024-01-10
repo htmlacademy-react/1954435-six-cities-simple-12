@@ -34,7 +34,6 @@ export const SORTS = [
   'Top rated first'
 ];
 
-
 export const PHOTOS_GALLERY = 6;
 
 export const REGEXP_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -44,6 +43,7 @@ export enum NameSpace {
   Offers = 'OFFERS',
   Offer = 'OFFER',
   User = 'USER',
+  App = 'APP'
 }
 
 export const enum FetchStatus {
