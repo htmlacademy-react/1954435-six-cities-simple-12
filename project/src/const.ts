@@ -42,7 +42,7 @@ export const REGEXP_PASS = /([0-9].*[a-z])|([a-z].*[0-9])/;
 
 export enum NameSpace {
   Offers = 'OFFERS',
-  //Game = 'GAME',
+  Offer = 'OFFER',
   User = 'USER',
 }
 

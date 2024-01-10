@@ -8,11 +8,11 @@ import { UserData } from '../types/user';
 
 import {
   //loadOffers,
-  setOffersLoadingStatus,
+  //setOffersLoadingStatus,
   redirectToRoute,
 } from './offers-actions';
 import {
-  loadOfferItem,
+  //loadOfferItem,
   setOfferItemLoadingStatus,
   loadReviews,
   setReviewsLoadingStatus,
@@ -29,7 +29,7 @@ export const fetchOffersAction = createAsyncThunk<
   undefined,
   ThunkOptions
 >('data/fetchOffers', async (_arg, { dispatch, extra: api }) => {
-  dispatch(setOffersLoadingStatus(true));
+  //dispatch(setOffersLoadingStatus(true));
   const { data } = await api.get<Offer[]>(APIRoute.Offers);
   /*dispatch(setOffersLoadingStatus(false));
   dispatch(loadOffers(data));*/
@@ -37,14 +37,15 @@ export const fetchOffersAction = createAsyncThunk<
 });
 
 export const fetchOfferItemAction = createAsyncThunk<
-  void,
+  Offer,
   OfferId,
   ThunkOptions
 >('data/fetchOffer', async (id, { dispatch, extra: api }) => {
   dispatch(setOfferItemLoadingStatus(true));
   const { data } = await api.get<Offer>(`${APIRoute.Offers}/${id}`);
-  dispatch(setOfferItemLoadingStatus(false));
-  dispatch(loadOfferItem(data));
+  /*dispatch(setOfferItemLoadingStatus(false));
+  dispatch(loadOfferItem(data));*/
+  return data;
 });
 
 export const fetchReviewsAction = createAsyncThunk<

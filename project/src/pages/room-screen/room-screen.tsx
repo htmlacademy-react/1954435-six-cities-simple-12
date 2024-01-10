@@ -17,11 +17,13 @@ import Host from '../../components/host/host';
 import RoomReviews from '../../components/reviews/room-reviews';
 import OfferList from '../../components/offer-list/offer-list';
 import Map from '../../components/map/map';
+import { getOffer, getOfferStatus } from '../../store/offer/selectors';
+
 
 export default function RoomScreen() {
   const { id } = useParams();
-  const offer = useAppSelector((state) => state.offer.offerItem);
-  const isOfferLoading = useAppSelector((state) => state.offer.isOfferLoading);
+  const offer = useAppSelector( getOffer);
+  const status = useAppSelector(getOfferStatus);
   const reviews = useAppSelector((state) => state.offer.reviews);
   const isReviewsLoading = useAppSelector(
     (state) => state.offer.isReviewsLoading
@@ -39,7 +41,7 @@ export default function RoomScreen() {
     dispatch(fetchOffersNearByAction(Number(id)));
   }, [dispatch, id]);
 
-  const areDataLoading = isOfferLoading || isReviewsLoading || isOffersNearByLoading;
+  const areDataLoading = status.isLoading || isReviewsLoading || isOffersNearByLoading;
   if (areDataLoading || !offer) {
     return <Loader />;
   }
