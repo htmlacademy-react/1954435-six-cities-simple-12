@@ -1,17 +1,16 @@
 import {Reviews} from '../../types/review';
-import { AuthorizationStatus } from '../../const';
 import { useAppSelector } from '../../hooks';
 
 import ReviewList from '../review-list/review-list';
 import ReviewForm from '../review-form/review-form';
+import { getAuthStatus } from '../../store/user/selectors';
 
 type RoomReviewsProps = {
   reviews: Reviews;
 };
 
 export default function RoomReviews({reviews}:RoomReviewsProps) {
-  const authorizationStatus = useAppSelector((state) => state.offers.authorizationStatus);
-  const isUserLogged = authorizationStatus === AuthorizationStatus.Authorized;
+  const status = useAppSelector(getAuthStatus);
 
   return (
     <section className="property__reviews reviews">
@@ -19,7 +18,7 @@ export default function RoomReviews({reviews}:RoomReviewsProps) {
 
       <ReviewList reviews={reviews} />
 
-      {isUserLogged && <ReviewForm/>}
+      {status.isAuthorized && <ReviewForm/>}
 
     </section>
 
