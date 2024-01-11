@@ -1,4 +1,4 @@
-import { createReducer } from '@reduxjs/toolkit';
+/*import { createReducer } from '@reduxjs/toolkit';
 import {
   //changeCity,
   //selectOffer,
@@ -6,7 +6,7 @@ import {
   //loadOffers,
   //setOffersLoadingStatus,
 } from './offers-actions';
-import { /*CITIES,*/ SORTS} from '../const';
+import { CITIES, SORTS} from '../const';
 //import { Offers } from '../types/offer';
 
 type OffersState = {
@@ -27,7 +27,7 @@ const initialState: OffersState = {
 
 export const offersReducer = createReducer(initialState, (builder) => {
   builder
-    /*.addCase(changeCity, (state, action) => {
+    .addCase(changeCity, (state, action) => {
       state.currentCity = action.payload;
     })
     .addCase(selectOffer, (state, action) => {
@@ -41,7 +41,7 @@ export const offersReducer = createReducer(initialState, (builder) => {
     })
     .addCase(setOffersLoadingStatus, (state, action) => {
       state.isOffersDataLoading = action.payload;
-    });*/
-});
+    });
+});*/
 
 

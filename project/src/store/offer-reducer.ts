@@ -1,4 +1,4 @@
-import { createReducer } from '@reduxjs/toolkit';
+/*import { createReducer } from '@reduxjs/toolkit';
 
 import { Offer } from '../types/offer';
 import { Review } from '../types/review';
@@ -36,7 +36,7 @@ export const offerReducer = createReducer(initialState, (builder) => {
     })
     .addCase(setOfferItemLoadingStatus, (state, action) => {
       state.isOfferLoading = action.payload;
-    })*/
+    })
     .addCase(loadReviews, (state, action) => {
       state.reviews = action.payload;
     })
@@ -49,4 +49,4 @@ export const offerReducer = createReducer(initialState, (builder) => {
     .addCase(setOffersNearByLoadingStatus, (state, action) => {
       state.isOffersNearByLoading = action.payload;
     });
-});
+});*/

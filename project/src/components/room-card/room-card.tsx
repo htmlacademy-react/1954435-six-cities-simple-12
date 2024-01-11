@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
 import { useAppDispatch } from '../../hooks';
-import { selectOffer } from '../../store/offers-actions';
 import { Offer } from '../../types/offer';
 import Badge from '../badge/badge';
 import { formatFirstLetter } from '../../utils';
+import { selectOffer } from '../../store/app/app';
 
 type RoomCardProps = {
   className: string;

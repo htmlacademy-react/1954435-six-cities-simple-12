@@ -1,4 +1,4 @@
-import { createAction } from '@reduxjs/toolkit';
+/*import { createAction } from '@reduxjs/toolkit';
 import { Offer } from '../types/offer';
 import { Review } from '../types/review';
 
@@ -28,4 +28,4 @@ export const loadOffersNearBy = createAction(
 export const setOffersNearByLoadingStatus = createAction(
   'data/setNearByLoadingStatus',
   (isLoading: boolean) => ({payload: isLoading})
-);
+);*/
