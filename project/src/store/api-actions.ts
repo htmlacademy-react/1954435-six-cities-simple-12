@@ -6,22 +6,9 @@ import { Review } from '../types/review';
 import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user';
 
-import {
-  //loadOffers,
-  //setOffersLoadingStatus,
-  redirectToRoute,
-} from './offers-actions';
-import {
-//loadOfferItem,
-//setOfferItemLoadingStatus,
-//loadReviews,
-//setReviewsLoadingStatus,
-//loadOffersNearBy,
-//setOffersNearByLoadingStatus,
-} from './offer-actions';
 import { dropToken, saveToken } from '../services/token';
-
 import { APIRoute, AppRoute } from '../const';
+import { redirectToRoute } from './action';
 
 
 export const fetchOffersAction = createAsyncThunk<
@@ -29,10 +16,8 @@ export const fetchOffersAction = createAsyncThunk<
   undefined,
   ThunkOptions
 >('data/fetchOffers', async (_arg, { dispatch, extra: api }) => {
-  //dispatch(setOffersLoadingStatus(true));
   const { data } = await api.get<Offer[]>(APIRoute.Offers);
-  /*dispatch(setOffersLoadingStatus(false));
-  dispatch(loadOffers(data));*/
+
   return data;
 });
 
@@ -52,7 +37,7 @@ export const fetchReviewsAction = createAsyncThunk<
   Review[],
   OfferId,
   ThunkOptions
->('data/fetchOffer', async (id, { extra: api }) => {
+>('data/fetchOffer', async (id, { dispatch, extra: api }) => {
   //dispatch(setReviewsLoadingStatus(true));
   const { data } = await api.get<Review[]>(`${APIRoute.Reviews}/${id}`);
   /*dispatch(setReviewsLoadingStatus(false));
@@ -64,11 +49,9 @@ export const fetchOffersNearByAction = createAsyncThunk<
   Offer[],
   OfferId,
   ThunkOptions
->('data, fetchOffersNearBy', async (id, { dispatch, extra: api }) => {
-  //dispatch(setOffersNearByLoadingStatus(true));
+>('data/fetchOffersNearBy', async (id, { dispatch, extra: api }) => {
   const { data } = await api.get<Offer[]>(`${APIRoute.Offers}/${id}/nearby`);
-  /*dispatch(loadOffersNearBy(data));
-  dispatch(setOffersNearByLoadingStatus(false));*/
+
   return data;
 });
 

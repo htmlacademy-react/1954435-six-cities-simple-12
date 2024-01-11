@@ -9,5 +9,6 @@ export const getFetchStatus = (state: State): FetchStatus => state[NameSpace.Nea
 
 export const getNearOffersStatus = createSelector([getFetchStatus], (status) => ({
   isLoading: [FetchStatus.Idle, FetchStatus.Pending].includes(status),
+  isSuccess: status === FetchStatus.Successed,
 }));
 
