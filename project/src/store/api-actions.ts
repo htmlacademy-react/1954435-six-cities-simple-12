@@ -12,12 +12,12 @@ import {
   redirectToRoute,
 } from './offers-actions';
 import {
-  //loadOfferItem,
-  setOfferItemLoadingStatus,
-  loadReviews,
-  setReviewsLoadingStatus,
-  loadOffersNearBy,
-  setOffersNearByLoadingStatus,
+//loadOfferItem,
+//setOfferItemLoadingStatus,
+//loadReviews,
+//setReviewsLoadingStatus,
+//loadOffersNearBy,
+//setOffersNearByLoadingStatus,
 } from './offer-actions';
 import { dropToken, saveToken } from '../services/token';
 
@@ -40,8 +40,8 @@ export const fetchOfferItemAction = createAsyncThunk<
   Offer,
   OfferId,
   ThunkOptions
->('data/fetchOffer', async (id, { dispatch, extra: api }) => {
-  dispatch(setOfferItemLoadingStatus(true));
+>('data/fetchOffer', async (id, { extra: api }) => {
+  //dispatch(setOfferItemLoadingStatus(true));
   const { data } = await api.get<Offer>(`${APIRoute.Offers}/${id}`);
   /*dispatch(setOfferItemLoadingStatus(false));
   dispatch(loadOfferItem(data));*/
@@ -49,25 +49,27 @@ export const fetchOfferItemAction = createAsyncThunk<
 });
 
 export const fetchReviewsAction = createAsyncThunk<
-  void,
+  Review[],
   OfferId,
   ThunkOptions
->('data/fetchOffer', async (id, { dispatch, extra: api }) => {
-  dispatch(setReviewsLoadingStatus(true));
+>('data/fetchOffer', async (id, { extra: api }) => {
+  //dispatch(setReviewsLoadingStatus(true));
   const { data } = await api.get<Review[]>(`${APIRoute.Reviews}/${id}`);
-  dispatch(setReviewsLoadingStatus(false));
-  dispatch(loadReviews(data));
+  /*dispatch(setReviewsLoadingStatus(false));
+  dispatch(loadReviews(data));*/
+  return data;
 });
 
 export const fetchOffersNearByAction = createAsyncThunk<
-  void,
+  Offer[],
   OfferId,
   ThunkOptions
 >('data, fetchOffersNearBy', async (id, { dispatch, extra: api }) => {
-  dispatch(setOffersNearByLoadingStatus(true));
+  //dispatch(setOffersNearByLoadingStatus(true));
   const { data } = await api.get<Offer[]>(`${APIRoute.Offers}/${id}/nearby`);
-  dispatch(loadOffersNearBy(data));
-  dispatch(setOffersNearByLoadingStatus(false));
+  /*dispatch(loadOffersNearBy(data));
+  dispatch(setOffersNearByLoadingStatus(false));*/
+  return data;
 });
 
 export const checkAuthAction = createAsyncThunk<

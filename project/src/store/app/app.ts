@@ -4,11 +4,13 @@ import { NameSpace, CITIES, SORTS } from '../../const';
 export type AppState = {
   currentCity: string;
   sortType: string;
+  selectedOfferId: number | null;
 }
 
 const initialState: AppState = {
   currentCity: CITIES[0],
   sortType: SORTS[0],
+  selectedOfferId: null,
 };
 
 export const appData = createSlice({
@@ -21,6 +23,12 @@ export const appData = createSlice({
 
     changeSortType: (state, action: PayloadAction<typeof SORTS[0]>) => {
       state.sortType = action.payload;
+    },
+    selectOffer: (state, action: PayloadAction<number | null>) => {
+      state.selectedOfferId = action.payload;
     }
   }
 });
+
+export const {changeCity, changeSortType, selectOffer} = appData.actions;
+

@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import {
   //changeCity,
-  selectOffer,
+  //selectOffer,
   //changeSortType,
   //loadOffers,
   //setOffersLoadingStatus,
@@ -12,16 +12,16 @@ import { /*CITIES,*/ SORTS} from '../const';
 type OffersState = {
   // currentCity: string;
   //offers: Offers;
-  selectedOfferId: number | null;
-  sortType: string;
+ // selectedOfferId: number | null;
+  //sortType: string;
   //isOffersDataLoading: boolean;
 };
 
 const initialState: OffersState = {
   //currentCity: CITIES[0],
   //offers: [],
-  selectedOfferId: null,
-  sortType: SORTS[0],
+  //selectedOfferId: null,
+  //sortType: SORTS[0],
   //isOffersDataLoading: false,
 };
 
@@ -29,11 +29,11 @@ export const offersReducer = createReducer(initialState, (builder) => {
   builder
     /*.addCase(changeCity, (state, action) => {
       state.currentCity = action.payload;
-    })*/
+    })
     .addCase(selectOffer, (state, action) => {
       state.selectedOfferId = action.payload;
     });
-  /*.addCase(changeSortType, (state, action) => {
+  .addCase(changeSortType, (state, action) => {
       state.sortType = action.payload;
     });
     .addCase(loadOffers, (state, action) => {
