@@ -10,7 +10,6 @@ import { dropToken, saveToken } from '../services/token';
 import { APIRoute, AppRoute } from '../const';
 import { redirectToRoute } from './action';
 
-
 export const fetchOffersAction = createAsyncThunk<
   Offer[],
   undefined,
@@ -20,21 +19,18 @@ export const fetchOffersAction = createAsyncThunk<
     const { data } = await api.get<Offer[]>(APIRoute.Offers);
 
     return data;
-  }catch {
+  } catch {
     throw new Error();
   }
 });
-
 
 export const fetchOfferItemAction = createAsyncThunk<
   Offer,
   OfferId,
   ThunkOptions
 >('data/fetchOffer', async (id, { extra: api }) => {
-  //dispatch(setOfferItemLoadingStatus(true));
   const { data } = await api.get<Offer>(`${APIRoute.Offers}/${id}`);
-  /*dispatch(setOfferItemLoadingStatus(false));
-  dispatch(loadOfferItem(data));*/
+
   return data;
 });
 
@@ -43,10 +39,8 @@ export const fetchReviewsAction = createAsyncThunk<
   OfferId,
   ThunkOptions
 >('data/fetchOffer', async (id, { dispatch, extra: api }) => {
-  //dispatch(setReviewsLoadingStatus(true));
   const { data } = await api.get<Review[]>(`${APIRoute.Reviews}/${id}`);
-  /*dispatch(setReviewsLoadingStatus(false));
-  dispatch(loadReviews(data));*/
+
   return data;
 });
 
@@ -82,7 +76,10 @@ export const loginAction = createAsyncThunk<
   'user/login',
   async ({ login: email, password }, { dispatch, extra: api }) => {
     try {
-      const { data } = await api.post<UserData>(APIRoute.Login, { email, password });
+      const { data } = await api.post<UserData>(APIRoute.Login, {
+        email,
+        password,
+      });
       saveToken(data.token);
       dispatch(redirectToRoute(AppRoute.Main));
       return data;
@@ -92,11 +89,10 @@ export const loginAction = createAsyncThunk<
   }
 );
 
-export const logoutAction = createAsyncThunk<
-  void,
-  undefined,
-  ThunkOptions
->('user/logout', async (_arg, { dispatch, extra: api }) => {
-  await api.delete(APIRoute.Logout);
-  dropToken();
-});
+export const logoutAction = createAsyncThunk<void, undefined, ThunkOptions>(
+  'user/logout',
+  async (_arg, { dispatch, extra: api }) => {
+    await api.delete(APIRoute.Logout);
+    dropToken();
+  }
+);
