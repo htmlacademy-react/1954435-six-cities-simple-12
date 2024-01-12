@@ -30,6 +30,7 @@ export default function RoomScreen() {
   const statusReviews = useAppSelector(getReviewsStatus);
   const offersNearBy = useAppSelector(getNearOffers);
   const statusNearOffers = useAppSelector(getNearOffersStatus );
+  //console.log( offersNearBy);
 
   const dispatch = useAppDispatch();
 
@@ -38,6 +39,8 @@ export default function RoomScreen() {
     dispatch(fetchReviewsAction(Number(id)));
     dispatch(fetchOffersNearByAction(Number(id)));
   }, [dispatch, id]);
+  //console.log(offersNearBy);
+  //console.log(statusNearOffers);
 
   const areDataLoading = statusOffer.isLoading || statusReviews.isLoading || statusNearOffers.isLoading;
   if (areDataLoading || !offer) {

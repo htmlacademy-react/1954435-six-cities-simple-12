@@ -6,6 +6,7 @@ import Sorting from '../../components/sorting/sorting';
 import OfferList from '../../components/offer-list/offer-list';
 import Map from '../../components/map/map';
 import Loader from '../../components/loader/loader';
+import ErrorScreen from '../error-screen/error-screen';
 import { getOffersByCity, getOffersBySortType } from '../../utils';
 import { getOffers, getOffersStatus } from '../../store/offers/selectors';
 import { getCurrentCity, getCurrentSortType, getselectOffer } from '../../store/app/selector';
@@ -23,6 +24,10 @@ export default function MainScreen() {
 
   if (status.isLoading) {
     return <Loader />;
+  }
+
+  if (status.isError) {
+    return <ErrorScreen />;
   }
 
   return (

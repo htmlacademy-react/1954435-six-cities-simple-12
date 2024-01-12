@@ -40,7 +40,7 @@ export const userData = createSlice({
       .addCase(loginAction.rejected, (state) => {
         state.authorizationStatus = AuthorizationStatus.NoAuthorized;
         state.userData = null;
-        state.isLoginLoadingStatus = FetchStatus.Failed;
+        state.isLoginLoadingStatus = FetchStatus.Error;
       })
       .addCase(logoutAction.fulfilled, (state, action) => {
         state.authorizationStatus = AuthorizationStatus.NoAuthorized;

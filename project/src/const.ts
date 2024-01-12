@@ -52,6 +52,6 @@ export const enum FetchStatus {
 	Idle = 'Idle',
 	Pending = 'Pending',
 	Successed = 'Successed',
-	Failed = 'Failed',
+	Error = 'Error'
 }
 

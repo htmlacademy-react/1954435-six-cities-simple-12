@@ -8,6 +8,7 @@ type GalleryProps = {
 export default function Gallery({ offer }: GalleryProps) {
   const { title, images } = offer;
   const photos = images.slice(0, PHOTOS_GALLERY);
+  //console.log(offer);
 
   return (
     <div className="property__gallery-container container">
