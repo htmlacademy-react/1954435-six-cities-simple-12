@@ -9,4 +9,5 @@ export const getStatus = (state: State): FetchStatus => state[NameSpace.Offer].s
 export const getOfferStatus = createSelector([getStatus], (status) => ({
   isLoading: [FetchStatus.Idle, FetchStatus.Pending].includes(status),
   isSuccess: status === FetchStatus.Successed,
+  isError: status === FetchStatus.Error,
 }));

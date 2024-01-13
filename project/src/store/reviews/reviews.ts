@@ -25,6 +25,9 @@ export const reviewsData = createSlice({
       .addCase(fetchReviewsAction.fulfilled, (state, action) => {
         state.reviews = action.payload;
         state.status = FetchStatus.Successed;
+      })
+      .addCase(fetchReviewsAction.rejected, (state) => {
+        state.status = FetchStatus.Error;
       });
   }
 });
