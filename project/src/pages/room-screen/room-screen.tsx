@@ -19,17 +19,19 @@ import OfferList from '../../components/offer-list/offer-list';
 import Map from '../../components/map/map';
 import { getOffer, getOfferStatus } from '../../store/offer/selectors';
 import { getReviews, getReviewsStatus } from '../../store/reviews/selectors';
-import { getNearOffers, getNearOffersStatus } from '../../store/near-offers/selectors';
-
+import {
+  getNearOffers,
+  getNearOffersStatus,
+} from '../../store/near-offers/selectors';
 
 export default function RoomScreen() {
   const { id } = useParams();
-  const offer = useAppSelector( getOffer);
+  const offer = useAppSelector(getOffer);
   const statusOffer = useAppSelector(getOfferStatus);
-  const reviews = useAppSelector( getReviews);
+  const reviews = useAppSelector(getReviews);
   const statusReviews = useAppSelector(getReviewsStatus);
   const offersNearBy = useAppSelector(getNearOffers);
-  const statusNearOffers = useAppSelector(getNearOffersStatus );
+  const statusNearOffers = useAppSelector(getNearOffersStatus);
   //console.log( offersNearBy);
 
   const dispatch = useAppDispatch();
@@ -42,7 +44,10 @@ export default function RoomScreen() {
   //console.log(offersNearBy);
   //console.log(statusNearOffers);
 
-  const areDataLoading = statusOffer.isLoading || statusReviews.isLoading || statusNearOffers.isLoading;
+  const areDataLoading =
+    statusOffer.isLoading ||
+    statusReviews.isLoading ||
+    statusNearOffers.isLoading;
   if (areDataLoading || !offer) {
     return <Loader />;
   }
@@ -69,7 +74,7 @@ export default function RoomScreen() {
 
           <Map
             className="property__map"
-            offers={[...offersNearBy, offer] }
+            offers={[...offersNearBy, offer]}
             activePointId={offer.id}
           />
         </section>

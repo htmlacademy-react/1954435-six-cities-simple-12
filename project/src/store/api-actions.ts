@@ -34,6 +34,21 @@ export const fetchOfferItemAction = createAsyncThunk<
   return data;
 });
 
+/*export const fetchOfferItemAction = createAsyncThunk<
+  Offer,
+  OfferId,
+  ThunkOptions
+>('data/fetchOffer', async (id, { extra: api }) => {
+  try {
+    const { data } = await api.get<Offer>(`${APIRoute.Offers}/${id}`);
+
+    return data;
+  } catch {
+    toast.error('Failed to load offer data');
+  }
+
+});*/
+
 export const fetchReviewsAction = createAsyncThunk<
   Review[],
   OfferId,
