@@ -1,4 +1,4 @@
-import { createSlice, } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { NameSpace, FetchStatus } from '../../const';
 import { Offer } from '../../types/offer';
 import { fetchOffersNearByAction } from '../api-actions';
@@ -10,7 +10,7 @@ export type NearOffersDataState = {
 
 const initialState: NearOffersDataState = {
   offersNearBy: [],
-  status: FetchStatus.Idle
+  status: FetchStatus.Idle,
 };
 
 export const nearOffersData = createSlice({
@@ -29,8 +29,5 @@ export const nearOffersData = createSlice({
       .addCase(fetchOffersNearByAction.rejected, (state) => {
         state.status = FetchStatus.Error;
       });
-
-  }
+  },
 });
-
-

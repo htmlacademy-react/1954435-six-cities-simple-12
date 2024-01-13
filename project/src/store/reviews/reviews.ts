@@ -1,4 +1,4 @@
-import { createSlice, } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { NameSpace, FetchStatus } from '../../const';
 import { Review } from '../../types/review';
 import { fetchReviewsAction } from '../api-actions';
@@ -10,7 +10,7 @@ export type ReviewsDataState = {
 
 const initialState: ReviewsDataState = {
   reviews: [],
-  status: FetchStatus.Idle
+  status: FetchStatus.Idle,
 };
 
 export const reviewsData = createSlice({
@@ -29,5 +29,5 @@ export const reviewsData = createSlice({
       .addCase(fetchReviewsAction.rejected, (state) => {
         state.status = FetchStatus.Error;
       });
-  }
+  },
 });

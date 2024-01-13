@@ -8,7 +8,6 @@ import { appData } from './app/app';
 import { reviewsData } from './reviews/reviews';
 import { nearOffersData } from './near-offers/near-offers';
 
-
 export const rootReducer = combineReducers({
   [NameSpace.Offers]: offersData.reducer,
   [NameSpace.Offer]: offerData.reducer,

@@ -10,7 +10,7 @@ export type OfferDataState = {
 
 const initialState: OfferDataState = {
   offer: null,
-  status: FetchStatus.Idle
+  status: FetchStatus.Idle,
 };
 
 export const offerData = createSlice({
@@ -29,6 +29,5 @@ export const offerData = createSlice({
       .addCase(fetchOfferItemAction.rejected, (state) => {
         state.status = FetchStatus.Error;
       });
-
-  }
+  },
 });
