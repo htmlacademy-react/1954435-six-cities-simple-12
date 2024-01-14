@@ -24,7 +24,7 @@ export const fetchOffersAction = createAsyncThunk<
   }
 });
 
-export const fetchOfferItemAction = createAsyncThunk<
+/*export const fetchOfferItemAction = createAsyncThunk<
   Offer,
   OfferId,
   ThunkOptions
@@ -32,9 +32,9 @@ export const fetchOfferItemAction = createAsyncThunk<
   const { data } = await api.get<Offer>(`${APIRoute.Offers}/${id}`);
 
   return data;
-});
+});*/
 
-/*export const fetchOfferItemAction = createAsyncThunk<
+export const fetchOfferItemAction = createAsyncThunk<
   Offer,
   OfferId,
   ThunkOptions
@@ -43,11 +43,12 @@ export const fetchOfferItemAction = createAsyncThunk<
     const { data } = await api.get<Offer>(`${APIRoute.Offers}/${id}`);
 
     return data;
-  } catch {
+  } catch (err) {
     toast.error('Failed to load offer data');
+    throw err;
   }
 
-});*/
+});
 
 export const fetchReviewsAction = createAsyncThunk<
   Review[],
@@ -98,8 +99,9 @@ export const loginAction = createAsyncThunk<
       saveToken(data.token);
       dispatch(redirectToRoute(AppRoute.Main));
       return data;
-    } catch {
+    } catch (err) {
       toast.error('Can\'t login');
+      throw err;
     }
   }
 );
