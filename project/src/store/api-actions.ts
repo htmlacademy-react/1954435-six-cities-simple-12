@@ -24,16 +24,6 @@ export const fetchOffersAction = createAsyncThunk<
   }
 });
 
-/*export const fetchOfferItemAction = createAsyncThunk<
-  Offer,
-  OfferId,
-  ThunkOptions
->('data/fetchOffer', async (id, { extra: api }) => {
-  const { data } = await api.get<Offer>(`${APIRoute.Offers}/${id}`);
-
-  return data;
-});*/
-
 export const fetchOfferItemAction = createAsyncThunk<
   Offer,
   OfferId,
@@ -54,7 +44,7 @@ export const fetchReviewsAction = createAsyncThunk<
   Review[],
   OfferId,
   ThunkOptions
->('data/fetchOffer', async (id, { dispatch, extra: api }) => {
+>('data/fetchReviews', async (id, { dispatch, extra: api }) => {
   const { data } = await api.get<Review[]>(`${APIRoute.Reviews}/${id}`);
 
   return data;
