@@ -70,7 +70,7 @@ export const checkAuthAction = createAsyncThunk<
 
     return data;
   } catch {
-    /*dispatch(requireAuthorization(AuthorizationStatus.NoAuthorized));*/
+    throw new Error();
   }
 });
 

@@ -15,8 +15,6 @@ export const getLoginLoadingStatus = (state: State): FetchStatus =>
 export const getLoginStatus = createSelector([ getLoginLoadingStatus], (status) => ({
   isPending: status === FetchStatus.Pending
 }));
-/*const isLoginLoadingStatus = useAppSelector(getLoginLoadingStatus);
-{ isLoginLoadingStatus === FetchStatus.Pending; }*/
 
 export const getAuthStatus = createSelector([getAuthorizationStatus], (status) => ({
   isAuthorized: status === AuthorizationStatus.Authorized,
