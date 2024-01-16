@@ -24,7 +24,7 @@ export const offersData = createSlice({
       })
       .addCase(fetchOffersAction.fulfilled, (state, action) => {
         state.offers = action.payload;
-        state.status = FetchStatus.Successed;
+        state.status = FetchStatus.Success;
       })
       .addCase(fetchOffersAction.rejected, (state) => {
         state.status = FetchStatus.Error;

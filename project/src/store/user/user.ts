@@ -35,7 +35,7 @@ export const userData = createSlice({
       .addCase(loginAction.fulfilled, (state, action) => {
         state.authorizationStatus = AuthorizationStatus.Authorized;
         state.userData = action.payload ?? null;
-        state.isLoginLoadingStatus = FetchStatus.Successed;
+        state.isLoginLoadingStatus = FetchStatus.Success;
       })
       .addCase(loginAction.rejected, (state) => {
         state.authorizationStatus = AuthorizationStatus.NoAuthorized;

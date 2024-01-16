@@ -10,6 +10,6 @@ export const getFetchStatus = (state: State): FetchStatus =>
 
 export const getReviewsStatus = createSelector([getFetchStatus], (status) => ({
   isLoading: [FetchStatus.Idle, FetchStatus.Pending].includes(status),
-  isSuccess: status === FetchStatus.Successed,
+  isSuccess: status === FetchStatus.Success,
   isError: status === FetchStatus.Error,
 }));

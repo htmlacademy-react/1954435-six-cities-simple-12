@@ -12,7 +12,7 @@ export const getNearOffersStatus = createSelector(
   [getFetchStatus],
   (status) => ({
     isLoading: [FetchStatus.Idle, FetchStatus.Pending].includes(status),
-    isSuccess: status === FetchStatus.Successed,
+    isSuccess: status === FetchStatus.Success,
     isError: status === FetchStatus.Error,
   })
 );

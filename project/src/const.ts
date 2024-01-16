@@ -2,13 +2,13 @@ export enum AppRoute {
   Main = '/',
   Login = '/login',
   Offer = '/offer/:id',
-  NotFound = '*'
+  NotFound = '*',
 }
 
 export enum AuthorizationStatus {
   Authorized = 'AUTHORIZED',
   NoAuthorized = 'NO_AUTHORIZED',
-  Unknown = 'UNKNOWN'
+  Unknown = 'UNKNOWN',
 }
 
 export enum APIRoute {
@@ -31,7 +31,7 @@ export const SORTS = [
   'Popular',
   'Price: low to high',
   'Price: high to low',
-  'Top rated first'
+  'Top rated first',
 ];
 
 export const PHOTOS_GALLERY = 6;
@@ -49,9 +49,8 @@ export enum NameSpace {
 }
 
 export const enum FetchStatus {
-	Idle = 'Idle',
-	Pending = 'Pending',
-	Successed = 'Successed',
-	Error = 'Error'
+  Idle = 'Idle',
+  Pending = 'Pending',
+  Success = 'Success',
+  Error = 'Error',
 }
-
