@@ -46,6 +46,7 @@ export enum NameSpace {
   App = 'APP',
   Reviews = 'REVIEWS',
   NearOffers = 'NEAROFFERS',
+  Notification = 'NOTIFICATION'
 }
 
 export const enum FetchStatus {

@@ -5,6 +5,7 @@ import {store} from './store';
 import {Provider} from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import NotificationItem from './components/notification-item/notification-item';
 
 import { checkAuthAction, fetchOffersAction } from './store/api-actions';
 
@@ -21,6 +22,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <ToastContainer />
+      <NotificationItem />
       <App />
     </Provider>
   </React.StrictMode>,

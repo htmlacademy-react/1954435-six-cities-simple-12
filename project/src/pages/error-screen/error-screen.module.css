@@ -12,7 +12,7 @@
 
 .text {
   margin: 0;
-  color:#e25f66;
+  color:#7a6c6d;
   font-size: 50px;
   line-height: 1.2;
   font-weight: 700;
@@ -22,7 +22,7 @@
   font-size: 36px;
   color: #6af865;
   background-color: transparent;
-  border: 1px solid  #6af865;
+  border: 2px solid  #6af865;
   border-radius: 6px;
   cursor: pointer;
   transition: opacity .3s ease-in-out;
