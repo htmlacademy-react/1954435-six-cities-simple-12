@@ -13,6 +13,7 @@ import { getOffers, getOffersStatus } from '../../store/offers/selectors';
 import { getCurrentCity, getCurrentSortType, getselectOffer } from '../../store/app/selector';
 import { fetchOffersAction } from '../../store/api-actions';
 
+
 export default function MainScreen() {
   const dispatch = useAppDispatch();
   const currentCity = useAppSelector(getCurrentCity);

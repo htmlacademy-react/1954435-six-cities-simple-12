@@ -37,6 +37,7 @@ export const fetchOfferItemAction = createAsyncThunk<
   } catch (err) {
     dispatch(pushNotification({ type: 'error', message: 'Failed to load offer data' }));
     //Или проще toast.error('Failed to load offer data');
+    dispatch(redirectToRoute(AppRoute.NotFound));
     throw err;
   }
 });
