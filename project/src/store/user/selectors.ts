@@ -18,5 +18,6 @@ export const getLoginStatus = createSelector([ getLoginLoadingStatus], (status) 
 
 export const getAuthStatus = createSelector([getAuthorizationStatus], (status) => ({
   isAuthorized: status === AuthorizationStatus.Authorized,
+  isPending: status === AuthorizationStatus.Unknown,
 }));
 
