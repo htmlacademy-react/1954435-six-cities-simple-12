@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import cn from 'classnames';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { changeSortType } from '../../store/offers-actions';
 import { SORTS } from '../../const';
+import { getCurrentSortType } from '../../store/app/selector';
+import { changeSortType } from '../../store/app/app';
 
 export default function Sorting() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const sortType = useAppSelector((state) => state.offers.sortType);
+  const sortType = useAppSelector(getCurrentSortType);
   const dispatch = useAppDispatch();
 
   return (

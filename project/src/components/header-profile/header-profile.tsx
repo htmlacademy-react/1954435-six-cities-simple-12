@@ -1,7 +1,8 @@
 import { useAppSelector } from '../../hooks';
 
+
 export default function HeaderProfile() {
-  const user = useAppSelector((state) => state.offers.userData);
+  const user = useAppSelector((state) => state.USER.userData);
 
   if (user === null) {
     return null;

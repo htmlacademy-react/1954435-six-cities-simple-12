@@ -6,6 +6,7 @@ import { loginAction } from '../../store/api-actions';
 import { AuthData } from '../../types/auth-data';
 import { REGEXP_EMAIL, REGEXP_PASS } from '../../const';
 import LoginLoader from '../login-loader/login-loader';
+import { getLoginStatus } from '../../store/user/selectors';
 
 export default function LoginForm() {
   const loginRef = useRef<HTMLInputElement | null>(null);
@@ -13,9 +14,7 @@ export default function LoginForm() {
 
   const dispatch = useAppDispatch();
 
-  const isLoginLoadingStatus = useAppSelector(
-    (state) => state.offers.isLoginLoadingStatus
-  );
+  const status = useAppSelector(getLoginStatus);
 
   const onSubmit = (authData: AuthData) => {
     dispatch(loginAction(authData));
@@ -93,7 +92,7 @@ export default function LoginForm() {
           />
         </div>
         <button className="login__submit form__submit button" type="submit">
-          {isLoginLoadingStatus ? <LoginLoader /> : 'Sign in'}
+          {status.isPending ? <LoginLoader /> : 'Sign in'}
         </button>
       </form>
     </section>

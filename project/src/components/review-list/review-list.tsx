@@ -5,7 +5,7 @@ type ReviewListProps = {
   reviews: Review[];
 };
 
-export default function ReviewList({reviews}: ReviewListProps) {
+export default function ReviewList({ reviews }: ReviewListProps) {
   return (
     <ul className="reviews__list">
       {reviews.map((review) => (

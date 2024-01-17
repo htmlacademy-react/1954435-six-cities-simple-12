@@ -1,119 +1,122 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkOptions } from '../types/thunk-options';
-import { toast } from 'react-toastify';
+//import { toast } from 'react-toastify';
 import { Offer, OfferId } from '../types/offer';
 import { Review } from '../types/review';
 import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user';
 
-import {
-  loadOffers,
-  requireAuthorization,
-  setOffersLoadingStatus,
-  setLoginLoadingStatus,
-  redirectToRoute,
-  loadUserData,
-} from './offers-actions';
-import {
-  loadOfferItem,
-  setOfferItemLoadingStatus,
-  loadReviews,
-  setReviewsLoadingStatus,
-  loadOffersNearBy,
-  setOffersNearByLoadingStatus,
-} from './offer-actions';
 import { dropToken, saveToken } from '../services/token';
-
-import { APIRoute, AuthorizationStatus, AppRoute } from '../const';
-
+import { APIRoute, AppRoute } from '../const';
+import { redirectToRoute } from './action';
+import { pushNotification } from './notifications/notifications';
 
 export const fetchOffersAction = createAsyncThunk<
-  void,
+  Offer[],
   undefined,
   ThunkOptions
->('data/fetchOffers', async (_arg, { dispatch, extra: api }) => {
-  dispatch(setOffersLoadingStatus(true));
-  const { data } = await api.get<Offer[]>(APIRoute.Offers);
-  dispatch(setOffersLoadingStatus(false));
-  dispatch(loadOffers(data));
+>('data/fetchOffers', async (_arg, { extra: api }) => {
+  try {
+    const { data } = await api.get<Offer[]>(APIRoute.Offers);
+
+    return data;
+  } catch {
+    throw new Error();
+  }
 });
 
 export const fetchOfferItemAction = createAsyncThunk<
-  void,
+  Offer,
   OfferId,
   ThunkOptions
->('data/fetchOffer', async (id, { dispatch, extra: api }) => {
-  dispatch(setOfferItemLoadingStatus(true));
-  const { data } = await api.get<Offer>(`${APIRoute.Offers}/${id}`);
-  dispatch(setOfferItemLoadingStatus(false));
-  dispatch(loadOfferItem(data));
+>('data/fetchOffer', async (id, {dispatch, extra: api }) => {
+  try {
+    const { data } = await api.get<Offer>(`${APIRoute.Offers}/${id}`);
+
+    return data;
+  } catch (err) {
+    dispatch(pushNotification({ type: 'error', message: 'Failed to load offer data' }));
+    //Или проще toast.error('Failed to load offer data');
+    throw err;
+  }
 });
 
 export const fetchReviewsAction = createAsyncThunk<
-  void,
+  Review[],
   OfferId,
   ThunkOptions
->('data/fetchOffer', async (id, { dispatch, extra: api }) => {
-  dispatch(setReviewsLoadingStatus(true));
-  const { data } = await api.get<Review[]>(`${APIRoute.Reviews}/${id}`);
-  dispatch(setReviewsLoadingStatus(false));
-  dispatch(loadReviews(data));
+>('data/fetchReviews', async (id, { dispatch, extra: api }) => {
+  try {
+    const { data } = await api.get<Review[]>(`${APIRoute.Reviews}/${id}`);
+
+    return data;
+  } catch (err) {
+    dispatch(pushNotification({ type: 'error', message: 'Failed to load reviews' }));
+    throw err;
+  }
 });
 
 export const fetchOffersNearByAction = createAsyncThunk<
-  void,
+  Offer[],
   OfferId,
   ThunkOptions
->('data, fetchOffersNearBy', async (id, { dispatch, extra: api }) => {
-  dispatch(setOffersNearByLoadingStatus(true));
-  const { data } = await api.get<Offer[]>(`${APIRoute.Offers}/${id}/nearby`);
-  dispatch(loadOffersNearBy(data));
-  dispatch(setOffersNearByLoadingStatus(false));
+>('data/fetchOffersNearBy', async (id, { dispatch, extra: api }) => {
+  try {
+    const { data } = await api.get<Offer[]>(`${APIRoute.Offers}/${id}/nearby`);
+
+    return data;
+  } catch (err) {
+    dispatch(pushNotification({ type: 'error', message: 'Failed to load near offers data' }));
+    throw err;
+  }
 });
 
 export const checkAuthAction = createAsyncThunk<
-  void,
+  UserData | void,
   undefined,
   ThunkOptions
->('user/checkAuth', async (_arg, { dispatch, extra: api }) => {
+>('user/checkAuth', async (_arg, { extra: api }) => {
   try {
     const { data } = await api.get<UserData>(APIRoute.Login);
-    dispatch(loadUserData(data));
-    dispatch(requireAuthorization(AuthorizationStatus.Authorized));
+
+    return data;
   } catch {
-    dispatch(requireAuthorization(AuthorizationStatus.NoAuthorized));
+    throw new Error();
   }
 });
 
 export const loginAction = createAsyncThunk<
-  void,
+  UserData | void,
   AuthData,
   ThunkOptions
 >(
   'user/login',
   async ({ login: email, password }, { dispatch, extra: api }) => {
     try {
-      dispatch(setLoginLoadingStatus(true));
-      const { data } = await api.post<UserData>(APIRoute.Login, { email, password });
-
+      const { data } = await api.post<UserData>(APIRoute.Login, {
+        email,
+        password,
+      });
       saveToken(data.token);
-      dispatch(requireAuthorization(AuthorizationStatus.Authorized));
-      dispatch(setLoginLoadingStatus(false));
       dispatch(redirectToRoute(AppRoute.Main));
-      dispatch(loadUserData(data));
-    } catch {
-      dispatch(requireAuthorization(AuthorizationStatus.NoAuthorized));
-      toast.error('Can\'t login');
+      dispatch(pushNotification({ type: 'success', message: 'Login success' }));
+      return data;
+    } catch (err) {
+      dispatch(pushNotification({ type: 'error', message: 'Login failed' }));
+      throw err;
     }
   }
 );
 
-export const logoutAction = createAsyncThunk<
-  void,
-  undefined,
-  ThunkOptions
->('user/logout', async (_arg, { dispatch, extra: api }) => {
-  await api.delete(APIRoute.Logout);
-  dropToken();
-  dispatch(requireAuthorization(AuthorizationStatus.NoAuthorized));
-});
+export const logoutAction = createAsyncThunk<void, undefined, ThunkOptions>(
+  'user/logout',
+  async (_arg, { dispatch, extra: api }) => {
+    try {
+      await api.delete(APIRoute.Logout);
+      dropToken();
+    } catch (err) {
+      dispatch(pushNotification({ type: 'error', message: 'Logout failed' }));
+      throw err;
+    }
+  }
+);

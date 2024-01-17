@@ -17,19 +17,21 @@ import Host from '../../components/host/host';
 import RoomReviews from '../../components/reviews/room-reviews';
 import OfferList from '../../components/offer-list/offer-list';
 import Map from '../../components/map/map';
+import { getOffer, getOfferStatus } from '../../store/offer/selectors';
+import { getReviews, getReviewsStatus } from '../../store/reviews/selectors';
+import {
+  getNearOffers,
+  getNearOffersStatus,
+} from '../../store/near-offers/selectors';
 
 export default function RoomScreen() {
   const { id } = useParams();
-  const offer = useAppSelector((state) => state.offer.offerItem);
-  const isOfferLoading = useAppSelector((state) => state.offer.isOfferLoading);
-  const reviews = useAppSelector((state) => state.offer.reviews);
-  const isReviewsLoading = useAppSelector(
-    (state) => state.offer.isReviewsLoading
-  );
-  const offersNearBy = useAppSelector((state) => state.offer.offersNearBy);
-  const isOffersNearByLoading = useAppSelector(
-    (state) => state.offer.isOffersNearByLoading
-  );
+  const offer = useAppSelector(getOffer);
+  const statusOffer = useAppSelector(getOfferStatus);
+  const reviews = useAppSelector(getReviews);
+  const statusReviews = useAppSelector(getReviewsStatus);
+  const offersNearBy = useAppSelector(getNearOffers);
+  const statusNearOffers = useAppSelector(getNearOffersStatus);
 
   const dispatch = useAppDispatch();
 
@@ -39,7 +41,10 @@ export default function RoomScreen() {
     dispatch(fetchOffersNearByAction(Number(id)));
   }, [dispatch, id]);
 
-  const areDataLoading = isOfferLoading || isReviewsLoading || isOffersNearByLoading;
+  const areDataLoading =
+    statusOffer.isLoading ||
+    statusReviews.isLoading ||
+    statusNearOffers.isLoading;
   if (areDataLoading || !offer) {
     return <Loader />;
   }
@@ -66,7 +71,7 @@ export default function RoomScreen() {
 
           <Map
             className="property__map"
-            offers={[...offersNearBy, offer] }
+            offers={[...offersNearBy, offer]}
             activePointId={offer.id}
           />
         </section>

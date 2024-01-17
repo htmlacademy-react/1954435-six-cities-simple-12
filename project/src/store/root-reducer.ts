@@ -1,10 +1,20 @@
 import { combineReducers } from '@reduxjs/toolkit';
 
-import { offerReducer } from './offer-reducer';
-import { offersReducer } from './offers-reducer';
-
+import { NameSpace } from '../const';
+import { offersData } from './offers/offers';
+import { offerData } from './offer/offer';
+import { userData } from './user/user';
+import { appData } from './app/app';
+import { reviewsData } from './reviews/reviews';
+import { nearOffersData } from './near-offers/near-offers';
+import { notificationsData } from './notifications/notifications';
 
 export const rootReducer = combineReducers({
-  offers: offersReducer,
-  offer: offerReducer,
+  [NameSpace.Offers]: offersData.reducer,
+  [NameSpace.Offer]: offerData.reducer,
+  [NameSpace.User]: userData.reducer,
+  [NameSpace.App]: appData.reducer,
+  [NameSpace.Reviews]: reviewsData.reducer,
+  [NameSpace.NearOffers]: nearOffersData.reducer,
+  [NameSpace.Notification]: notificationsData.reducer,
 });

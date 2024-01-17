@@ -1,26 +1,40 @@
 import { Helmet } from 'react-helmet-async';
-import { useAppSelector } from '../../hooks';
+import { useAppSelector, useAppDispatch } from '../../hooks';
+import { useEffect } from 'react';
 import Header from '../../components/header/header';
 import LocationNav from '../../components/location-nav/location-nav';
 import Sorting from '../../components/sorting/sorting';
 import OfferList from '../../components/offer-list/offer-list';
 import Map from '../../components/map/map';
 import Loader from '../../components/loader/loader';
+import ErrorScreen from '../error-screen/error-screen';
 import { getOffersByCity, getOffersBySortType } from '../../utils';
+import { getOffers, getOffersStatus } from '../../store/offers/selectors';
+import { getCurrentCity, getCurrentSortType, getselectOffer } from '../../store/app/selector';
+import { fetchOffersAction } from '../../store/api-actions';
 
 export default function MainScreen() {
-  const currentCity = useAppSelector((state) => state.offers.currentCity);
-  const offers = useAppSelector((state) => state.offers.offers);
-  const sortType = useAppSelector((state) => state.offers.sortType);
-  const isOffersDataLoading = useAppSelector((state) => state.offers.isOffersDataLoading);
-  const selectedOfferId = useAppSelector( (state) => state.offers.selectedOfferId );
+  const dispatch = useAppDispatch();
+  const currentCity = useAppSelector(getCurrentCity);
+  const offers = useAppSelector(getOffers);
+  const sortType = useAppSelector(getCurrentSortType);
+  const status = useAppSelector(getOffersStatus);
+  const selectedOfferId = useAppSelector(getselectOffer);
 
 
   const filteredOffers = getOffersByCity(offers, currentCity);
   const sortedOffers = getOffersBySortType(filteredOffers, sortType);
 
-  if (isOffersDataLoading) {
+  useEffect(() => {
+    dispatch(fetchOffersAction());
+  }, [dispatch]);
+
+  if (status.isLoading) {
     return <Loader />;
+  }
+
+  if (status.isError) {
+    return <ErrorScreen />;
   }
 
   return (
