@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async';
-import { useAppSelector } from '../../hooks';
+import { useAppSelector, useAppDispatch } from '../../hooks';
+import { useEffect } from 'react';
 import Header from '../../components/header/header';
 import LocationNav from '../../components/location-nav/location-nav';
 import Sorting from '../../components/sorting/sorting';
@@ -10,8 +11,10 @@ import ErrorScreen from '../error-screen/error-screen';
 import { getOffersByCity, getOffersBySortType } from '../../utils';
 import { getOffers, getOffersStatus } from '../../store/offers/selectors';
 import { getCurrentCity, getCurrentSortType, getselectOffer } from '../../store/app/selector';
+import { fetchOffersAction } from '../../store/api-actions';
 
 export default function MainScreen() {
+  const dispatch = useAppDispatch();
   const currentCity = useAppSelector(getCurrentCity);
   const offers = useAppSelector(getOffers);
   const sortType = useAppSelector(getCurrentSortType);
@@ -21,6 +24,10 @@ export default function MainScreen() {
 
   const filteredOffers = getOffersByCity(offers, currentCity);
   const sortedOffers = getOffersBySortType(filteredOffers, sortType);
+
+  useEffect(() => {
+    dispatch(fetchOffersAction());
+  }, [dispatch]);
 
   if (status.isLoading) {
     return <Loader />;
