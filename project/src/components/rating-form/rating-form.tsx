@@ -2,6 +2,7 @@ import { Fragment, ChangeEvent } from 'react';
 
 type RatingFormProps = {
   onRate: (evt: ChangeEvent<HTMLInputElement>) => void;
+  rating: number | null;
 };
 
 const ratingStars: string[] = [
@@ -12,7 +13,7 @@ const ratingStars: string[] = [
   'terribly',
 ];
 
-export default function RatingForm({onRate}:RatingFormProps) {
+export default function RatingForm({onRate, rating}:RatingFormProps) {
 
   return(
     <div className="reviews__rating-form form__rating">
@@ -22,7 +23,7 @@ export default function RatingForm({onRate}:RatingFormProps) {
         return(
           <Fragment key={title}>
             <input className="form__rating-input visually-hidden"
-              name="rating" value={ratingValue } id={`${ratingValue}-stars`} onChange={onRate} type="radio"
+              name="rating" value={ratingValue } id={`${ratingValue}-stars`} onChange={onRate} type="radio" checked={rating === ratingValue}
             />
             <label htmlFor={`${ratingValue}-stars`} className="reviews__rating-label form__rating-label" title={title}>
               <svg className="form__star-image" width="37" height="33">
