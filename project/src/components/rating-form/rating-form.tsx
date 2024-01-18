@@ -1,7 +1,7 @@
 import { Fragment, ChangeEvent } from 'react';
 
 type RatingFormProps = {
-  onRate: (evt: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
+  onRate: (evt: ChangeEvent<HTMLInputElement>) => void;
 };
 
 const ratingStars: string[] = [

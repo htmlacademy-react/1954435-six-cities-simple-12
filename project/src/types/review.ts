@@ -10,4 +10,5 @@ export type Review = {
 
 export type Reviews = Review[];
 
+export type ReviewData = Omit<Review, 'user' | 'date'>;
 

@@ -1,39 +1,52 @@
-import { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent, FormEvent } from 'react';
+import { useParams } from 'react-router-dom';
 import RatingForm from '../rating-form/rating-form';
+import { useAppDispatch } from '../../hooks';
+import { sendReviewAction } from '../../store/api-actions';
 
 
 export default function ReviewForm() {
-  const formDataDefault = {
-    rating: null,
-    review: '',
+  const [rating, setRating] = useState<number | null>(null);
+  const [review, setReview] = useState<string>('');
+
+  const dispatch = useAppDispatch();
+  const offerId = Number(useParams().id);
+
+  const ratingChangeHandle = (evt: ChangeEvent<HTMLInputElement>) => {
+    const value = Number(evt.target.value);
+    setRating(value);
   };
 
-  const [formData, setFormData] = useState(formDataDefault);
-
-  const fieldChangeHandle = (evt: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    const {name, value} = evt.target;
-
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+  const textareaChangeHandle = (evt: ChangeEvent<HTMLTextAreaElement>) => {
+    setReview(evt.target.value);
   };
+
+  const handleFormSubmit = (evt: FormEvent) => {
+    evt.preventDefault();
+
+    if (review !== '' && rating !== null && offerId !== null) {
+      dispatch(sendReviewAction({
+        id: offerId,
+        comment: review,
+        rating,
+      }));
+    }
+  };
+
 
   return (
-    <form className="reviews__form form" action="#" method="post">
+    <form onSubmit={handleFormSubmit} className="reviews__form form" action="#" method="post">
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
 
-      <RatingForm onRate={fieldChangeHandle} />
+      <RatingForm onRate={ratingChangeHandle} />
 
-      <textarea onChange={fieldChangeHandle} className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
+      <textarea onChange={textareaChangeHandle} className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
         To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled>Submit</button>
+        <button className="reviews__submit form__submit button" type="submit" /*disabled*/>Submit</button>
       </div>
     </form>
-
   );
-
 }

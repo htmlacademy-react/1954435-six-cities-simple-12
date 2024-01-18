@@ -5,6 +5,7 @@ import { Offer, OfferId } from '../types/offer';
 import { Review } from '../types/review';
 import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user';
+import { ReviewData } from '../types/review';
 
 import { dropToken, saveToken } from '../services/token';
 import { APIRoute, AppRoute } from '../const';
@@ -56,6 +57,20 @@ export const fetchReviewsAction = createAsyncThunk<
     throw err;
   }
 });
+
+export const sendReviewAction = createAsyncThunk<Review[], ReviewData, ThunkOptions>(
+  'data/sendReview',
+  async ({ id, comment, rating }, { dispatch, extra: api }) => {
+    try {
+      const { data } = await api.post<Review[]>(`${APIRoute.Reviews}/${id}`, { comment, rating });
+
+      return data;
+    } catch (err) {
+      dispatch(pushNotification({ type: 'error', message: 'Failed to post comment' }));
+      throw err;
+    }
+  }
+);
 
 export const fetchOffersNearByAction = createAsyncThunk<
   Offer[],
