@@ -7,9 +7,15 @@ export const getReviews = (state: State): Review[] =>
   state[NameSpace.Reviews].reviews;
 export const getFetchStatus = (state: State): FetchStatus =>
   state[NameSpace.Reviews].status;
+export const getPostStatus = (state: State): FetchStatus =>
+  state[NameSpace.Reviews].postStatus;
 
 export const getReviewsStatus = createSelector([getFetchStatus], (status) => ({
   isLoading: [FetchStatus.Idle, FetchStatus.Pending].includes(status),
+}));
+
+export const getPostReviewStatus = createSelector([getPostStatus], (status) => ({
+  isLoading: status === FetchStatus.Pending,
   isSuccess: status === FetchStatus.Success,
-  isError: status === FetchStatus.Error,
+  isError: status === FetchStatus.Error
 }));
