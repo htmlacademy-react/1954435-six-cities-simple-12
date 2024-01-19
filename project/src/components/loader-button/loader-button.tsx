@@ -1,4 +1,4 @@
-import styles from './login-loader.module.css';
+import styles from './loader-button.module.css';
 
 export default function LoaderButton(): JSX.Element {
   return (
