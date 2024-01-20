@@ -34,6 +34,7 @@ export default function ReviewForm() {
       formRef.current?.reset();
       setReview('');
       setRating(null);
+      //console.log(postReviewstStatus.isSuccess);
     }
   }, [postReviewstStatus]);
 
