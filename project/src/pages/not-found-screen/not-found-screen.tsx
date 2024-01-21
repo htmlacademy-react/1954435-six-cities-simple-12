@@ -10,10 +10,10 @@ export default function NotFoundScreen() {
       </Helmet>
 
       <main className="page__main page__main--not-found">
-        <div className="container">
-          <section className="not-found">
-            <h1 className={styles.title}>404</h1>
-            <p>Page Not Found</p>
+        <div className={styles.wrapper}>
+          <section className={styles.box}>
+            <h1 className={styles.text}>404</h1>
+            <p className={styles.text}>Page Not Found</p>
             <Link className={styles.link} to="/">Home Page</Link>
           </section>
         </div>
