@@ -1,4 +1,5 @@
 import { Offer } from './types/offer';
+import { Review } from './types/review';
 
 export const getOffersByCity = (offers:Offer[], city: string) =>
   offers.filter((offer) => (offer.city.name === city));
@@ -23,3 +24,8 @@ export const getOffersBySortType = (filteredOffers:Offer[], sortType: string) =>
 
 export const formatFirstLetter = (text: string): string =>
   text.charAt(0).toUpperCase() + text.slice(1);
+
+export const getSortedReviews = (reviews: Review[]): Review[] =>
+  [...reviews].sort((a, b) =>
+    Date.parse(b.date) - Date.parse(a.date));
+

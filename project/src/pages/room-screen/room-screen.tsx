@@ -18,7 +18,7 @@ import RoomReviews from '../../components/reviews/room-reviews';
 import OfferList from '../../components/offer-list/offer-list';
 import Map from '../../components/map/map';
 import { getOffer, getOfferStatus } from '../../store/offer/selectors';
-import { getReviews, getReviewsStatus } from '../../store/reviews/selectors';
+import { getRenderedReviews, getReviewsStatus } from '../../store/reviews/selectors';
 import {
   getNearOffers,
   getNearOffersStatus,
@@ -29,7 +29,7 @@ export default function RoomScreen() {
   const { id } = useParams();
   const offer = useAppSelector(getOffer);
   const statusOffer = useAppSelector(getOfferStatus);
-  const reviews = useAppSelector(getReviews);
+  const reviews = useAppSelector( getRenderedReviews);
   const statusReviews = useAppSelector(getReviewsStatus);
   const offersNearBy = useAppSelector(getNearOffers);
   const statusNearOffers = useAppSelector(getNearOffersStatus);

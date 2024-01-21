@@ -2,6 +2,8 @@ import { createSelector } from '@reduxjs/toolkit';
 import { NameSpace, FetchStatus } from '../../const';
 import { State } from '../../types/state';
 import { Review } from '../../types/review';
+import { getSortedReviews } from '../../utils';
+
 
 export const getReviews = (state: State): Review[] =>
   state[NameSpace.Reviews].reviews;
@@ -19,3 +21,5 @@ export const getPostReviewStatus = createSelector([getPostStatus], (status) => (
   isSuccess: status === FetchStatus.Success,
   isError: status === FetchStatus.Error
 }));
+
+export const getRenderedReviews = createSelector([getReviews], (reviews) => getSortedReviews(reviews));
