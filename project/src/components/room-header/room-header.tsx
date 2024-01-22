@@ -1,5 +1,6 @@
 import { Offer } from '../../types/offer';
 import Badge from '../badge/badge';
+import { calculateRatingToPercent } from '../../utils';
 
 type RoomHeaderProps = {
   offer: Offer;
@@ -15,10 +16,10 @@ export default function RoomHeader({ offer }: RoomHeaderProps) {
       </div>
       <div className="property__rating rating">
         <div className="property__stars rating__stars">
-          <span style={{ width: `${(offer.rating / 5) * 100}%` }}></span>
+          <span style={{ width: `${calculateRatingToPercent(offer.rating)}%` }}></span>
           <span className="visually-hidden">Rating</span>
         </div>
-        <span className="property__rating-value rating__value">4.8</span>
+        <span className="property__rating-value rating__value">{offer.rating}</span>
       </div>
       <ul className="property__features">
         <li className="property__feature property__feature--entire">
