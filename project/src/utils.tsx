@@ -29,3 +29,11 @@ export const getSortedReviews = (reviews: Review[]): Review[] =>
   [...reviews].sort((a, b) =>
     Date.parse(b.date) - Date.parse(a.date));
 
+/*Функция округления кол-во звёзд  */
+export const calculateRatingToPercent = (rating: number, maxRating = 5): number => Math.round(rating) * (100 / maxRating);
+
+/*export const calculateRatingWidth = (rating: number, maxRating = 5): string =>
+  `${Math.round(rating) / maxRating * 100}%`;
+
+  const percentValue = value / MAX_STARS_QUANTITY * 100;*/
+

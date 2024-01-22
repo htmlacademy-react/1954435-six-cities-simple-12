@@ -5,18 +5,15 @@ import { Offer } from '../../types/offer';
 import Badge from '../badge/badge';
 import { formatFirstLetter } from '../../utils';
 import { selectOffer } from '../../store/app/app';
+import { calculateRatingToPercent } from '../../utils';
 
 type RoomCardProps = {
   className: string;
   offer: Offer;
 };
 
-const MAX_STARS_QUANTITY = 5;
-
 export default function RoomCard({ offer, className }: RoomCardProps) {
   const dispatch = useAppDispatch();
-
-  const ratingValueStars = Math.round(offer.rating) / MAX_STARS_QUANTITY * 100;
 
   return (
     <article
@@ -46,7 +43,7 @@ export default function RoomCard({ offer, className }: RoomCardProps) {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: `${ratingValueStars}%` }}></span>
+            <span style={{ width: `${calculateRatingToPercent(offer.rating)}%` }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
