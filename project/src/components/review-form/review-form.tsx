@@ -31,8 +31,6 @@ export default function ReviewForm() {
     if (postReviewstStatus.isSuccess) {
       setReview('');
       setRating(null);
-      //console.log(postReviewstStatus.isSuccess);
-      // console.log(rating);
     }
   }, [postReviewstStatus]);
 
@@ -58,8 +56,6 @@ export default function ReviewForm() {
       );
     }
   };
-
-  //console.log(rating);
 
   return (
     <form
