@@ -1,5 +1,4 @@
 import { useState, ChangeEvent, FormEvent, useEffect } from 'react';
-import { useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import RatingForm from '../rating-form/rating-form';
 import { useAppDispatch, useAppSelector } from '../../hooks';
@@ -13,7 +12,6 @@ const MAX_TEXT_LENGHT = 300;
 export default function ReviewForm() {
   const [rating, setRating] = useState<number | null>(null);
   const [review, setReview] = useState<string>('');
-  const formRef = useRef<HTMLFormElement | null>(null);
 
   const dispatch = useAppDispatch();
   const offerId = Number(useParams().id);
@@ -31,10 +29,11 @@ export default function ReviewForm() {
 
   useEffect(() => {
     if (postReviewstStatus.isSuccess) {
-      formRef.current?.reset();
+      //formRef.current?.reset();
       setReview('');
       setRating(null);
-      //console.log(postReviewstStatus.isSuccess);
+      console.log(postReviewstStatus.isSuccess);
+      console.log(rating);
     }
   }, [postReviewstStatus]);
 
@@ -61,10 +60,12 @@ export default function ReviewForm() {
     }
   };
 
+  console.log(rating);
+
   return (
     <form
       onSubmit={handleFormSubmit}
-      ref={formRef}
+
       className="reviews__form form"
       action="#"
       method="post"
@@ -77,6 +78,7 @@ export default function ReviewForm() {
 
       <textarea
         onChange={textareaChangeHandle}
+        value={review}
         className="reviews__textarea form__textarea"
         id="review"
         name="review"
