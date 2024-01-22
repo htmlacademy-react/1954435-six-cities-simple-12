@@ -14,6 +14,8 @@ const ratingStars: string[] = [
 ];
 
 export default function RatingForm({onRate, rating}:RatingFormProps) {
+  //Не очищает звёзды при отправке нескольких отзывов.
+  //console.log(rating);
 
   return(
     <div className="reviews__rating-form form__rating">

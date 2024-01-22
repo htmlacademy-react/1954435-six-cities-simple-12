@@ -29,11 +29,10 @@ export default function ReviewForm() {
 
   useEffect(() => {
     if (postReviewstStatus.isSuccess) {
-      //formRef.current?.reset();
       setReview('');
       setRating(null);
-      console.log(postReviewstStatus.isSuccess);
-      console.log(rating);
+      //console.log(postReviewstStatus.isSuccess);
+      // console.log(rating);
     }
   }, [postReviewstStatus]);
 
@@ -60,7 +59,7 @@ export default function ReviewForm() {
     }
   };
 
-  console.log(rating);
+  //console.log(rating);
 
   return (
     <form
