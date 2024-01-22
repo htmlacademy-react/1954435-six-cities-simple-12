@@ -1,12 +1,11 @@
-import {Offer} from '../../types/offer';
-
+import { User } from '../../types/user';
 
 type HostProps = {
-  offer: Offer;
+  host: User;
+  description: string;
 };
 
-export default function Host({offer}:HostProps) {
-  const {host, description} = offer;
+export default function Host({host, description}:HostProps) {
 
   return (
     <div className="property__host">
