@@ -1,21 +1,20 @@
-import { Offer } from '../../types/offer';
-import { PHOTOS_GALLERY } from '../../const';
+const MAX_IMAGES_LENGTH = 6;
 
 type GalleryProps = {
-  offer: Offer;
+  images: string[];
+  alt: string;
 };
 
-export default function Gallery({ offer }: GalleryProps) {
-  const { title, images } = offer;
-  const photos = images.slice(0, PHOTOS_GALLERY);
+export default function Gallery({ images, alt }: GalleryProps) {
+  const visibleImages = images.slice(0, MAX_IMAGES_LENGTH);
 
   return (
     <div className="property__gallery-container container">
       <div className="property__gallery">
-        {photos.length &&
-          photos.map((src) => (
+        {visibleImages.length &&
+          visibleImages.map((src) => (
             <div key={src} className="property__image-wrapper">
-              <img className="property__image" src={src} alt={title} />
+              <img className="property__image" src={src} alt={alt} />
             </div>
           ))}
       </div>

@@ -34,8 +34,6 @@ export const SORTS = [
   'Top rated first',
 ];
 
-export const PHOTOS_GALLERY = 6;
-
 export const REGEXP_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export const REGEXP_PASS = /([0-9].*[a-z])|([a-z].*[0-9])/;
 

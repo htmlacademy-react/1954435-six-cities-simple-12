@@ -64,7 +64,7 @@ export default function RoomScreen() {
       <Header hasNavigation />
       <main className="page__main page__main--property">
         <section className="property">
-          <Gallery offer={offer} />
+          <Gallery images={offer.images} alt={offer.title} />
 
           <div className="property__container container">
             <div className="property__wrapper">
