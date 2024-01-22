@@ -69,7 +69,7 @@ export default function RoomScreen() {
           <div className="property__container container">
             <div className="property__wrapper">
               <RoomHeader offer={offer} />
-              <RoomInside offer={offer.goods} />
+              <RoomInside goods={offer.goods} />
               <Host offer={offer} />
               <RoomReviews reviews={reviews} />
             </div>
