@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { useEffect } from 'react';
 import Header from '../../components/header/header';
-import LocationNav from '../../components/location-nav/location-nav';
+import CityList from '../../components/city-list/city-list';
 import Sorting from '../../components/sorting/sorting';
 import OfferList from '../../components/offer-list/offer-list';
 import Map from '../../components/map/map';
@@ -42,7 +42,7 @@ export default function MainScreen() {
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
 
-        <LocationNav currentCity={currentCity} />
+        <CityList currentCity={currentCity} />
 
         <div className="cities">
           <div className="cities__places-container container">

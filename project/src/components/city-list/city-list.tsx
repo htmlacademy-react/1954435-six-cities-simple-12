@@ -7,7 +7,7 @@ type LocationNavProps = {
   currentCity?: string;
 }
 
-export default function LocationNav({currentCity}:LocationNavProps) {
+export default function CityList({currentCity}:LocationNavProps) {
   const dispatch = useAppDispatch();
 
   return (
