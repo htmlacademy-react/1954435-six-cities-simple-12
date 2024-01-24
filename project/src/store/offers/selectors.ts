@@ -23,3 +23,5 @@ export const getRenderedOffers = createSelector(
   [getFilteredOffers, getCurrentSortType],
   (offers, sortType) => getOffersBySortType(offers, sortType)
 );
+
+export const getIsOfferEmpty = createSelector([getRenderedOffers], (offers) => !offers.length);
