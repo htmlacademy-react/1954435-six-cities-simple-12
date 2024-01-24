@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import cn from 'classnames';
-import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useAppDispatch} from '../../hooks';
 import { SORTS } from '../../const';
-import { getCurrentSortType } from '../../store/app/selector';
 import { changeSortType } from '../../store/app/app';
 
-export default function Sorting() {
-  const [isOpen, setIsOpen] = useState(false);
+type SortingProps = {
+  currentSortType: string;
+}
 
-  const sortType = useAppSelector(getCurrentSortType);
+export default function Sorting({ currentSortType }: SortingProps) {
+  const [isOpen, setIsOpen] = useState(false);
   const dispatch = useAppDispatch();
 
   return (
@@ -19,7 +20,7 @@ export default function Sorting() {
         tabIndex={0}
         onClick={() => setIsOpen(!isOpen)}
       >
-        {sortType}
+        {currentSortType}
 
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>
@@ -34,7 +35,7 @@ export default function Sorting() {
           <li
             key={sort}
             className={cn('places__option', {
-              'places__option--active': sort === sortType,
+              'places__option--active': sort === currentSortType,
             })}
             tabIndex={0}
             onClick={(evt) => {
