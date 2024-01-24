@@ -3,22 +3,22 @@ import { useAppSelector, useAppDispatch } from '../../hooks';
 import { useEffect } from 'react';
 import Header from '../../components/header/header';
 import CityList from '../../components/city-list/city-list';
-import Sorting from '../../components/sorting/sorting';
-import OfferList from '../../components/offer-list/offer-list';
-import Map from '../../components/map/map';
+//import Sorting from '../../components/sorting/sorting';
+//import OfferList from '../../components/offer-list/offer-list';
+//import Map from '../../components/map/map';
 import Loader from '../../components/loader/loader';
 import ErrorScreen from '../error-screen/error-screen';
-import { getRenderedOffers, getOffersStatus } from '../../store/offers/selectors';
-import { getCurrentCity, getselectOffer } from '../../store/app/selector';
+import { /*getRenderedOffers,*/ getOffersStatus } from '../../store/offers/selectors';
+import { getCurrentCity, /*getselectOffer*/ } from '../../store/app/selector';
 import { fetchOffersAction } from '../../store/api-actions';
 
 
 export default function MainScreen() {
   const dispatch = useAppDispatch();
   const currentCity = useAppSelector(getCurrentCity);
-  const renderedOffers = useAppSelector(getRenderedOffers);
+  //const renderedOffers = useAppSelector(getRenderedOffers);
   const status = useAppSelector(getOffersStatus);
-  const selectedOfferId = useAppSelector(getselectOffer);
+  //const selectedOfferId = useAppSelector(getselectOffer);
 
   useEffect(() => {
     dispatch(fetchOffersAction());
@@ -44,7 +44,7 @@ export default function MainScreen() {
 
         <CityList currentCity={currentCity} />
 
-        <div className="cities">
+        {/* <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
@@ -66,7 +66,7 @@ export default function MainScreen() {
               />
             </div>
           </div>
-        </div>
+  </div>*/}
       </main>
     </div>
   );
