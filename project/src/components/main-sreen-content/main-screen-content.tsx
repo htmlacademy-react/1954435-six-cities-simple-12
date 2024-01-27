@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { useAppSelector } from '../../hooks';
 import cn from 'classnames';
 import EmptyOfferMessage from '../empty-offer-message/empty-offer-message';
@@ -22,9 +22,11 @@ export default function MainScreenContent(): JSX.Element {
   const sortType = useAppSelector(getCurrentSortType);
   const isOfferEmpty = useAppSelector(getIsOfferEmpty);
 
-  const onCardHover = (offerId: number | null): void => {
+
+  const onCardHover = useCallback((offerId: number | null): void => {
     setSelectedOfferId(offerId);
-  };
+  }, []);
+
 
   return (
     <div className="cities">

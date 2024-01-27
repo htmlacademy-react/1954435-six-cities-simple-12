@@ -4,6 +4,7 @@ import { Offer } from '../../types/offer';
 import Badge from '../badge/badge';
 import { formatFirstLetter } from '../../utils';
 import { calculateRatingToPercent } from '../../utils';
+import { memo } from 'react';
 
 type RoomCardProps = {
   className: string;
@@ -11,7 +12,7 @@ type RoomCardProps = {
   onCardHover?: (offerId: number | null) => void;
 };
 
-export default function RoomCard({ offer, className, onCardHover }: RoomCardProps) {
+function RoomCard({ offer, className, onCardHover }: RoomCardProps) {
 
   return (
     <article
@@ -53,3 +54,7 @@ export default function RoomCard({ offer, className, onCardHover }: RoomCardProp
     </article>
   );
 }
+
+export default memo(RoomCard);
+
+
