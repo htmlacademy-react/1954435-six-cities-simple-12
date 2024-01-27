@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useAppSelector } from '../../hooks';
 import cn from 'classnames';
 import EmptyOfferMessage from '../empty-offer-message/empty-offer-message';
@@ -10,16 +11,21 @@ import {
 } from '../../store/offers/selectors';
 import {
   getCurrentCity,
-  getselectOffer,
+  //getselectOffer,
   getCurrentSortType,
 } from '../../store/app/selector';
 
 export default function MainScreenContent(): JSX.Element {
+  const [selectedOfferId, setSelectedOfferId] = useState<number | null>(null);
   const renderedOffers = useAppSelector(getRenderedOffers);
   const currentCity = useAppSelector(getCurrentCity);
   const sortType = useAppSelector(getCurrentSortType);
-  const selectedOfferId = useAppSelector(getselectOffer);
+  //const selectedOfferId = useAppSelector(getselectOffer);
   const isOfferEmpty = useAppSelector(getIsOfferEmpty);
+
+  const onCardHover = (offerId: number | null): void => {
+    setSelectedOfferId(offerId);
+  };
 
   return (
     <div className="cities">
@@ -40,7 +46,7 @@ export default function MainScreenContent(): JSX.Element {
             <Sorting currentSortType={sortType} />
 
             <div className="cities__places-list places__list tabs__content">
-              <OfferList className="cities__card" offers={renderedOffers} />
+              <OfferList className="cities__card" offers={renderedOffers} onCardHover={onCardHover} />
             </div>
           </section>
         )}

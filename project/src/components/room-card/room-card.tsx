@@ -1,25 +1,26 @@
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
-import { useAppDispatch } from '../../hooks';
+//import { useAppDispatch } from '../../hooks';
 import { Offer } from '../../types/offer';
 import Badge from '../badge/badge';
 import { formatFirstLetter } from '../../utils';
-import { selectOffer } from '../../store/app/app';
+//import { selectOffer } from '../../store/app/app';
 import { calculateRatingToPercent } from '../../utils';
 
 type RoomCardProps = {
   className: string;
   offer: Offer;
+  onCardHover?: (offerId: number | null) => void;
 };
 
-export default function RoomCard({ offer, className }: RoomCardProps) {
-  const dispatch = useAppDispatch();
+export default function RoomCard({ offer, className, onCardHover }: RoomCardProps) {
+  // const dispatch = useAppDispatch();
 
   return (
     <article
       className={cn('place-card', className)}
-      onMouseEnter={() => dispatch(selectOffer(offer.id))}
-      onMouseLeave={() => dispatch(selectOffer(null))}
+      onMouseOver={() => onCardHover?.(offer.id)}
+      onMouseLeave={() => onCardHover?.(null)}
     >
       {offer.isPremium && <Badge className="place-card__mark" text="Premium" />}
 
