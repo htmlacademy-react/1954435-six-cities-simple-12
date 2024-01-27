@@ -26,7 +26,7 @@ export default function RoomHeader({ offer }: RoomHeaderProps) {
           {offer.type}
         </li>
         <li className="property__feature property__feature--bedrooms">
-          {offer.bedrooms} Bedrooms
+          {offer.bedrooms} {offer.bedrooms > 1 ? 'Bedrooms' : 'Bedroom'}
         </li>
         <li className="property__feature property__feature--adults">
           Max {offer.maxAdults} adults
