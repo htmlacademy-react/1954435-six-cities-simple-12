@@ -11,16 +11,15 @@ import {
 } from '../../store/offers/selectors';
 import {
   getCurrentCity,
-  //getselectOffer,
   getCurrentSortType,
 } from '../../store/app/selector';
 
 export default function MainScreenContent(): JSX.Element {
   const [selectedOfferId, setSelectedOfferId] = useState<number | null>(null);
+
   const renderedOffers = useAppSelector(getRenderedOffers);
   const currentCity = useAppSelector(getCurrentCity);
   const sortType = useAppSelector(getCurrentSortType);
-  //const selectedOfferId = useAppSelector(getselectOffer);
   const isOfferEmpty = useAppSelector(getIsOfferEmpty);
 
   const onCardHover = (offerId: number | null): void => {

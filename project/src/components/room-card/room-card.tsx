@@ -1,10 +1,8 @@
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
-//import { useAppDispatch } from '../../hooks';
 import { Offer } from '../../types/offer';
 import Badge from '../badge/badge';
 import { formatFirstLetter } from '../../utils';
-//import { selectOffer } from '../../store/app/app';
 import { calculateRatingToPercent } from '../../utils';
 
 type RoomCardProps = {
@@ -14,7 +12,6 @@ type RoomCardProps = {
 };
 
 export default function RoomCard({ offer, className, onCardHover }: RoomCardProps) {
-  // const dispatch = useAppDispatch();
 
   return (
     <article
