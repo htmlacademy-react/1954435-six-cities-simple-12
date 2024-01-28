@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 import cn from 'classnames';
 import { Offer } from '../../types/offer';
 import Badge from '../badge/badge';
-import { formatFirstLetter } from '../../utils';
-import { calculateRatingToPercent } from '../../utils';
+import { formatFirstLetter } from '../../utils/utils';
+import { calculateRatingToPercent } from '../../utils/utils';
 import { memo } from 'react';
 
 type RoomCardProps = {
@@ -13,7 +13,6 @@ type RoomCardProps = {
 };
 
 function RoomCard({ offer, className, onCardHover }: RoomCardProps) {
-
   return (
     <article
       className={cn('place-card', className)}
@@ -42,7 +41,10 @@ function RoomCard({ offer, className, onCardHover }: RoomCardProps) {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: `${calculateRatingToPercent(offer.rating)}%` }}></span>
+            <span
+              style={{ width: `${calculateRatingToPercent(offer.rating)}%` }}
+            >
+            </span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
@@ -56,5 +58,3 @@ function RoomCard({ offer, className, onCardHover }: RoomCardProps) {
 }
 
 export default memo(RoomCard);
-
-
