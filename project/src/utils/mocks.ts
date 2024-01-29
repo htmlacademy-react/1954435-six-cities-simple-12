@@ -2,6 +2,7 @@ import { datatype, internet, address, commerce, image, lorem, date } from 'faker
 import { User, UserData } from '../types/user';
 import { Location, City, Offer } from '../types/offer';
 import { Review } from '../types/review';
+//test
 
 export const makeFakeUser = (): User => ({
   id: datatype.number(),
