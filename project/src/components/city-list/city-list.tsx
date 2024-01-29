@@ -1,11 +1,13 @@
 import cn from 'classnames';
-import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useAppDispatch } from '../../hooks';
 import { CITIES } from '../../const';
 import { changeCity } from '../../store/app/app';
-import { getCurrentCity } from '../../store/app/selector';
 
-export default function LocationNav() {
-  const currentCity = useAppSelector(getCurrentCity);
+type LocationNavProps = {
+  currentCity?: string;
+}
+
+export default function CityList({currentCity}:LocationNavProps) {
   const dispatch = useAppDispatch();
 
   return (

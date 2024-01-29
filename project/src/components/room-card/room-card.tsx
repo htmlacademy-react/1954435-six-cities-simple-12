@@ -1,28 +1,23 @@
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
-import { useAppDispatch } from '../../hooks';
 import { Offer } from '../../types/offer';
 import Badge from '../badge/badge';
-import { formatFirstLetter } from '../../utils';
-import { selectOffer } from '../../store/app/app';
+import { formatFirstLetter } from '../../utils/utils';
+import { calculateRatingToPercent } from '../../utils/utils';
+import { memo } from 'react';
 
 type RoomCardProps = {
   className: string;
   offer: Offer;
+  onCardHover?: (offerId: number | null) => void;
 };
 
-const MAX_STARS_QUANTITY = 5;
-
-export default function RoomCard({ offer, className }: RoomCardProps) {
-  const dispatch = useAppDispatch();
-
-  const ratingValueStars = Math.round(offer.rating) / MAX_STARS_QUANTITY * 100;
-
+function RoomCard({ offer, className, onCardHover }: RoomCardProps) {
   return (
     <article
       className={cn('place-card', className)}
-      onMouseEnter={() => dispatch(selectOffer(offer.id))}
-      onMouseLeave={() => dispatch(selectOffer(null))}
+      onMouseOver={() => onCardHover?.(offer.id)}
+      onMouseLeave={() => onCardHover?.(null)}
     >
       {offer.isPremium && <Badge className="place-card__mark" text="Premium" />}
 
@@ -46,7 +41,10 @@ export default function RoomCard({ offer, className }: RoomCardProps) {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: `${ratingValueStars}%` }}></span>
+            <span
+              style={{ width: `${calculateRatingToPercent(offer.rating)}%` }}
+            >
+            </span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
@@ -58,3 +56,5 @@ export default function RoomCard({ offer, className }: RoomCardProps) {
     </article>
   );
 }
+
+export default memo(RoomCard);

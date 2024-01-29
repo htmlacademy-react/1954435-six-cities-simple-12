@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, /*Navigate*/ } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { useEffect } from 'react';
@@ -18,17 +18,18 @@ import RoomReviews from '../../components/reviews/room-reviews';
 import OfferList from '../../components/offer-list/offer-list';
 import Map from '../../components/map/map';
 import { getOffer, getOfferStatus } from '../../store/offer/selectors';
-import { getReviews, getReviewsStatus } from '../../store/reviews/selectors';
+import { getRenderedReviews, getReviewsStatus } from '../../store/reviews/selectors';
 import {
   getNearOffers,
   getNearOffersStatus,
 } from '../../store/near-offers/selectors';
+//import { AppRoute } from '../../const';
 
 export default function RoomScreen() {
   const { id } = useParams();
   const offer = useAppSelector(getOffer);
   const statusOffer = useAppSelector(getOfferStatus);
-  const reviews = useAppSelector(getReviews);
+  const reviews = useAppSelector( getRenderedReviews);
   const statusReviews = useAppSelector(getReviewsStatus);
   const offersNearBy = useAppSelector(getNearOffers);
   const statusNearOffers = useAppSelector(getNearOffersStatus);
@@ -41,10 +42,15 @@ export default function RoomScreen() {
     dispatch(fetchOffersNearByAction(Number(id)));
   }, [dispatch, id]);
 
+  /*if (statusOffer.isError) {
+    return <Navigate to={AppRoute.NotFound} />;
+  }*/
+
   const areDataLoading =
     statusOffer.isLoading ||
     statusReviews.isLoading ||
     statusNearOffers.isLoading;
+
   if (areDataLoading || !offer) {
     return <Loader />;
   }
@@ -58,13 +64,13 @@ export default function RoomScreen() {
       <Header hasNavigation />
       <main className="page__main page__main--property">
         <section className="property">
-          <Gallery offer={offer} />
+          <Gallery images={offer.images} alt={offer.title} />
 
           <div className="property__container container">
             <div className="property__wrapper">
               <RoomHeader offer={offer} />
-              <RoomInside offer={offer} />
-              <Host offer={offer} />
+              <RoomInside goods={offer.goods} />
+              <Host host={offer.host} description={offer.description} />
               <RoomReviews reviews={reviews} />
             </div>
           </div>

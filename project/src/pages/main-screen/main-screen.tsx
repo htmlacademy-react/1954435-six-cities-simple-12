@@ -1,29 +1,23 @@
 import { Helmet } from 'react-helmet-async';
+import cn from 'classnames';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { useEffect } from 'react';
 import Header from '../../components/header/header';
-import LocationNav from '../../components/location-nav/location-nav';
-import Sorting from '../../components/sorting/sorting';
-import OfferList from '../../components/offer-list/offer-list';
-import Map from '../../components/map/map';
+import CityList from '../../components/city-list/city-list';
+import MainScreenContent from '../../components/main-sreen-content/main-screen-content';
 import Loader from '../../components/loader/loader';
 import ErrorScreen from '../error-screen/error-screen';
-import { getOffersByCity, getOffersBySortType } from '../../utils';
-import { getOffers, getOffersStatus } from '../../store/offers/selectors';
-import { getCurrentCity, getCurrentSortType, getselectOffer } from '../../store/app/selector';
+import { getOffersStatus, getIsOfferEmpty } from '../../store/offers/selectors';
+import { getCurrentCity} from '../../store/app/selector';
 import { fetchOffersAction } from '../../store/api-actions';
 
+
 export default function MainScreen() {
-  const dispatch = useAppDispatch();
-  const currentCity = useAppSelector(getCurrentCity);
-  const offers = useAppSelector(getOffers);
-  const sortType = useAppSelector(getCurrentSortType);
   const status = useAppSelector(getOffersStatus);
-  const selectedOfferId = useAppSelector(getselectOffer);
+  const currentCity = useAppSelector(getCurrentCity);
+  const isOfferEmpty = useAppSelector(getIsOfferEmpty);
 
-
-  const filteredOffers = getOffersByCity(offers, currentCity);
-  const sortedOffers = getOffersBySortType(filteredOffers, sortType);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fetchOffersAction());
@@ -44,34 +38,13 @@ export default function MainScreen() {
       </Helmet>
       <Header hasNavigation />
 
-      <main className="page__main page__main--index">
+      <main className={cn('page__main page__main--index',{'page__main--index-empty':isOfferEmpty})}>
         <h1 className="visually-hidden">Cities</h1>
 
-        <LocationNav />
+        <CityList currentCity={currentCity} />
 
-        <div className="cities">
-          <div className="cities__places-container container">
-            <section className="cities__places places">
-              <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">
-                {filteredOffers.length} places to stay in {currentCity}
-              </b>
+        <MainScreenContent />
 
-              <Sorting />
-
-              <div className="cities__places-list places__list tabs__content">
-                <OfferList className="cities__card" offers={sortedOffers} />
-              </div>
-            </section>
-            <div className="cities__right-section">
-              <Map
-                className="cities__map"
-                offers={filteredOffers}
-                activePointId={selectedOfferId}
-              />
-            </div>
-          </div>
-        </div>
       </main>
     </div>
   );

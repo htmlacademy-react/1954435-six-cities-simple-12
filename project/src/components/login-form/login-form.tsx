@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
 import { AuthData } from '../../types/auth-data';
 import { REGEXP_EMAIL, REGEXP_PASS } from '../../const';
-import LoginLoader from '../login-loader/login-loader';
+import LoaderButton from '../loader-button/loader-button';
 import { getLoginStatus } from '../../store/user/selectors';
 
 export default function LoginForm() {
@@ -92,7 +92,7 @@ export default function LoginForm() {
           />
         </div>
         <button className="login__submit form__submit button" type="submit">
-          {status.isPending ? <LoginLoader /> : 'Sign in'}
+          {status.isPending ? <LoaderButton /> : 'Sign in'}
         </button>
       </form>
     </section>

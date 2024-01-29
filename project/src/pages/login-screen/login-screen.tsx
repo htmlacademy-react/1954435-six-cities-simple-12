@@ -2,6 +2,7 @@ import {Helmet} from 'react-helmet-async';
 
 import Header from '../../components/header/header';
 import LoginForm from '../../components/login-form/login-form';
+import RandomCity from '../../components/random-city/random-city';
 
 
 export default function LoginScreen() {
@@ -18,13 +19,8 @@ export default function LoginScreen() {
 
           <LoginForm />
 
-          <section className="locations locations--login locations--current">
-            <div className="locations__item">
-              <a className="locations__item-link" href="#todo">
-                <span>Amsterdam</span>
-              </a>
-            </div>
-          </section>
+          <RandomCity />
+
         </div>
       </main>
     </div>
