@@ -6,13 +6,13 @@ import { UserData } from '../../types/user';
 export type UserDataState = {
   authorizationStatus: AuthorizationStatus;
   userData: UserData | null;
-  isLoginLoadingStatus: FetchStatus;
+  status: FetchStatus;
 };
 
 const initialState: UserDataState = {
   authorizationStatus: AuthorizationStatus.Unknown,
   userData: null,
-  isLoginLoadingStatus: FetchStatus.Idle,
+  status: FetchStatus.Idle,
 };
 
 export const userData = createSlice({
@@ -30,17 +30,17 @@ export const userData = createSlice({
         state.userData = null;
       })
       .addCase(loginAction.pending, (state) => {
-        state.isLoginLoadingStatus = FetchStatus.Pending;
+        state.status = FetchStatus.Pending;
       })
       .addCase(loginAction.fulfilled, (state, action) => {
         state.authorizationStatus = AuthorizationStatus.Authorized;
         state.userData = action.payload ?? null;
-        state.isLoginLoadingStatus = FetchStatus.Success;
+        state.status = FetchStatus.Success;
       })
       .addCase(loginAction.rejected, (state) => {
         state.authorizationStatus = AuthorizationStatus.NoAuthorized;
         state.userData = null;
-        state.isLoginLoadingStatus = FetchStatus.Error;
+        state.status = FetchStatus.Error;
       })
       .addCase(logoutAction.fulfilled, (state, action) => {
         state.authorizationStatus = AuthorizationStatus.NoAuthorized;

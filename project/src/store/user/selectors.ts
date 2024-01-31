@@ -10,7 +10,7 @@ export const getUserData = (state: State): UserData | null =>
   state[NameSpace.User].userData;
 
 export const getLoginLoadingStatus = (state: State): FetchStatus =>
-  state[NameSpace.User].isLoginLoadingStatus;
+  state[NameSpace.User].status;
 
 export const getLoginStatus = createSelector([ getLoginLoadingStatus], (status) => ({
   isPending: status === FetchStatus.Pending
