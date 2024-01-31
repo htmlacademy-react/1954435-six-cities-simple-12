@@ -49,7 +49,7 @@ export const makeFakeOffer = (): Offer => ({
 });
 
 export const makeFakeOffers = (): Offer[] =>
-  Array.from({length: 10}, makeFakeOffer);
+  Array.from({length: 6}, makeFakeOffer);
 
 export const makeFakeNearOffers = (): Offer[] =>
   Array.from({length: 3}, makeFakeOffer);
