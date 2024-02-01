@@ -1,7 +1,8 @@
 import { datatype, internet, address, commerce, image, lorem, date } from 'faker';
-import { User, UserData } from '../types/user';
+import { User, UserData} from '../types/user';
 import { Location, City, Offer } from '../types/offer';
 import { Review } from '../types/review';
+import { Notification } from '../types/notification';
 
 export const makeFakeUser = (): User => ({
   id: datatype.number(),
@@ -65,4 +66,9 @@ export const makeFakeReview = (): Review => ({
 export const makeFakeReviews = (): Review[] =>
   Array.from({length: 5}, makeFakeReview);
 
-
+export const makeFakeNotification = (): Notification => ({
+  id: datatype.uuid(),
+  type: 'error',
+  message: lorem.text(),
+  duration: datatype.number({ min: 1000, max: 4000 })
+});
