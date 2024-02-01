@@ -5,7 +5,7 @@ import { makeFakeNearOffers } from '../../utils/mocks';
 
 const nearOffers = makeFakeNearOffers();
 
-describe('Reducer: offerData', () => {
+describe('Reducer: nearOffersData', () => {
   let state: NearOffersDataState;
 
   beforeEach(() => {

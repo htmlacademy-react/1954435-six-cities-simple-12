@@ -5,7 +5,7 @@ import { makeFakeReviews } from '../../utils/mocks';
 
 const reviews = makeFakeReviews();
 
-describe('Reducer: offerData', () => {
+describe('Reducer: reviewsData', () => {
   let state: ReviewsDataState;
 
   beforeEach(() => {
