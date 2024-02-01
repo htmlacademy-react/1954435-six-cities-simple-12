@@ -25,12 +25,12 @@ describe('Reducer: offerData', () => {
         .toEqual({...state, status: FetchStatus.Pending});
     });
 
-    it('Should load offer and update status to "SUCCESS" if fetchOfferItemAction fulfilled', () => {
+    it('Should load nearOffers and update status to "SUCCESS" if fetchOfferItemAction fulfilled', () => {
       expect(nearOffersData.reducer(state, {type: fetchOffersNearByAction.fulfilled.type, payload: nearOffers}))
         .toEqual({ offersNearBy:nearOffers, status: FetchStatus.Success});
     });
 
-    it('Should load offers and update status to "ERROR" is fetchOfferItemAction rejected', () => {
+    it('Should update status to "ERROR" is fetchOfferItemAction rejected', () => {
       expect(nearOffersData.reducer(state, {type: fetchOffersNearByAction.rejected.type}))
         .toEqual({...state, status: FetchStatus.Error});
     });

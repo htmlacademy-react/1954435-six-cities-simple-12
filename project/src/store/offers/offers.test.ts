@@ -30,7 +30,7 @@ describe('Reducer: offersData', () => {
         .toEqual({ offers, status: FetchStatus.Success});
     });
 
-    it('Should load offers and update status to "ERROR" is fetchOffersAction rejected', () => {
+    it('Should update status to "ERROR" is fetchOffersAction rejected', () => {
       expect(offersData.reducer(state, {type: fetchOffersAction.rejected.type}))
         .toEqual({...state, status: FetchStatus.Error});
     });
