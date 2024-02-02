@@ -1,6 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkOptions } from '../types/thunk-options';
-//import { toast } from 'react-toastify';
 import { Offer, OfferId } from '../types/offer';
 import { Review } from '../types/review';
 import { AuthData } from '../types/auth-data';
@@ -11,6 +10,7 @@ import { dropToken, saveToken } from '../services/token';
 import { APIRoute, AppRoute } from '../const';
 import { redirectToRoute } from './action';
 import { pushNotification } from './notifications/notifications';
+import axios from 'axios';
 
 export const fetchOffersAction = createAsyncThunk<
   Offer[],
@@ -36,9 +36,11 @@ export const fetchOfferItemAction = createAsyncThunk<
 
     return data;
   } catch (err) {
-    dispatch(pushNotification({ type: 'error', message: 'Failed to load offer data' }));
-    //Или проще toast.error('Failed to load offer data');
-    dispatch(redirectToRoute(AppRoute.NotFound));
+    if(axios.isAxiosError(err) && err.response?.status === 404 ){
+      dispatch(redirectToRoute(AppRoute.NotFound));
+    } else {
+      dispatch(pushNotification({ type: 'error', message: 'Failed to load offer data' }));
+    }
     throw err;
   }
 });
