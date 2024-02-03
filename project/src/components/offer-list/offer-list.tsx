@@ -1,5 +1,6 @@
 import { Offer } from '../../types/offer';
 import RoomCard from '../../components/room-card/room-card';
+import { memo } from 'react';
 
 type OfferListProps = {
   className: string;
@@ -7,7 +8,7 @@ type OfferListProps = {
   onCardHover?: (offerId: number | null) => void;
 };
 
-export default function OfferList({
+function OfferList({
   offers,
   className,
   onCardHover,
@@ -25,3 +26,5 @@ export default function OfferList({
     </>
   );
 }
+
+export default memo(OfferList);
