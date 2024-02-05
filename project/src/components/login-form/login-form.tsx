@@ -77,6 +77,7 @@ export default function LoginForm() {
             name="email"
             placeholder="Email"
             required
+            data-testid="login"
           />
         </div>
         <ToastContainer />
@@ -89,6 +90,7 @@ export default function LoginForm() {
             name="password"
             placeholder="Password"
             required
+            data-testid="password"
           />
         </div>
         <button className="login__submit form__submit button" type="submit">
