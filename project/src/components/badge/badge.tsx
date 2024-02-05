@@ -5,7 +5,7 @@ type BadgeProps = {
 
 export default function Badge({className,text}: BadgeProps) {
   return (
-    <div className={className}>
+    <div className={className} data-testid="badge">
       <span>{text}</span>
     </div>
   );

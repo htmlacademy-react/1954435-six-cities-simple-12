@@ -10,7 +10,7 @@ export default function Gallery({ images, alt }: GalleryProps) {
 
   return (
     <div className="property__gallery-container container">
-      <div className="property__gallery">
+      <div className="property__gallery" data-testid="gallery-list">
         {visibleImages.length &&
           visibleImages.map((src) => (
             <div key={src} className="property__image-wrapper">
