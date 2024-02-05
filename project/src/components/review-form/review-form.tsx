@@ -77,6 +77,7 @@ export default function ReviewForm() {
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
         disabled={postReviewstStatus.isLoading}
+        data-testid="review"
       >
       </textarea>
       <div className="reviews__button-wrapper">
