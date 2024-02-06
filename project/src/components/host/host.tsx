@@ -8,7 +8,7 @@ type HostProps = {
 export default function Host({host, description}:HostProps) {
 
   return (
-    <div className="property__host">
+    <div className="property__host" data-testid="host">
       <h2 className="property__host-title">Meet the host</h2>
       <div className="property__host-user user">
         <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">

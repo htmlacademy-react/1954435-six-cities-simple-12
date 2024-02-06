@@ -18,13 +18,11 @@ export default function ReviewForm() {
   const postReviewstStatus = useAppSelector(getPostReviewStatus);
 
   const isRatingEmpty = rating === null;
-  const isReviewTooShort = review.length < MIN_TEXT_LENGTH;
-  const isReviewTooLong = review.length > MAX_TEXT_LENGHT;
+  const isReviewValid = review.length < MIN_TEXT_LENGTH || review.length > MAX_TEXT_LENGHT;
 
   const isFormDisabled =
-    isReviewTooShort ||
-    isReviewTooLong ||
     isRatingEmpty ||
+    isReviewValid ||
     postReviewstStatus.isLoading;
 
   useEffect(() => {
@@ -79,6 +77,7 @@ export default function ReviewForm() {
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
         disabled={postReviewstStatus.isLoading}
+        data-testid="review"
       >
       </textarea>
       <div className="reviews__button-wrapper">

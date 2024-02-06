@@ -10,7 +10,7 @@ type ReviewListProps = {
 export default function ReviewList({ reviews }: ReviewListProps) {
   const visibleReviews = reviews.slice(0, MAX_REVIEWS_QUANTITY);
   return (
-    <ul className="reviews__list">
+    <ul className="reviews__list" data-testid="reviews-list">
       {visibleReviews.map((review) => (
         <ReviewItem key={review.id} review={review} />
       ))}

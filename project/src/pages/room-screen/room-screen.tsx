@@ -1,4 +1,4 @@
-import { useParams, /*Navigate*/ } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { useEffect } from 'react';
@@ -23,7 +23,6 @@ import {
   getNearOffers,
   getNearOffersStatus,
 } from '../../store/near-offers/selectors';
-//import { AppRoute } from '../../const';
 
 export default function RoomScreen() {
   const { id } = useParams();
@@ -41,10 +40,6 @@ export default function RoomScreen() {
     dispatch(fetchReviewsAction(Number(id)));
     dispatch(fetchOffersNearByAction(Number(id)));
   }, [dispatch, id]);
-
-  /*if (statusOffer.isError) {
-    return <Navigate to={AppRoute.NotFound} />;
-  }*/
 
   const areDataLoading =
     statusOffer.isLoading ||

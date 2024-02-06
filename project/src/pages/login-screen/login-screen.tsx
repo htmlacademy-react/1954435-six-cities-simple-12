@@ -14,7 +14,7 @@ export default function LoginScreen() {
 
       <Header hasNavigation={false} />
 
-      <main className="page__main page__main--login">
+      <main className="page__main page__main--login" data-testid="login-screen">
         <div className="page__login-container container">
 
           <LoginForm />

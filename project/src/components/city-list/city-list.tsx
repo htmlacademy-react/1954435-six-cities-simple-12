@@ -11,7 +11,7 @@ export default function CityList({currentCity}:LocationNavProps) {
   const dispatch = useAppDispatch();
 
   return (
-    <div className="tabs">
+    <div className="tabs" data-testid="city-list">
       <section className="locations container">
         <ul className="locations__list tabs__list">
           {CITIES.map((city) => (
