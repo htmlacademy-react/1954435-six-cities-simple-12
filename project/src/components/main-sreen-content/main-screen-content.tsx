@@ -29,7 +29,7 @@ export default function MainScreenContent(): JSX.Element {
 
 
   return (
-    <div className="cities">
+    <div className="cities" data-testid="main-screen-content">
       <div
         className={cn('cities__places-container container', {
           'cities__places-container--empty': isOfferEmpty,
