@@ -22,11 +22,9 @@ export default function MainScreenContent(): JSX.Element {
   const sortType = useAppSelector(getCurrentSortType);
   const isOfferEmpty = useAppSelector(getIsOfferEmpty);
 
-
   const onCardHover = useCallback((offerId: number | null): void => {
     setSelectedOfferId(offerId);
   }, []);
-
 
   return (
     <div className="cities" data-testid="main-screen-content">
