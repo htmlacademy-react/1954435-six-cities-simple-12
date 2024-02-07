@@ -57,7 +57,7 @@ export default function RoomScreen() {
       </Helmet>
 
       <Header hasNavigation />
-      <main className="page__main page__main--property">
+      <main className="page__main page__main--property" data-testid="room-screen">
         <section className="property">
           <Gallery images={offer.images} alt={offer.title} />
 
