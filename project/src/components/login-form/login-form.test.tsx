@@ -25,7 +25,6 @@ const store = mockStore({
 describe('Component: LoginForm', () => {
   it('should render correctl', async () => {
 
-
     render(
       <Provider store={store}>
         <MemoryRouter>
