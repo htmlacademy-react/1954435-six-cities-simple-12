@@ -13,7 +13,7 @@ export default function RoomReviews({reviews}:RoomReviewsProps) {
   const status = useAppSelector(getAuthStatus);
 
   return (
-    <section className="property__reviews reviews">
+    <section className="property__reviews reviews" data-testid="room-reviews">
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
 
       <ReviewList reviews={reviews} />
