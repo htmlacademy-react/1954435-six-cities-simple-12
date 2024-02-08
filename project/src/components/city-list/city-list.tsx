@@ -25,6 +25,7 @@ export default function CityList({currentCity}:LocationNavProps) {
                   evt.preventDefault();
                   dispatch(changeCity(city));
                 }}
+                data-testid="city-item"
               >
                 <span>{city}</span>
               </a>
