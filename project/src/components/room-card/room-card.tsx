@@ -18,6 +18,7 @@ function RoomCard({ offer, className, onCardHover }: RoomCardProps) {
       className={cn('place-card', className)}
       onMouseOver={() => onCardHover?.(offer.id)}
       onMouseLeave={() => onCardHover?.(null)}
+      data-testid="room-card"
     >
       {offer.isPremium && <Badge className="place-card__mark" text="Premium" />}
 
