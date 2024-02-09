@@ -75,6 +75,7 @@ export default function Map({ className, offers, activePointId }: MapProps) {
       className={cn('map', className)}
       style={{ minHeight: '100%' }}
       ref={mapRef}
+      data-testid="map"
     />
   );
 }

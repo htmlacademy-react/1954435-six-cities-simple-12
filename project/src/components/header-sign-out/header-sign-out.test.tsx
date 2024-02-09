@@ -61,6 +61,5 @@ describe('Component: HeaderSignOut', () => {
     const actions = store.getActions();
     const logout = actions.find((action) => action.type === 'user/logout/pending');
     expect(logout?.type).toBe('user/logout/pending');
-
   });
 });
