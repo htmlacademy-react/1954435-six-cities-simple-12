@@ -23,5 +23,6 @@ describe('Component: HeaderProfile', () => {
     );
 
     expect(screen.getByTestId('header-profile')).toBeInTheDocument();
+    expect(screen.getByRole('img')).toBeInTheDocument();
   });
 });

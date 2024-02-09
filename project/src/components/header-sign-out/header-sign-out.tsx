@@ -11,7 +11,7 @@ export default function HeaderSignOut() {
   };
 
   return (
-    <li className="header__nav-item">
+    <li className="header__nav-item" data-testid="header-sign-out">
       <a className="header__nav-link" href="todo" onClick={handleSignOutClick}>
         <span className="header__signout">Sign out</span>
       </a>
