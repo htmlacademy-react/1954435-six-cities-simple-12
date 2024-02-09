@@ -7,7 +7,7 @@ type HeaderProps = {
 
 export default function Header(props: HeaderProps) {
   return (
-    <header className="header">
+    <header className="header" data-testid="header">
       <div className="container">
         <div className="header__wrapper">
 

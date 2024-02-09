@@ -1,15 +1,16 @@
 import { useAppSelector } from '../../hooks';
+import { getUserData } from '../../store/user/selectors';
 
 
 export default function HeaderProfile() {
-  const user = useAppSelector((state) => state.USER.userData);
+  const user = useAppSelector(getUserData);
 
   if (user === null) {
     return null;
   }
 
   return (
-    <li className="header__nav-item user">
+    <li className="header__nav-item user" data-testid="header-profile">
       <div className="header__nav-profile">
         <div className="header__avatar-wrapper user__avatar-wrapper">
           <img
