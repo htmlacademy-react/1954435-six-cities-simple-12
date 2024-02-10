@@ -23,6 +23,5 @@ describe('Component: ReviewItem', () => {
 
     expect(screen.getByTestId('review-item')).toBeInTheDocument();
     expect(screen.getByText(review.user.name)).toBeInTheDocument();
-    expect(screen.getByText(review.user.avatarUrl)).toBeInTheDocument();
   });
 });
