@@ -13,7 +13,7 @@ export default function Sorting({ currentSortType }: SortingProps) {
   const dispatch = useAppDispatch();
 
   return (
-    <form className="places__sorting" action="todo" method="get">
+    <form className="places__sorting" action="todo" method="get" data-testid="sort">
       <span className="places__sorting-caption">Sort by</span>{' '}
       <span
         className="places__sorting-type"
@@ -42,6 +42,7 @@ export default function Sorting({ currentSortType }: SortingProps) {
               dispatch(changeSortType(sort));
               setIsOpen(!isOpen);
             }}
+            data-testid="sort-item"
           >
             {sort}
           </li>

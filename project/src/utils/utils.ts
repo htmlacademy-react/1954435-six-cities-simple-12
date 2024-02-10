@@ -36,3 +36,5 @@ export const calculateRatingToPercent = (
   rating: number,
   maxRating = 5
 ): number => Math.round(rating) * (100 / maxRating);
+
+

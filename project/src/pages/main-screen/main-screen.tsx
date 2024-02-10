@@ -32,7 +32,7 @@ export default function MainScreen() {
   }
 
   return (
-    <div className="page page--gray page--main">
+    <div className="page page--gray page--main" data-testid="main-screen">
       <Helmet>
         <title>Six cities</title>
       </Helmet>

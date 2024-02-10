@@ -28,12 +28,13 @@ export default function RandomCity() {
   };
 
   return (
-    <section className="locations locations--login locations--current">
+    <section className="locations locations--login locations--current" data-testid="random-city">
       <div className="locations__item">
         <a
           className="locations__item-link"
           href="#todo"
           onClick={handleLocationClick}
+          data-testid="redirect-main"
         >
           <span>{randomCity}</span>
         </a>
