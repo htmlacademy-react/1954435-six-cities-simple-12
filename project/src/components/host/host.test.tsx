@@ -7,7 +7,6 @@ import HistoryRouter from '../../components/history-route/history-route';
 import Host from './host';
 
 const mockStore = configureMockStore();
-
 describe('Component: Host', () => {
   it('should render correctly', () => {
     const history = createMemoryHistory();
