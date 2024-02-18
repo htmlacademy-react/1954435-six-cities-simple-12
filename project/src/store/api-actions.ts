@@ -109,7 +109,7 @@ export const loginAction = createAsyncThunk<
   ThunkOptions
 >(
   'user/login',
-  async ({ login: email, password }, { dispatch, extra: api }) => {
+  async ({ email, password }, { dispatch, extra: api }) => {
     try {
       const { data } = await api.post<UserData>(APIRoute.Login, {
         email,
