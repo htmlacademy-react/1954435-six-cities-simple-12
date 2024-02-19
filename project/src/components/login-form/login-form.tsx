@@ -2,6 +2,7 @@
 import { useForm, SubmitHandler} from 'react-hook-form';
 import * as yup from 'yup';
 import {yupResolver} from '@hookform/resolvers/yup';
+import cn from 'classnames';
 //import { ToastContainer, /*toast*/ } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAppDispatch, useAppSelector } from '../../hooks';
@@ -11,6 +12,14 @@ import { REGEXP_EMAIL, REGEXP_PASS } from '../../const';
 import LoaderButton from '../loader-button/loader-button';
 import { getLoginStatus } from '../../store/user/selectors';
 import styles from './login-form.module.css';
+
+
+const formFields = {
+  email: 'E-mail',
+  password: 'Password'
+};
+
+type formFieldsKey = keyof typeof formFields;
 
 const schema = yup.object({
   email: yup
@@ -36,6 +45,7 @@ export default function LoginForm() {
 
   const dispatch = useAppDispatch();
   const status = useAppSelector(getLoginStatus);
+  const formFieldsKeys = Object.keys(formFields) as formFieldsKey[];
 
   const onSubmit: SubmitHandler<AuthData> = (authData) => {
     dispatch(loginAction({...authData}));
@@ -52,37 +62,30 @@ export default function LoginForm() {
         action="#"
         method="post"
       >
-        <div className="login__input-wrapper form__input-wrapper">
-          <label className="visually-hidden">E-mail</label>
-          {errors?.email && (
-            <span className={styles.errorMessage}>
-              {errors?.email?.message}
-            </span>
-          )}
-          <input
-            className="login__input form__input"
-            type="email"
-            placeholder="Email"
-            {...register('email')}
-            data-testid="login"
-          />
-        </div>
-        {/*<ToastContainer />*/}
-        <div className="login__input-wrapper form__input-wrapper">
-          <label className="visually-hidden">Password</label>
-          {errors?.password && (
-            <span className={styles.errorMessage}>
-              {errors?.password?.message}
-            </span>
-          )}
-          <input
-            className="login__input form__input"
-            type="password"
-            placeholder="Password"
-            {...register('password')}
-            data-testid="password"
-          />
-        </div>
+        {formFieldsKeys.map((key) => {
+          const inputClass = cn( 'login__input form__input',
+            {[styles.errorInput]: errors?.[key]}
+          );
+
+          return(
+            <div className="login__input-wrapper form__input-wrapper" key ={key}>
+              <label className="visually-hidden">{formFields[key]}</label>
+              {errors?.[key] && (
+                <span className={styles.errorMessage}>
+                  {errors?.[key]?.message}
+                </span>
+              )}
+              <input
+                className={inputClass}
+                type={key}
+                placeholder={formFields[key]}
+                {...register(`${key}`)}
+                /*data-testid="login"*/
+              />
+            </div>
+          );
+        })}
+
         <button className="login__submit form__submit button" type="submit" disabled={!isValid}>
           {status.isPending ? <LoaderButton /> : 'Sign in'}
         </button>
