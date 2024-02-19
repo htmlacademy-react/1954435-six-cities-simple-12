@@ -1,10 +1,7 @@
-
 import { useForm, SubmitHandler} from 'react-hook-form';
 import * as yup from 'yup';
 import {yupResolver} from '@hookform/resolvers/yup';
 import cn from 'classnames';
-//import { ToastContainer, /*toast*/ } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
 import { AuthData } from '../../types/auth-data';
@@ -12,7 +9,6 @@ import { REGEXP_EMAIL, REGEXP_PASS } from '../../const';
 import LoaderButton from '../loader-button/loader-button';
 import { getLoginStatus } from '../../store/user/selectors';
 import styles from './login-form.module.css';
-
 
 const formFields = {
   email: 'E-mail',
@@ -37,7 +33,6 @@ const schema = yup.object({
     )
     .required(),
 }).required();
-
 
 export default function LoginForm() {
   const {register, handleSubmit, reset, formState:{errors, isValid}
@@ -80,7 +75,7 @@ export default function LoginForm() {
                 type={key}
                 placeholder={formFields[key]}
                 {...register(`${key}`)}
-                /*data-testid="login"*/
+                data-testid={key}
               />
             </div>
           );
