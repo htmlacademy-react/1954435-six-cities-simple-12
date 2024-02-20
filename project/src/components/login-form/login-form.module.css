@@ -1,0 +1,9 @@
+.errorInput {
+  border-color: red;
+  outline: none;
+}
+
+.errorMessage {
+  margin-top: -20px;
+  color: red;
+}

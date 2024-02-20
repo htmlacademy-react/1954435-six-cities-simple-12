@@ -1,7 +1,7 @@
-import {render, screen} from '@testing-library/react';
-import {configureMockStore} from '@jedmao/redux-mock-store';
-import {Provider} from 'react-redux';
-import {AnyAction} from 'redux';
+import { render, screen } from '@testing-library/react';
+import { configureMockStore } from '@jedmao/redux-mock-store';
+import { Provider } from 'react-redux';
+import { AnyAction } from 'redux';
 import thunk from 'redux-thunk';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
@@ -18,33 +18,12 @@ const store = mockStore({
   [NameSpace.User]: {
     authorizationStatus: AuthorizationStatus.Unknown,
     userData: null,
-    status: FetchStatus.Idle
-  }
+    status: FetchStatus.Idle,
+  },
 });
 
 describe('Component: LoginForm', () => {
   it('should render correctl', async () => {
-
-    render(
-      <Provider store={store}>
-        <MemoryRouter>
-          <LoginForm />
-        </MemoryRouter>
-      </Provider>,
-    );
-
-    expect(screen.getByPlaceholderText(/Email/i)).toBeInTheDocument();
-    expect(screen.getByPlaceholderText(/Password/i)).toBeInTheDocument();
-
-    await userEvent.type(screen.getByTestId('login'), 'keks');
-    await userEvent.type(screen.getByTestId('password'), '123456');
-
-    expect(screen.getByDisplayValue(/keks/i)).toBeInTheDocument();
-    expect(screen.getByDisplayValue(/123456/i)).toBeInTheDocument();
-  });
-
-  it('should dispatch action "login" if user correctly write user data', async () => {
-
     render(
       <Provider store={store}>
         <MemoryRouter>
@@ -53,7 +32,26 @@ describe('Component: LoginForm', () => {
       </Provider>
     );
 
-    await userEvent.type(screen.getByTestId('login'), 'test@test.com');
+    expect(screen.getByPlaceholderText(/E-mail/i)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/Password/i)).toBeInTheDocument();
+
+    await userEvent.type(screen.getByTestId('email'), 'keks');
+    await userEvent.type(screen.getByTestId('password'), '123456');
+
+    expect(screen.getByDisplayValue(/keks/i)).toBeInTheDocument();
+    expect(screen.getByDisplayValue(/123456/i)).toBeInTheDocument();
+  });
+
+  it('should dispatch action "login" if user correctly write user data', async () => {
+    render(
+      <Provider store={store}>
+        <MemoryRouter>
+          <LoginForm />
+        </MemoryRouter>
+      </Provider>
+    );
+
+    await userEvent.type(screen.getByTestId('email'), 'test@test.com');
     await userEvent.type(screen.getByTestId('password'), '123456qwe');
 
     const buttonElement = screen.getByRole('button');
@@ -63,4 +61,3 @@ describe('Component: LoginForm', () => {
     expect(actions[0].type).toBe('user/login/pending');
   });
 });
-
