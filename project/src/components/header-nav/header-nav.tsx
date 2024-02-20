@@ -1,6 +1,5 @@
 import { useAppSelector } from '../../hooks';
 import { getAuthStatus } from '../../store/user/selectors';
-
 import HeaderProfile from '../header-profile/header-profile';
 import HeaderSignOut from '../header-sign-out/header-sign-out';
 import HeaderSignIn from '../header-sign-in/header-sign-in';
