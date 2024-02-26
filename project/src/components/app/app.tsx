@@ -1,30 +1,38 @@
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import {HelmetProvider} from 'react-helmet-async';
+import {useEffect, Suspense, lazy} from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { checkAuthAction } from '../../store/api-actions';
 import { AppRoute } from '../../const';
-
+import { getAuthStatus } from '../../store/user/selectors';
+import Loader from '../loader/loader';
 import MainScreen from '../../pages/main-screen/main-screen';
-import LoginScren from '../../pages/login-screen/login-screen';
-import RoomScreen from '../../pages/room-screen/room-screen';
-import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 
-import {Offers} from '../../types/offer';
-import {Reviews} from '../../types/review';
-
-type AppProps = {
-  offers: Offers;
-  reviews: Reviews;
-};
+const LoginScren = lazy(() => import('../../pages/login-screen/login-screen'));
+const RoomScreen = lazy(() => import('../../pages/room-screen/room-screen'));
+const NotFoundScreen = lazy(() => import('../../pages/not-found-screen/not-found-screen'));
 
 
-export default function App(props: AppProps): JSX.Element {
-  const {offers, reviews} = props;
+export default function App(): JSX.Element {
+  const authorizationStatus = useAppSelector(getAuthStatus);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(checkAuthAction());
+  }, [dispatch]);
+
+  if (authorizationStatus.isPending) {
+    return <Loader />;
+  }
+
+
   return(
-    <HelmetProvider>
-      <BrowserRouter>
+    <Suspense fallback={<Loader />}>
+      <HelmetProvider>
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={<MainScreen offers={offers} />}
+            element={<MainScreen />}
           />
           <Route
             path={AppRoute.Login}
@@ -32,15 +40,14 @@ export default function App(props: AppProps): JSX.Element {
           />
           <Route
             path={AppRoute.Offer}
-            element={<RoomScreen offers={offers} reviews={reviews} />}
+            element={<RoomScreen />}
           />
           <Route
             path={AppRoute.NotFound}
             element={<NotFoundScreen />}
           />
         </Routes>
-      </BrowserRouter>
-    </HelmetProvider>
-
+      </HelmetProvider>
+    </Suspense>
   );
 }

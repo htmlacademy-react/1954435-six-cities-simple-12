@@ -1,50 +1,51 @@
-import {Helmet} from 'react-helmet-async';
-import SvgUpper from '../../components/svg-upper/svg-upper';
+import { Helmet } from 'react-helmet-async';
+import cn from 'classnames';
+import { useAppSelector, useAppDispatch } from '../../hooks';
+import { useEffect } from 'react';
 import Header from '../../components/header/header';
-import LocationNav from '../../components/location-nav/location-nav';
-import Sorting from '../../components/sorting/sorting';
-import OfferList from '../../components/offer-list/offer-list';
-import {Offers} from '../../types/offer';
+import CityList from '../../components/city-list/city-list';
+import MainScreenContent from '../../components/main-sreen-content/main-screen-content';
+import Loader from '../../components/loader/loader';
+import ErrorScreen from '../error-screen/error-screen';
+import { getOffersStatus, getIsOfferEmpty } from '../../store/offers/selectors';
+import { getCurrentCity} from '../../store/app/selector';
+import { fetchOffersAction } from '../../store/api-actions';
 
 
-type MainScreenProps = {
-  offers: Offers;
-};
+export default function MainScreen() {
+  const status = useAppSelector(getOffersStatus);
+  const currentCity = useAppSelector(getCurrentCity);
+  const isOfferEmpty = useAppSelector(getIsOfferEmpty);
 
-export default function MainScreen({offers}: MainScreenProps) {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchOffersAction());
+  }, [dispatch]);
+
+  if (status.isLoading) {
+    return <Loader />;
+  }
+
+  if (status.isError) {
+    return <ErrorScreen />;
+  }
+
   return (
-    <body className="page page--gray page--main">
-      <SvgUpper/>
-
+    <div className="page page--gray page--main" data-testid="main-screen">
       <Helmet>
         <title>Six cities</title>
       </Helmet>
-      <Header hasNavigation/>
+      <Header hasNavigation />
 
-      <main className="page__main page__main--index">
+      <main className={cn('page__main page__main--index',{'page__main--index-empty':isOfferEmpty})}>
         <h1 className="visually-hidden">Cities</h1>
 
-        <LocationNav/>
+        <CityList currentCity={currentCity} />
 
-        <div className="cities">
-          <div className="cities__places-container container">
-            <section className="cities__places places">
-              <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offers.length} places to stay in Amsterdam</b>
+        <MainScreenContent />
 
-              <Sorting/>
-
-              <div className="cities__places-list places__list tabs__content">
-                <OfferList offers={offers} />
-              </div>
-
-            </section>
-            <div className="cities__right-section">
-              <section className="cities__map map"></section>
-            </div>
-          </div>
-        </div>
       </main>
-    </body>
+    </div>
   );
 }

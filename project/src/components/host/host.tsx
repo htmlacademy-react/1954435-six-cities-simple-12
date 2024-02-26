@@ -1,15 +1,14 @@
-import {Offer} from '../../types/offer';
-
+import { User } from '../../types/user';
 
 type HostProps = {
-  offer: Offer;
+  host: User;
+  description: string;
 };
 
-export default function Host({offer}:HostProps) {
-  const {host, description} = offer;
+export default function Host({host, description}:HostProps) {
 
   return (
-    <div className="property__host">
+    <div className="property__host" data-testid="host">
       <h2 className="property__host-title">Meet the host</h2>
       <div className="property__host-user user">
         <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">

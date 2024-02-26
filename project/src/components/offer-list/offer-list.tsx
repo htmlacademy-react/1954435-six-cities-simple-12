@@ -1,18 +1,30 @@
-import {Offers} from '../../types/offer';
+import { Offer } from '../../types/offer';
 import RoomCard from '../../components/room-card/room-card';
-import { useState } from 'react';
+import { memo } from 'react';
 
 type OfferListProps = {
-  offers: Offers;
+  className: string;
+  offers: Offer[];
+  onCardHover?: (offerId: number | null) => void;
 };
 
-export default function OfferList({offers}: OfferListProps): JSX.Element {
-  const [, setActiveCardId] = useState<number|null>();
-
+function OfferList({
+  offers,
+  className,
+  onCardHover,
+}: OfferListProps): JSX.Element {
   return (
     <>
-      { offers.map((offer) => <RoomCard key={offer.id} offer={offer} onCardMouseOver={(id)=>{setActiveCardId(id);}}/> )}
+      {offers.map((offer) => (
+        <RoomCard
+          key={offer.id}
+          offer={offer}
+          className={className}
+          onCardHover={onCardHover}
+        />
+      ))}
     </>
   );
-
 }
+
+export default memo(OfferList);

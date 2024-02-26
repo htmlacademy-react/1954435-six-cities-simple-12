@@ -1,0 +1,36 @@
+.wrapper {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.text {
+  margin: 0;
+  color:#7a6c6d;
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.link {
+  display: block;
+  font-size: 30px;
+  color: #fff;
+  background-color: #4481c3;
+  border: 2px solid  #65a0f8;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: opacity .3s ease-in-out;
+  text-shadow: 1px 0 0, 0.5px 0 0, -1px 0 0;
+
+  &:hover {
+    opacity: .6;
+  }
+}
